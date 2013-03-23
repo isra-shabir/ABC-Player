@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Bar implements BarStruct {
 	
     ArrayList<NoteStruct> noteStructs = new ArrayList<NoteStruct>();
-    int numStructs = 0;
     
 	/**
 	 * 
@@ -13,7 +12,6 @@ public class Bar implements BarStruct {
 
     public void add(NoteStruct struct){
         this.noteStructs.add(struct);
-        numStructs++;
     }
     
     /**
@@ -22,7 +20,7 @@ public class Bar implements BarStruct {
      */
 	public int getMinTicksPerQuarter(){
 		int minTicks = 1;
-	    for (int i = 0; i<numStructs; i++){
+	    for (int i = 0; i<noteStructs.size(); i++){
 		    int min = noteStructs.get(i).getMinTicks(); 
 		    if (min > minTicks){
 		        minTicks = min;
@@ -38,10 +36,18 @@ public class Bar implements BarStruct {
 
 	public int addToPlayer(int startTicking, int ticksPerQuarter, myPlayer player){
 		int currentTick = startTicking;
-		for (int i = 0; i<numStructs; i++){
+		for (int i = 0; i<noteStructs.size(); i++){
 		    currentTick = noteStructs.get(i).addToPlayer(currentTick,ticksPerQuarter, player);
 		}
 		return currentTick;
+	}
+	
+	public String toString(){
+	    String output = "\n-------BAR-------";
+	    for (int i = 0; i<noteStructs.size(); i++){
+	        output = output + "\n" + noteStructs.get(i).toString();
+	    }
+	    return output;
 	}
     
 }
