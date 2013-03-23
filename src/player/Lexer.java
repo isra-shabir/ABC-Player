@@ -70,7 +70,8 @@ public class Lexer {
     		
     		if(nume.matcher(token).matches())				tokens.add(new Token(Type.NUMERATOR, token));
     		else if(deno.matcher(token).matches())			tokens.add(new Token(Type.DENOMINATOR, token));
-    		else if(voice.matcher(token).matches())			tokens.add(new Token(Type.VOICE, token));
+    		//figure out how to write the find the voice token
+    		else if(voice.matcher(token).find() == true)			tokens.add(new Token(Type.VOICE, token));
     		else if(note.matcher(token).matches())			tokens.add(new Token(Type.BASENOTE, token));
     		else if(acc.matcher(token).matches())			tokens.add(new Token(Type.ACCIDENTAL, token));
     		else if(octave.matcher(token).matches())		tokens.add(new Token(Type.OCTAVE, token));
