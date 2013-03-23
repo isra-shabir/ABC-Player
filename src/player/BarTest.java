@@ -22,7 +22,7 @@ public class BarTest {
         Tuplet T2 = new Tuplet(3);
         T2.addNote(new Note("F", "^", "", 1, 8));
         T2.addNote(new Note("A", "^", "", 1, 8));
-        T2.addNote(new Note("C", "^", "", 1, 8));
+        T2.addNote(new Note("c", "^", "", 1, 8));
         
         Bar t1bar = new Bar();
         t1bar.add(T1);
