@@ -24,13 +24,18 @@ public class Note implements NoteStruct{
      * Returns timeNumrator, timeDenominator to simplest form. 
      */
     private void cleanTime(){
-        
+        int originalNumerator = this.timeNumerator;
+        int originalDenominator = this.timeDenominator;
+        while (this.timeDenominator % 4 != 0){
+            this.timeDenominator += originalDenominator;
+            this.timeNumerator += originalNumerator;         
+        }
     }
     
     /**
      * Returns the timeDenominator
      */
-    public int getDenom(){
+    public int getMinTicks(){
         return timeDenominator;
     }
     

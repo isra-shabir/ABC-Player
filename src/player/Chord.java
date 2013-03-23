@@ -20,8 +20,8 @@ public class Chord implements NoteStruct{
         this.numNotes++;
     }
     
-    public int getDenom() {
-        return this.notes.get(1).getDenom();
+    public int getMinTicks() {
+        return this.notes.get(0).getMinTicks();
     }
     
     /**
