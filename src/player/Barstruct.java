@@ -3,14 +3,12 @@ package player;
 public interface Barstruct {
 	
 	/**
-	 * 
 	 * @return
 	 */
 	
 	public int getMinTicksPerQuarter();
 	
-	/**
-	 * 
+	/** 
 	 * @param startTicking
 	 * @return
 	 */
