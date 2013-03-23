@@ -5,7 +5,7 @@ public interface NoteStruct{
     int timeNumerator = 0;
     int timeDenominator = 0;
     
-    int getDenom();
+    int getMinTicks();
     int getNumTicks(int ticksPerQuarter);
     int addToPlayer(int startingTick, int length, myPlayer player);
     
