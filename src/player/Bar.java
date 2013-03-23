@@ -1,12 +1,8 @@
 package player;
 
-<<<<<<< HEAD
-public class Bar implements BarStruct {
-=======
 import java.util.ArrayList;
 
-public class Bar implements Barstruct {
->>>>>>> Built Bar, and fixed the addToPlayer methods and ticksPerBar retrieval
+public class Bar implements BarStruct {
 	
     ArrayList<NoteStruct> noteStructs = new ArrayList<NoteStruct>();
     int numStructs = 0;
@@ -14,10 +10,7 @@ public class Bar implements Barstruct {
 	/**
 	 * 
 	 */
-<<<<<<< HEAD
-	public int getMinTicksPerQuarter(){
-		return 0; 
-=======
+
     public void add(NoteStruct struct){
         this.noteStructs.add(struct);
         numStructs++;
@@ -36,18 +29,13 @@ public class Bar implements Barstruct {
 		    }
 		}
 	    return minTicks;
->>>>>>> Built Bar, and fixed the addToPlayer methods and ticksPerBar retrieval
 	}
 	
 	/**
 	 * Calls addToPlayer on all the structs in its list
 	 * Updates the tick, and returns its value at the end.
 	 */
-<<<<<<< HEAD
-	public int addToPlayer(int startTicking, myPlayer player){
-		return 0;
-	}
-=======
+
 	public int addToPlayer(int startTicking, int ticksPerQuarter, myPlayer player){
 		int currentTick = startTicking;
 		for (int i = 0; i<numStructs; i++){
@@ -57,7 +45,4 @@ public class Bar implements Barstruct {
 	}
     
 }
->>>>>>> Built Bar, and fixed the addToPlayer methods and ticksPerBar retrieval
 	
-
-}
