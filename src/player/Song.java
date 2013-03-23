@@ -14,6 +14,7 @@ public class Song {
 	
 	/**
 	 * Get the minimum number of ticks per quarter needed to represent everything in the voice.
+	 * @return an int representing the min ticks/quarter that would support this bar.
 	 */	
 	public int getMinTicksPerQuarter(){
 	    int minTicks = 1;
@@ -27,8 +28,12 @@ public class Song {
 	}
 	
 	/**
-	 * 
-	 */
+     * Adds everything in the song to the player.
+     * 
+     * Calls addToPlayer on all the voices in its list
+     * Updates the tick, and returns its value at the end.
+     * @param player - the myPlayer object that all notes should be added to.
+     */
 	public void addToPlayer(myPlayer player){
 	    
 	    int ticksPerQuarter = this.getMinTicksPerQuarter();

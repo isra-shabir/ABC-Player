@@ -1,5 +1,7 @@
 package player;
 
+import java.util.ArrayList;
+
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
 
@@ -16,6 +18,7 @@ public class BarTest {
         T1.addNote(new Note("E", "", "", 1, 8));
         T1.addNote(new Note("G", "", "", 1, 8));
         T1.addNote(new Note("B", "", "", 1, 8));
+        
         Tuplet T2 = new Tuplet(3);
         T2.addNote(new Note("F", "^", "", 1, 8));
         T2.addNote(new Note("A", "^", "", 1, 8));
@@ -26,6 +29,7 @@ public class BarTest {
         t1bar.add(T1);
         t1bar.add(T1);
         t1bar.add(T1);
+        
         Bar t2bar = new Bar();
         t2bar.add(T2);
         t2bar.add(T2);
@@ -44,34 +48,36 @@ public class BarTest {
         darBar2.add(new Note("F", "^", "", 1, 4));
         darBar2.add(new Note("F", "^", "", 1, 8));
         darBar2.add(new Note("G", "", "", 1, 8));
-        
-        
-        
-        
-        
-        
-        Bar M1 = new Bar();
-        Bar M2 = new Bar();
-        
+              
         Chord MC1 = new Chord();
         MC1.addNote(new Note("E" ,"", ",", 1, 1));
         MC1.addNote(new Note("G" ,"", ",", 1, 1));
         MC1.addNote(new Note("B" ,"", ",", 1, 1));
-        
-        M1.add(MC1);
         
         Chord MC2 = new Chord();
         MC2.addNote(new Note("F" ,"^", ",", 1, 1));
         MC2.addNote(new Note("A" ,"^", ",", 1, 1));
         MC2.addNote(new Note("C" ,"^", ",", 1, 1));
         
+        Bar M1 = new Bar();
+        M1.add(MC1);
+        
+        Bar M2 = new Bar();
         M2.add(MC2);
+        
+        ArrayList<Bar> rBars = new ArrayList<Bar>();
+        rBars.add(M1);
         
         Voice Muneeza = new Voice("Voice of Muneeza");
         Muneeza.add(M1);
         Muneeza.add(M2);
-        Muneeza.add(M1);
-        Muneeza.add(M2);
+        Muneeza.repeat();
+        Muneeza.hitStart();
+        Muneeza.add(t2bar);
+        Muneeza.add(t1bar);
+        Muneeza.repeat();
+        Muneeza.replaceLast(rBars);
+        
         
         Voice Aziz = new Voice("Voice Of Aziz");
         Aziz.add(darBar1);
@@ -86,7 +92,7 @@ public class BarTest {
         
         
         Song InTheEnd = new Song();
-        InTheEnd.add(Aziz);
+        //InTheEnd.add(Aziz);
         InTheEnd.add(Muneeza);
         //InTheEnd.add(Eta);
         
