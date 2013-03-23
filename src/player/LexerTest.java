@@ -26,5 +26,20 @@ public class LexerTest {
     	assertEquals(expected.toString(), test.lex().toString());     		
     
     }
+    
+    @Test
+    public void LexerTest2() {
+    	//test basic functionality for basenote 	
+    	Lexer test = new Lexer("2/3");
+    	
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	
+    			
+    	expected.add(new Token(Type.N, "A"));
+    	expected.add(new Token(Type.BASENOTE, "B"));
+
+    	assertEquals(expected.toString(), test.lex().toString());     		
+    
+    }
 
 }
