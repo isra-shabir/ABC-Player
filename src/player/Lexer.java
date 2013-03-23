@@ -50,7 +50,6 @@ public class Lexer {
     	Pattern note = Pattern.compile(Type.BASENOTE.getRegex());
     	Pattern acc = Pattern.compile(Type.ACCIDENTAL.getRegex());
     	Pattern octave = Pattern.compile(Type.OCTAVE.getRegex());
-    	Pattern len = Pattern.compile(Type.LENGTH.getRegex());
     	Pattern choBeg = Pattern.compile(Type.CHORDBEGIN.getRegex());
     	Pattern choEnd = Pattern.compile(Type.CHORDEND.getRegex());
     	Pattern tup = Pattern.compile(Type.TUPLET.getRegex());
@@ -71,7 +70,6 @@ public class Lexer {
     		else if(note.matcher(token).matches())		tokens.add(new Token(Type.BASENOTE, token));
     		else if(acc.matcher(token).matches())		tokens.add(new Token(Type.ACCIDENTAL, token));
     		else if(octave.matcher(token).matches())		tokens.add(new Token(Type.OCTAVE, token));
-    		else if(len.matcher(token).matches())		tokens.add(new Token(Type.LENGTH, token));
     		else if(choBeg.matcher(token).matches())		tokens.add(new Token(Type.CHORDBEGIN, token));
     		else if(choEnd.matcher(token).matches())		tokens.add(new Token(Type.CHORDEND, token));
     		else if(tup.matcher(token).matches())		tokens.add(new Token(Type.TUPLET, token));
