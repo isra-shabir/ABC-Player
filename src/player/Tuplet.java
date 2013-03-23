@@ -17,6 +17,7 @@ public class Tuplet implements NoteStruct{
     }
     
     public void addNote(Note note){
+        note.tupletTimeMutate(this.value);
         this.notes.add(note);
         this.numNotes++;
     }
