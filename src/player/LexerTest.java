@@ -35,11 +35,10 @@ public class LexerTest {
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     			
-    	expected.add(new Token(Type.N, "A"));
+    	expected.add(new Token(Type.BASENOTE, "A"));
     	expected.add(new Token(Type.BASENOTE, "B"));
 
     	assertEquals(expected.toString(), test.lex().toString());     		
     
     }
-
 }

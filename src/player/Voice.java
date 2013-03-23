@@ -21,7 +21,7 @@ public class Voice implements BarStruct {
 	 * 
 	 */
 	
-	public int addToPlayer(int startTicking, myPlayer player){
+	public int addToPlayer(int startTicking, int ticksPerQuarter, myPlayer player){
 		return 0;
 	}	
 	
@@ -50,5 +50,4 @@ public class Voice implements BarStruct {
 	public void replaceLast(Bar bar){
 		
 	}
-	
 }
