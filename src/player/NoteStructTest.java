@@ -49,9 +49,6 @@ public class NoteStructTest {
             
             
             
-            
-            
-            
         } catch (MidiUnavailableException e) {
             e.printStackTrace();
         } catch (InvalidMidiDataException e) {

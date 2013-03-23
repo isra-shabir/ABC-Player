@@ -14,7 +14,8 @@ public interface BarStruct {
 	 */
 	
 	// add argument player
-	public int addToPlayer(int startTicking, myPlayer player);
+
+	public int addToPlayer(int startTicking, int ticksPerQuarter, myPlayer player);
 
 	
 }
