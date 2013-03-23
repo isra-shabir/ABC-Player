@@ -1,6 +1,6 @@
 package player;
 
-public interface Barstruct {
+public interface BarStruct {
 	
 	/**
 	 * @return
@@ -14,7 +14,7 @@ public interface Barstruct {
 	 */
 	
 	// add argument player
-	public int addToPlayer(int startTicking);
+	public int addToPlayer(int startTicking, myPlayer player);
 
 	
 }

@@ -11,17 +11,19 @@ public class Token {
 	
 	public static enum Type {
 	
+		NUMERATOR("[A-Ga-g,'[b\t\n\r\f]]+[0-9]+)"),
+		DENOMINATOR("\\/[0-9]"),
 		BASENOTE("[A-Ga-g]"),
 		ACCIDENTAL("([\\_^])|([_]+)"),
 		OCTAVE("\\,"), 
-		LENGTH("[1-9]?\\/[1-9]?"),
+		LENGTH("[0-9]?\\/[0-9]?"),
 		CHORDBEGIN("\\["),
 		CHORDEND("\\]"),
 		TUPLET("[\\(3[\\(2 [\\(4]]]"),
 		BAR("\\|"),
 		REPEATBEG("\\|:"),
 		REPEATEND("\\:|"), 
-		VOICE("[a-zA-Z]+[0-9]*[a-zA-Z]*"),
+		VOICE("[0-9]*[a-zA-Z]+[0-9]*[a-zA-Z]*[0-9]*"),
 		ENDBAR("\\ |]"),
 		SPACE("[ b\t\n\r\f]");
 		
@@ -32,6 +34,16 @@ public class Token {
 			this.regex= str;
 			
 		}		
+		
+		/**
+		 * public method to retrieve Type's 
+		 * regex pattern given by a string
+		 * @return regex 
+		 */
+		
+		public String getRegex(){
+			return this.regex;
+		}
 	}
 	
 	private Type type;
@@ -71,6 +83,4 @@ public class Token {
     public String toString() {
     	return String.format("(<%s> %s)", this.getType(), value);
     }
-	
-	
 }
