@@ -30,12 +30,11 @@ public class LexerTest {
     @Test
     public void LexerTest2() {
     	//test basic functionality for length 	
-    	Lexer test = new Lexer("2/3");
+    	Lexer test = new Lexer("C2/3");
     	
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
-    			
-    	
+    	expected.add(new Token(Type.BASENOTE, "C"));
     	expected.add(new Token(Type.NUMERATOR, "2"));
     	expected.add(new Token(Type.DENOMINATOR, "3"));
 
@@ -151,6 +150,20 @@ public class LexerTest {
     	
     	expected.add(new Token(Type.NTHREPEAT, "[2"));
     	expected.add(new Token(Type.BASENOTE, "a"));    	
+    	assertEquals(expected.toString(), test.lex().toString());     		
+    }
+    
+    @Test
+    public void LexerTest10() {
+    	//test basic functionality for NTHREPEAT 	
+    	Lexer test = new Lexer("a    b");
+    	
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	
+    	expected.add(new Token(Type.BASENOTE, "a"));  
+    	expected.add(new Token(Type.SPACE, "    "));    	
+    	expected.add(new Token(Type.BASENOTE, "b"));    	
+
     	assertEquals(expected.toString(), test.lex().toString());     		
     }
 

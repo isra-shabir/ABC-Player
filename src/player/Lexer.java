@@ -54,9 +54,12 @@ public class Lexer {
     	Pattern choEnd = Pattern.compile(Type.CHORDEND.getRegex());
     	Pattern tup = Pattern.compile(Type.TUPLET.getRegex());
     	Pattern bar = Pattern.compile(Type.BAR.getRegex());
-    	Pattern repeat = Pattern.compile(Type.REPEATBEG.getRegex());
+    	Pattern repeatBeg = Pattern.compile(Type.REPEATBEG.getRegex());
+    	Pattern repeatEnd = Pattern.compile(Type.REPEATEND.getRegex());
     	Pattern voice = Pattern.compile(Type.VOICE.getRegex());
+    	Pattern openBar = Pattern.compile(Type.OPENBAR.getRegex());
     	Pattern endBar = Pattern.compile(Type.ENDBAR.getRegex());
+    	Pattern nthRepeat = Pattern.compile(Type.NTHREPEAT.getRegex());
     	Pattern space = Pattern.compile(Type.SPACE.getRegex());
     	
     	
@@ -65,19 +68,22 @@ public class Lexer {
     		
     		String token = matcher.group();
     		
-    		if(nume.matcher(token).matches())		tokens.add(new Token(Type.NUMERATOR, token));
-    		else if(deno.matcher(token).matches())		tokens.add(new Token(Type.DENOMINATOR, token));
-    		else if(note.matcher(token).matches())		tokens.add(new Token(Type.BASENOTE, token));
-    		else if(acc.matcher(token).matches())		tokens.add(new Token(Type.ACCIDENTAL, token));
+    		if(nume.matcher(token).matches())				tokens.add(new Token(Type.NUMERATOR, token));
+    		else if(deno.matcher(token).matches())			tokens.add(new Token(Type.DENOMINATOR, token));
+    		else if(voice.matcher(token).matches())			tokens.add(new Token(Type.VOICE, token));
+    		else if(note.matcher(token).matches())			tokens.add(new Token(Type.BASENOTE, token));
+    		else if(acc.matcher(token).matches())			tokens.add(new Token(Type.ACCIDENTAL, token));
     		else if(octave.matcher(token).matches())		tokens.add(new Token(Type.OCTAVE, token));
     		else if(choBeg.matcher(token).matches())		tokens.add(new Token(Type.CHORDBEGIN, token));
     		else if(choEnd.matcher(token).matches())		tokens.add(new Token(Type.CHORDEND, token));
-    		else if(tup.matcher(token).matches())		tokens.add(new Token(Type.TUPLET, token));
-    		else if(bar.matcher(token).matches())		tokens.add(new Token(Type.BAR, token));
-    		else if(repeat.matcher(token).matches())		tokens.add(new Token(Type.REPEATBEG, token));
-    		else if(voice.matcher(token).matches())		tokens.add(new Token(Type.VOICE, token));
+    		else if(tup.matcher(token).matches())			tokens.add(new Token(Type.TUPLET, token));
+    		else if(repeatBeg.matcher(token).matches())		tokens.add(new Token(Type.REPEATBEG, token));
+    		else if(repeatEnd.matcher(token).matches())		tokens.add(new Token(Type.REPEATEND, token));
+    		else if(bar.matcher(token).matches())			tokens.add(new Token(Type.BAR, token));
+    		else if(openBar.matcher(token).matches())		tokens.add(new Token(Type.OPENBAR, token));
     		else if(endBar.matcher(token).matches())		tokens.add(new Token(Type.ENDBAR, token));
-    		else if(space.matcher(token).matches())		tokens.add(new Token(Type.SPACE, token));
+    		else if(nthRepeat.matcher(token).matches())		tokens.add(new Token(Type.NTHREPEAT, token));
+    		else if(space.matcher(token).matches())			tokens.add(new Token(Type.SPACE, token));
     	}
 		return tokens;
 	}

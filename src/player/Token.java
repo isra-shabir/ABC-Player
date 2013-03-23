@@ -11,22 +11,22 @@ public class Token {
 	
 	public static enum Type {
 	
-		NUMERATOR("[[A-Ga-g],'[b\t\n\r\f]+][0-9]+"),
-		DENOMINATOR("[123]"),
-		BASENOTE("[123]"),
-		ACCIDENTAL("[123]"),
-		OCTAVE("[123]+"), 
-		CHORDBEGIN("[123]"),
-		CHORDEND("[123]"),
-		TUPLET("[123]"),
-		BAR("[123]"),
-		REPEATBEG("[123]"),
-		REPEATEND("[123]"), 
-		VOICE("[123]"),
-		OPENBAR("[123]"),
-		ENDBAR("[123]"),
-		NTHREPEAT("[123]"),
-		SPACE("[abc]");
+		NUMERATOR("(?<=C)[0-9]+"),
+		DENOMINATOR("\\/[0-9]"),
+		VOICE("(?<=V:)[\\sa-zA-z0-9]+"),
+		NTHREPEAT("(\\[1)|(\\[2)"),
+		BASENOTE("[A-Ga-g]"),
+		ACCIDENTAL("[\\__\\^\\_\\=\\^^]"),
+		OCTAVE("[\\,\\']+"), 
+		OPENBAR("\\[\\|"),
+		ENDBAR("(\\|\\|)|(\\|\\])"),
+		CHORDBEGIN("\\["),
+		CHORDEND("\\]"),
+		TUPLET("\\([0-9]+"),
+		REPEATBEG("\\|:"),
+		REPEATEND(":\\|"),
+		BAR("\\|"),
+		SPACE("[\\s]+"); // test for this
 		
 		//define Type.regex so we can access the regex for each type
 		private String regex;
