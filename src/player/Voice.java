@@ -35,9 +35,8 @@ public class Voice implements BarStruct {
 	/**
 	 * 
 	 */
-	public int addToPlayer(int sT, int tPQ, myPlayer player){
-	    int ticksPerQuarter = getMinTicksPerQuarter();
-	    int currentTick = 0;
+	public int addToPlayer(int startingPoint, int ticksPerQuarter, myPlayer player){
+	    int currentTick = startingPoint;
         for (int i = 0; i<barStructs.size(); i++){
             currentTick = barStructs.get(i).addToPlayer(currentTick,ticksPerQuarter, player);
         }
