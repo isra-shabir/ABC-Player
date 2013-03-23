@@ -16,31 +16,42 @@ public class Tuplet implements NoteStruct{
         this.value = value;
     }
     
+    /**
+     * Adds a note to the tuplet (with adjusted length). 
+     * @param note - the note to be added to the tuplet. 
+     * This note's time is mutated according to Tuplet rules.
+     */
     public void addNote(Note note){
         note.tupletTimeMutate(this.value);
         this.notes.add(note);
         this.numNotes++;
     }
     
+    /**
+     * Figures out the min amount of ticks/qurter needed to represent this tuplet
+     * @return the minimum number of ticks/quarter needed to represent this tuplet
+     */
     public int getMinTicks() {
         return this.notes.get(0).getMinTicks();
     }
     
     /**
-     * 
+     * Gets the number of ticks that this tuplet will occupy
+     * @param int ticksPerQuarter - the number of ticks per quarter
+     * @return The number of ticks that this tuplet will occupy
      */
     public int getNumTicks(int ticksPerQuarter){
         return this.notes.get(0).getNumTicks(ticksPerQuarter);
     }
     
     /**
-     * Adds this chord to the myPlayer object.
+     * Adds this tuplet to the myPlayer object.
      * @param  
-     * @param intStarting tick, the tick at which all notes in this chord must begin
-     * @param int length - the length of this chord
+     * @param intStarting tick, the tick at which the first note in this tuplet must begin
+     * @param int ticksPerQuarter - the defined number of ticks per quarter
      * @param myPlayer player - the player object which will be used.
      * 
-     * @return endTick : the tick reached at the end of this chord.
+     * @return endTick : the tick reached at the end of this tuplet.
      */
     public int addToPlayer(int startingTick, int ticksPerQuarter, myPlayer player) {
         int currentTick = startingTick;
@@ -48,7 +59,6 @@ public class Tuplet implements NoteStruct{
             //note: endTick is being set to the same variable every time this is called.
             currentTick = notes.get(i).addToPlayer(currentTick, ticksPerQuarter, player);
         }
-        
         return currentTick;
     }
     
