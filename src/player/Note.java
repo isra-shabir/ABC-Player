@@ -11,10 +11,12 @@ public class Note implements NoteStruct{
     
     //Constructs Note Object
     //Fills in timeNumerator, Denominator
-    public Note(String aBasenote, String aAccidental, String aOctave){
+    public Note(String aBasenote, String aAccidental, String aOctave, int num, int denom){
         this.basenote = aBasenote;
         this.accidental = aAccidental;
         this.octave = aOctave;
+        this.timeNumerator = num;
+        this.timeDenominator = denom;
         
     }
     
@@ -70,6 +72,10 @@ public class Note implements NoteStruct{
         int length = this.getNumTicks(ticksPerQuarter);
         player.addNote(startingTick, length, this.basenote, this.accidental, this.octave);
         return startingTick + length;
+    }
+    
+    public String toString(){
+        return octave+" "+basenote+" "+accidental;
     }
     
 }
