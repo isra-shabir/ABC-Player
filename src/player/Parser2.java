@@ -62,7 +62,6 @@ public class Parser2 {
 	            this.voiceParsers.get(this.currentVoiceParser).addToken(barObjects.get(i));
 	        }
 	    }
-
 	}
 	
 	/**

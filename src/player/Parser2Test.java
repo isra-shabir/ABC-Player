@@ -29,6 +29,9 @@ public class Parser2Test {
     VoiceIndicator toMuneeza = new VoiceIndicator("Muneeza");
     BarSignal plainBar = new BarSignal("OPENBAR");
     BarSignal repeatBar = new BarSignal("REPEAT");
+    BarSignal endBar = new BarSignal("ENDBAR");
+    BarSignal r1Bar = new BarSignal("FIRSTREPEAT");
+    BarSignal r2Bar = new BarSignal("SECONDREPEAT");
         
     public void testMaterialConstructor(){
         
@@ -72,7 +75,7 @@ public class Parser2Test {
         
     }
     
-    @Test
+    //@Test
     public void basicTest(){
         
         testMaterialConstructor();
@@ -119,9 +122,63 @@ public class Parser2Test {
         
     }
     
-    
-    
-    
-    
-    
+    @Test
+    public void advancedRepeatTest(){
+        
+        testMaterialConstructor();
+        
+        ArrayList<String> voiceNames = new ArrayList<String>();
+        voiceNames.add("Aziz");
+        
+        ArrayList<BarLineObject> objs = new ArrayList<BarLineObject>();
+        objs.add(toAziz);
+        objs.add(C);
+        objs.add(E);
+        objs.add(C);
+        objs.add(G);
+        objs.add(plainBar);
+        objs.add(C);
+        objs.add(E);
+        objs.add(C);
+        objs.add(G);
+        objs.add(endBar);
+        objs.add(G);
+        objs.add(G);
+        objs.add(G);
+        objs.add(C);
+        objs.add(r1Bar);
+        objs.add(C);
+        objs.add(G);
+        objs.add(G);
+        objs.add(G);
+        objs.add(r2Bar);
+        objs.add(C);
+        objs.add(E);
+        objs.add(E);
+        objs.add(E);
+        objs.add(repeatBar);
+        
+        
+               
+        Parser2 myParser2 = new Parser2(voiceNames);
+        myParser2.parse(objs);
+        ArrayList<Voice> voices = myParser2.getVoices();
+
+        Song lalala = new Song(voices);
+        
+        SequencePlayer sqPlayer;
+        try {
+            sqPlayer = new SequencePlayer(140, lalala.getMinTicksPerQuarter());
+            myPlayer MrAhmed = new myPlayer("C", sqPlayer);
+            lalala.addToPlayer(MrAhmed);
+            sqPlayer.play();
+            
+        } catch (MidiUnavailableException e) {
+            e.printStackTrace();
+        } catch (InvalidMidiDataException e) {
+            e.printStackTrace();
+        }
+        
+    }
+        
 }

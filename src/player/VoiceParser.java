@@ -45,15 +45,16 @@ public class VoiceParser {
 	        
 	        //A bar signal
 	        else {
+	            
 	            Bar newbar = new Bar();
 	            for (int i2 = 0; i2<barFiller.size(); i2++){
 	                newbar.add(barFiller.get(i2));
 	            }
-//	            System.out.println("\n"+this.voiceName + " Parser - Adding Bar:");
-//	            System.out.println(newbar.toString());
-	            voice.add(newbar);
 	            if (repeatingSecond){
 	                repeatedSecondBars.add(newbar);
+	            }
+	            else {
+	                voice.add(newbar);
 	            }
 	            barFiller.clear();
 	            
@@ -62,7 +63,6 @@ public class VoiceParser {
 	            }
 	            
 	            else if (voiceObjects.get(i).isType("SECONDREPEAT")){
-	                voice.repeat();
 	                repeatingSecond = true;
 	            }
 	            
@@ -72,6 +72,7 @@ public class VoiceParser {
 	            }
 	            
 	            else if (voiceObjects.get(i).isType("REPEAT") && repeatingSecond == true){
+	                voice.repeat();
 	                voice.replaceLast(repeatedSecondBars);
                     repeatingSecond = false;
                     repeatedSecondBars.clear();
