@@ -20,7 +20,7 @@ public class Parser {
 	
 	
 	
-	public void parse(ArrayList<BarLineObject> barStuff){
+	public ArrayList<BarLineObject> parse(){
 	    this.currentToken = 0;
 	    
 	    while (numVoices < tokens.size()){
@@ -48,6 +48,8 @@ public class Parser {
 	            this.currentToken++;
 	        }
 	    }
+	    
+	    return allObjects;
 	}	
 	
 	/**
