@@ -6,7 +6,7 @@ public class Parser2 {
 	
 	/**
 	 * The Job of this parser is as follows:
-	 * It takes in a list of Notes, Chords, Tuplets and BarLineObjects. 
+	 * It takes in a list of Notes, Chords, Tuplets, BarLineObjects and VoiceIndicator. 
 	 * 
 	 * 
 	 * the raw tokens.
@@ -49,16 +49,16 @@ public class Parser2 {
 	
 	
 	
-	public void parse(ArrayList<BarLineObject> barStuff){
+	public void parse(ArrayList<BarLineObject> barObjects){
 	    
 	    //Go through things, and add to appropriate voice parser.
-	    for (int i = 0; i < barStuff.size(); i++){
-	        if (barStuff.get(i) == voiceChanger){
-	            this.changeVoice(voiceChanger.getVoiceName());
+	    for (int i = 0; i < barObjects.size(); i++){
+	        if (barObjects.get(i).isVoiceIndicator()){
+	            this.changeVoice(((VoiceIndicator) barObjects.get(i)).getVoiceName());
 	        }
 	        
 	        else {
-	            this.voiceParsers.get(this.currentVoiceParser).addToken(barStuff.get(i));
+	            this.voiceParsers.get(this.currentVoiceParser).addToken(barObjects.get(i));
 	        }
 	    }
 

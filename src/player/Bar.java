@@ -2,13 +2,16 @@ package player;
 
 import java.util.ArrayList;
 
-public class Bar implements BarStruct {
+public class Bar{
 	
     ArrayList<NoteStruct> noteStructs = new ArrayList<NoteStruct>();
     
 
     public Bar(ArrayList<NoteStruct> noteStructs){
         this.noteStructs = noteStructs;
+    }
+    
+    public Bar(){
     }
     
     public void add(NoteStruct struct){

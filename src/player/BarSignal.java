@@ -10,4 +10,17 @@ public class BarSignal implements BarLineObject {
 	BarSignal(String value){
 		this.value= value; 
 	}
+
+	public boolean isNotestruct() {
+        return false;
+    }
+	
+	public boolean isVoiceIndicator(){
+        return false;
+    }
+	
+	public boolean isType(String type){
+	    return type.equals(this.value);
+	}
+
 }

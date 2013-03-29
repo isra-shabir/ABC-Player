@@ -62,4 +62,16 @@ public class Tuplet implements NoteStruct{
         return currentTick;
     }
     
+    public boolean isNotestruct() {
+        return true;
+    }
+    
+    public boolean isType(String type) {
+        return false;
+    }
+    
+    public boolean isVoiceIndicator(){
+        return false;
+    }
+    
 }

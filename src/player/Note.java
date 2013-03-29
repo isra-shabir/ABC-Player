@@ -109,5 +109,17 @@ public class Note implements NoteStruct{
     public String toString(){
         return octave+" "+basenote+" "+accidental;
     }
+
+    public boolean isNotestruct() {
+        return true;
+    }
+    
+    public boolean isVoiceIndicator(){
+        return false;
+    }
+    
+    public boolean isType(String type) {
+        return false;
+    }
     
 }

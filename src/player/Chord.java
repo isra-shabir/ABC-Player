@@ -49,4 +49,16 @@ public class Chord implements NoteStruct{
         return endTick;
     }
     
+    public boolean isNotestruct() {
+        return true;
+    }
+
+    public boolean isType(String type) {
+        return false;
+    }
+    
+    public boolean isVoiceIndicator(){
+        return false;
+    }
+    
 }

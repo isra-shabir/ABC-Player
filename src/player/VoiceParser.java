@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class VoiceParser {
 	
 	
-	private ArrayList<Token> voiceTokens = new ArrayList<Token>();
+	private ArrayList<BarLineObject> voiceObjects = new ArrayList<BarLineObject>();
 	private String voiceName;
 	
 	private Voice voice;
@@ -19,8 +19,8 @@ public class VoiceParser {
 	 * Adds a token to the VoiceParser's array of tokens.
 	 * @param token 
 	 */
-	public void addToken(Token token){
-	    voiceTokens.add(token);
+	public void addToken(BarLineObject object){
+	    voiceObjects.add(object);
 	}
 	
 	
@@ -29,55 +29,60 @@ public class VoiceParser {
 	 * @return Voice - a Voice object representing the entire voice.
 	 */
 	public Voice parse(){
-	    int numTokens = voiceTokens.size();
+	    int numObjects = voiceObjects.size();
 	    ArrayList<NoteStruct> barFiller = new ArrayList<NoteStruct>();
 	    
-	    ArrayList<Bar> repeatedSecondBars = new ArrayList<Bar>(); //Used solely by diff-end-repeats
+	    //Used solely by diff-end-repeats
+	    ArrayList<Bar> repeatedSecondBars = new ArrayList<Bar>(); 
 	    boolean repeatingSecond = false;
 	    
-	    for (int i = 0; i < numTokens; i++){
+	    for (int i = 0; i < numObjects; i++){
 	        
 	        
 	        //If a note, chord or tuplet, add to barFiller.
-	        if (Token.Type == NOTESTRUCT){
-	            barFiller.add(voiceTokens.get(i));
+	        if (voiceObjects.get(i).isNotestruct()){
+	            barFiller.add((NoteStruct) voiceObjects.get(i));
 	        }
 	        
+	        //A bar signal
 	        else {
+	            
 	            voice.add(new Bar(barFiller));
 	            if (repeatingSecond){
 	                repeatedSecondBars.add(new Bar(barFiller));
 	            }
 	            barFiller.clear();
 	            
-	            if (type = repeat1start){
+	            if (voiceObjects.get(i).isType("FIRSTREPEAT")){
 	                
 	            }
 	            
-	            else if (type = repeat2start){
+	            else if (voiceObjects.get(i).isType("SECONDREPEAT")){
 	                voice.repeat();
 	                repeatingSecond = true;
 	            }
 	            
-	            else if (type == repeat && repeatSecond == false){
+	            else if (voiceObjects.get(i).isType("REPEAT") && repeatingSecond == false){
 	                voice.repeat();
 	                voice.hitStart();
 	            }
 	            
-	            else if (type == repeat && repeatSecond == true){
+	            else if (voiceObjects.get(i).isType("REPEAT") && repeatingSecond == true){
 	                voice.replaceLast(repeatedSecondBars);
                     repeatingSecond = false;
                     repeatedSecondBars.clear();
                     voice.hitStart();
 	            }
 	            
-	            else if (type == endSection){
+	            else if (voiceObjects.get(i).isType("ENDBAR") || voiceObjects.get(i).isType("REPEATBEG")){
 	                voice.hitStart();
 	            }
 	            
 	        }
 	        
 	    }
+	    
+	    return this.voice;
 	}
 	
 	

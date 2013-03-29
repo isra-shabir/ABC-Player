@@ -2,13 +2,13 @@ package player;
 
 import java.util.ArrayList;
 
-public class Voice implements BarStruct {
+public class Voice {
 	
 	
 	private String name;
 	private int startPoint = 0;
 	
-	ArrayList<BarStruct> barStructs = new ArrayList<BarStruct>();
+	ArrayList<Bar> bars = new ArrayList<Bar>();
 	
 	/**
 	 * Constructs a Voice object.
@@ -18,12 +18,16 @@ public class Voice implements BarStruct {
 	    this.name = name;
 	}
 	
+	public boolean isNamed(String name){
+	    return this.name == name;
+	}
+	
 	/**
 	 * Adds a bar to the voice.
 	 * @param bar - a bar object.
 	 */
-	public void add(BarStruct bar){
-	    barStructs.add(bar);
+	public void add(Bar bar){
+	    bars.add(bar);
 	}
 	
 	/**
@@ -32,8 +36,8 @@ public class Voice implements BarStruct {
 	 */	
 	public int getMinTicksPerQuarter(){
 	    int minTicks = 1;
-	    for (int i = 0; i< barStructs.size(); i++){
-	        int min = barStructs.get(i).getMinTicksPerQuarter(); 
+	    for (int i = 0; i< bars.size(); i++){
+	        int min = bars.get(i).getMinTicksPerQuarter(); 
 	        if (min > minTicks){
 	            minTicks = min;
 	        }
@@ -53,8 +57,8 @@ public class Voice implements BarStruct {
      */
 	public int addToPlayer(int startingPoint, int ticksPerQuarter, myPlayer player){
 	    int currentTick = startingPoint;
-        for (int i = 0; i<barStructs.size(); i++){
-            currentTick = barStructs.get(i).addToPlayer(currentTick,ticksPerQuarter, player);
+        for (int i = 0; i<bars.size(); i++){
+            currentTick = bars.get(i).addToPlayer(currentTick,ticksPerQuarter, player);
         }
         return currentTick;
 	}	
@@ -65,7 +69,7 @@ public class Voice implements BarStruct {
 	 * @modify startPoint: changes it to last index.
 	 */
 	public void hitStart(){
-		this.startPoint = barStructs.size();	
+		this.startPoint = bars.size();	
 	}
 	
 	/**
@@ -73,9 +77,9 @@ public class Voice implements BarStruct {
 	 * @modify barStructs: adds a bunch of bars to the end of barStruct
 	 */
 	public void repeat(){
-	    int currentSize = barStructs.size();
+	    int currentSize = bars.size();
 		for (int i = startPoint; i < currentSize; i++){
-		    barStructs.add(barStructs.get(i));
+		    bars.add(bars.get(i));
 		}
 	}
 	
@@ -87,11 +91,11 @@ public class Voice implements BarStruct {
 	public void replaceLast(ArrayList<Bar> newBars){
 		//Remove the last numReplace bars.
 		for (int i=0; i<newBars.size(); i++){
-		    barStructs.remove(barStructs.size() -1);
+		    bars.remove(bars.size() -1);
 		}
 		//Add the new bars.
 		for (int i=0; i<newBars.size(); i++){
-		    barStructs.add(newBars.get(i));
+		    bars.add(newBars.get(i));
 		}
 	}
 

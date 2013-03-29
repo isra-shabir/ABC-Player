@@ -1,6 +1,6 @@
 package player;
 
-public interface NoteStruct{
+public interface NoteStruct extends BarLineObject{
     
     int timeNumerator = 0;
     int timeDenominator = 0;

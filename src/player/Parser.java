@@ -5,13 +5,15 @@ import java.util.ArrayList;
 public class Parser {
 	
 	
-	private ArrayList<Token> tokens = new ArrayList<Token>();
+	private ArrayList<Token> tokens;
 	private int numVoices;
 	private int currentToken = 0;
-    private ArrayList<String> voiceNames;
 	
-	public Parser(){
-	    
+	//Will create an array of BarLineObjects
+    private ArrayList<BarLineObject> allObjects = new ArrayList<BarLineObject>();
+	
+	public Parser(ArrayList<Token> tokens){
+	    this.tokens = tokens;
 	}
 	
 
@@ -20,9 +22,42 @@ public class Parser {
 	
 	public void parse(ArrayList<BarLineObject> barStuff){
 	    this.currentToken = 0;
+	    
+	    while (numVoices < tokens.size()){
+	        Token token = tokens.get(currentToken);
+	        if (token.isType("SPACE")){
+	            this.currentToken++;
+	        }
+	        else if (token.isType("ACCIDENTAL") || token.isType("BASENOTE")){
+                this.allObjects.add(this.noteConstructor());
+            }
+	        else if (token.isType("CHORDBEGIN")){
+	            this.currentToken++;
+	            this.allObjects.add(this.chordConstructor());
+	        }
+	        else if (token.isType("TUPLETBEGIN")){
+	            this.currentToken++;
+	            this.allObjects.add(this.tupletConstructor());
+	        }
+	        else if (token.isType("VOICE")){
+	            this.currentToken++;
+	            this.allObjects.add(new VoiceIndicator(" "));
+	        }
+	        else {
+	            this.allObjects.add(new BarSignal(token.getType().toString()));
+	            this.currentToken++;
+	        }
+	    }
 	}	
 	
-	public Note noteConstructer(){
+	/**
+     * Constructs and returns a note object that has been reached
+     * 
+     * Requires: Current this.currentToken is at the beginning of a note (accidental or basenote)
+     * @return a note object.
+     * @modify this.currentToken, which is updated to the first index after the note
+     */
+	private Note noteConstructor(){
 	    String aBasenote = "";
 	    String aAccidental = "";
 	    String aOctave = "";
@@ -36,7 +71,7 @@ public class Parser {
 	        Token token = tokens.get(this.currentToken);
 	        
 	        //ACCIDENTAL
-	        if (token.Type == ACCIDENTAL){
+	        if (token.isType("ACCIDENTAL")){
 	            
 	            if (aAccidental.isEmpty() && aOctave.isEmpty()  && aBasenote.isEmpty()){
 	                aAccidental = token.toString();
@@ -49,7 +84,7 @@ public class Parser {
 	        }
 	            
 	        //BASENOTE
-	        else if (token.getType() == BASENOTE){
+	        else if (token.isType("BASENOTE")){
 	            if (aOctave.isEmpty()  && aBasenote.isEmpty()){
 	                aBasenote = token.toString();
 	            }
@@ -61,18 +96,18 @@ public class Parser {
 	        }
 	        
 	        //OCTAVE
-	        else if (token.Type == OCTAVE){
+	        else if (token.isType("OCTAVE")){
 	            if (aOctave.isEmpty()){
 	                aOctave = token.toString();
 	            }
 	        }
         
 	        //Handle numerator/denominator
-	        else if (aBasenote.isEmpty() == true && ( token.Type = number || token.Type = DENOMTHING)){
+	        else if (aBasenote.isEmpty() == true && ( token.isType("NUMBER") || token.isType("DENOMTHING"))){
 	            System.out.println("Invalid Syntax: Num/Denom info before note definition.");
 	        }
 	        
-	        else if (token.Type = number){
+	        else if (token.isType("NUMBER")){
 	            if (denomShown == false){
 	                num = Integer.valueOf(token.toString());
 	            }
@@ -82,19 +117,52 @@ public class Parser {
 	            }
 	        }
 	        
-	        else if (token.Type == DENOMTHING){
+	        else if (token.isType("DENOMTHING")){
 	            denomShown = true;
 	            denom = 2;
 	        }
 	        
 	        else {
-	            isNote = false;
+	            inNote = false;
 	        }
 	        
 	        this.currentToken++;
 	    }
 	    
 	    return new Note(aBasenote, aAccidental, aOctave, num, denom);
+	}
+
+	/**
+     * Constructs and returns a chord object that has been reached
+     * 
+     * Requires: Current this.currentToken is at the beginning of a note (accidental or basenote)
+     * @return a Chord object.
+     * @modify this.currentToken, which is updated to the first index after the chord
+     */
+	private Chord chordConstructor(){
+	    Chord chord = new Chord();
+	    while (tokens.get(this.currentToken).isType("CHORDEND") == false){
+	        chord.addNote(this.noteConstructor());
+	    }
+	    this.currentToken++;
+	    return chord;
+	}
+	
+	/**
+	 * Constructs and returns a tuplet object that has been reached
+	 * 
+     * Requires: Current this.currentToken is at the beginning of a note (accidental or basenote)
+     * @return a Tuplet object.
+	 * @modify this.currentToken, which is updated to the first index after the tuplet
+	 */
+	private Tuplet tupletConstructor(){
+	    int value = Integer.parseInt(tokens.get(this.currentToken).toString());
+	    this.currentToken++;
+	    Tuplet tuplet = new Tuplet(value);
+	    while (tokens.get(this.currentToken).isType("SPACE") == false){
+	        tuplet.addNote(this.noteConstructor());
+	    }
+	    return tuplet;
 	}
 	
 }

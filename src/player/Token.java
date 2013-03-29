@@ -60,6 +60,10 @@ public class Token {
 		this.type = t;
 		this.value = v;		
 	}
+	
+	public boolean isType(String typeName){
+	    return typeName == this.type.toString();
+	}
 
 	/**
 	 * method returns the Type of token
