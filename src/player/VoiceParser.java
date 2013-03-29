@@ -35,7 +35,10 @@ public class VoiceParser {
 	    //Used solely by diff-end-repeats
 	    ArrayList<Bar> repeatedSecondBars = new ArrayList<Bar>(); 
 	    boolean repeatingSecond = false;
-	    int repeatPhase = 0;
+        boolean repeatingFirst = false;
+
+	    int part1counter = 0;
+	    int part2counter = 0;
 	    
 	    for (int i = 0; i < numObjects; i++){
 	               
@@ -51,17 +54,35 @@ public class VoiceParser {
 	            for (int i2 = 0; i2<barFiller.size(); i2++){
 	                newbar.add(barFiller.get(i2));
 	            }
+	            
+	            if (repeatingFirst){
+	                part1counter++;
+	                System.out.println("p1 " + part1counter);
+	            }
+	            
 	            if (repeatingSecond){
 	                repeatedSecondBars.add(newbar);
+	                part2counter++;
+	                
+	                //If its time to add the second part
+	                if (part2counter == part1counter){
+	                    voice.replaceLast(repeatedSecondBars);
+	                    repeatedSecondBars.clear();
+	                    voice.hitStart();
+	                    part1counter = 0;
+	                    part2counter = 0;
+	                    repeatingSecond = false;
+	                }
 	            }
 	            else {
 	                voice.add(newbar);
 	            }
+	            
 	            barFiller.clear();
 	            
 	            if (voiceObjects.get(i).isType("FIRSTREPEAT")){
-	                if (repeatPhase == 0){
-	                    repeatPhase = 1;
+	                if (repeatingFirst == false){
+	                    repeatingFirst = true;
 	                }
 	                else {
 	                    throw new RuntimeException("Invalid First Repeat Placement");
@@ -69,28 +90,18 @@ public class VoiceParser {
 	            }
 	            
 	            else if (voiceObjects.get(i).isType("SECONDREPEAT")){
-	                if (repeatPhase == 1){
-                        repeatPhase = 2;
+	                if (repeatingSecond == false){
+	                    repeatingFirst = false;
+	                    repeatingSecond = true;
                     }
                     else {
-                        throw new RuntimeException("Invalid Second Repeat Placement");
+                        throw new RuntimeException("Invalid Second Repeat Placement: \n"+voiceObjects.get(i));
                     }
-	                repeatingSecond = true;
 	            }
 	            
-	            else if (voiceObjects.get(i).isType("REPEAT") && repeatingSecond == false){
+	            else if (voiceObjects.get(i).isType("REPEATEND")){
 	                voice.repeat();
 	                voice.hitStart();
-	                repeatPhase = 0;
-	            }
-	            
-	            else if (voiceObjects.get(i).isType("REPEAT") && repeatingSecond == true){
-	                voice.repeat();
-	                voice.replaceLast(repeatedSecondBars);
-                    repeatingSecond = false;
-                    repeatedSecondBars.clear();
-                    voice.hitStart();
-                    repeatPhase = 0;
 	            }
 	            
 	            else if (voiceObjects.get(i).isType("ENDBAR") || voiceObjects.get(i).isType("REPEATBEG")){

@@ -25,7 +25,7 @@ public class BarSignal implements BarLineObject {
 	
 	@Override
 	public String toString(){
-	    return "Bar Signal: "+this.value;
+	    return this.value;
 	}
 
 }

@@ -46,6 +46,7 @@ public class Lexer {
     	
     	//define the different patterns from the tokens
 
+    	Pattern C = Pattern.compile(Type.C.getRegex());
     	Pattern digit = Pattern.compile(Type.DIGIT.getRegex());
     	Pattern backSlash = Pattern.compile(Type.BACKSLASH.getRegex());
     	Pattern note = Pattern.compile(Type.BASENOTE.getRegex());
@@ -90,6 +91,7 @@ public class Lexer {
     		else if(matcher.group(8) != null)				tokens.add(new Token(Type.VOICE, token));
  
 
+    		else if(C.matcher(token).matches())				continue;
     		else if(note.matcher(token).matches())			tokens.add(new Token(Type.BASENOTE, token));
     		else if(backSlash.matcher(token).matches())		tokens.add(new Token(Type.BACKSLASH, token));
     		else if(digit.matcher(token).matches())			tokens.add(new Token(Type.DIGIT, token));

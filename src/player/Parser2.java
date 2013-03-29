@@ -67,8 +67,8 @@ public class Parser2 {
 	        }
 	        
 	        else {
-//	            System.out.println("Adding something to voice of "+this.voiceNames.get(this.currentVoiceParser)+":");
-//	            System.out.println(barObjects.get(i));
+	            System.out.println("Adding to voice of "+this.voiceNames.get(this.currentVoiceParser)+":");
+	            System.out.println(barObjects.get(i));
 	            this.voiceParsers.get(this.currentVoiceParser).addToken(barObjects.get(i));
 //	            System.out.println(voiceParsers.get(this.currentVoiceParser).parse());
 	        }

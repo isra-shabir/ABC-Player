@@ -27,6 +27,7 @@ public class Parser {
 	    
 	    while (this.currentToken < tokens.size()){
 	        Token token = tokens.get(currentToken);
+	        System.out.println("Looking at "+token);
 	        if (token.isType("SPACE")){
 	            this.currentToken++;
 	        }
@@ -46,6 +47,7 @@ public class Parser {
 	            this.allObjects.add(new VoiceIndicator(token.getValue()));
 	        }
 	        else {
+	            System.out.println("Want to add "+token);
 	            this.allObjects.add(new BarSignal(token.getType().name()));
 	            this.currentToken++;
 	        }
@@ -150,7 +152,9 @@ public class Parser {
 	        
 	        else {
 	            inNote = false;
+	            this.currentToken--;
 	        }
+	        
 	        this.currentToken++;
 	    }
 	    
