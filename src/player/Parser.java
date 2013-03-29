@@ -8,6 +8,14 @@ public class Parser {
 	private ArrayList<Token> tokens;
 	private int currentToken = 0;
 	
+	/**
+	 * 
+	 * @return String rep of the list of tokens.
+	 */
+	public String getTokensString(){
+		return this.tokens.toString();
+	}
+	
 	//Will create an array of BarLineObjects
     private ArrayList<BarLineObject> allObjects = new ArrayList<BarLineObject>();
 	
@@ -16,7 +24,7 @@ public class Parser {
 	    this.HeaderInfo();
 	}
 	
-
+	
 	
 	
 	/**
@@ -219,14 +227,14 @@ public class Parser {
 		//checking requirements. First is indexNum second is title
 		if (!tokens.get(0).isType("INDEXNUM")){
 			throw new RuntimeException("first field in header must be index num");
-		}else if (!tokens.get(1).isType("TITLE")){
+		}else if (!tokens.get(2).isType("TITLE")){
 			throw new RuntimeException("second field in header must be title");
 		}
 		
 		int lastInd=0;
 		for (int i=0; i< this.tokens.size(); i++){
 			Token current=this.tokens.get(i);
-			if (current.isType("INDEXNUM"))				this.indexNum=Integer.valueOf(current.getValue());
+			if (current.isType("INDEXNUM"))				this.indexNum=Integer.valueOf(current.getValue().replace(" ",""));
 			else if (current.isType("TITLE"))			this.title=current.getValue();
 			else if (current.isType("NAME"))			this.name=current.getValue();
 			else if (current.isType("DEFLENGTH")){
@@ -234,18 +242,17 @@ public class Parser {
 				Lexer small = new Lexer(text);
 				
 				for (Token token: small.lex()){
-					if (token.isType("NUMBER"))			this.defLength.add(Integer.valueOf(token.getValue()));
+					if (token.isType("DIGIT"))			this.defLength.add(Integer.valueOf(token.getValue().replace(" ", "")));
 				}
 			}
 			else if (current.isType("METER")){
 				String text = current.getValue();
 				Lexer small = new Lexer(text);
-				
 				for (Token token: small.lex()){
-					if (token.isType("NUMBER"))			this.meter.add(Integer.valueOf(token.getValue()));
+					if (token.isType("DIGIT"))			this.meter.add(Integer.valueOf(token.getValue().replace(" ", "")));
 				}
 			}
-			else if (current.isType("TEMPO"))			this.tempo=Integer.valueOf(current.getValue());
+			else if (current.isType("TEMPO"))			this.tempo=Integer.valueOf(current.getValue().replace(" ", ""));
 			else if (current.isType("VOICE"))			this.voice.add(current.getValue());
 			else if (current.isType("KEYSIGNATURE")){
 				//terminate the loop
@@ -283,6 +290,9 @@ public class Parser {
 	}
 	public int getTempo(){
 		return this.tempo;
+	}
+	public String getKey(){
+		return this.key;
 	}
 }
 

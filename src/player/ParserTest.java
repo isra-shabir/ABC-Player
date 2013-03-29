@@ -166,6 +166,54 @@ public class ParserTest {
         
     }
 	
+	@Test
+    public void ParserTest14(){
+        //test header parsing
+        
+        Lexer test = new Lexer("X: 0  \nT:hello");
+        Parser parse = new Parser(test.lex());
+        assertEquals(parse.getIndexNum(),0);
+        assertEquals(parse.getTitle(),"hello");
+        
+    }
+	
+	@Test
+    public void ParserTest15(){
+        //test header parsing- testing Meter
+        
+        Lexer test = new Lexer("X: 0  \nT:hello\nQ: 100\n M:1/16");
+        Parser parse = new Parser(test.lex());
+        assertEquals(parse.getIndexNum(),0);
+        assertEquals(parse.getTitle(),"hello");
+        assertEquals(parse.getTempo(),100);
+        assertEquals(parse.getMeter().toString(),"[1, 16]");
+    }
+	
+	@Test
+    public void ParserTest16(){
+        //test header parsing- testing defLength
+        
+        Lexer test = new Lexer("X: 0  \nT:hello\nQ: 100\n L:1/16");
+        Parser parse = new Parser(test.lex());
+        assertEquals(parse.getIndexNum(),0);
+        assertEquals(parse.getTitle(),"hello");
+        assertEquals(parse.getTempo(),100);
+        assertEquals(parse.getDefLen().toString(),"[1, 16]");
+    }
+	
+	@Test
+    public void ParserTest17(){
+        //test header parsing- testing the deletion of the tokens
+        
+        Lexer test = new Lexer("X: 0  \nT:hello\nQ: 100\n L:1/16\nK:C \n C C");
+        Parser parse = new Parser(test.lex());
+        assertEquals(parse.getIndexNum(),0);
+        assertEquals(parse.getTitle(),"hello");
+        assertEquals(parse.getTempo(),100);
+        assertEquals(parse.getDefLen().toString(),"[1, 16]");
+        assertEquals(parse.getKey(),"C ");
+    }
+	
 	
 	
 }
