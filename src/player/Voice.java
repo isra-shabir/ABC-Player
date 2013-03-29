@@ -98,5 +98,17 @@ public class Voice {
 		    bars.add(newBars.get(i));
 		}
 	}
+	
+	/**
+	 * Returns a string representation of a voice.
+	 */
+	public String toString(){
+	    String v = "";
+	    v = v+"Voice of "+this.name;
+	    for (int i = 0; i < this.bars.size(); i++){
+	        v = v + this.bars.get(i).toString();
+	    }
+	    return v;
+	}
 
 }

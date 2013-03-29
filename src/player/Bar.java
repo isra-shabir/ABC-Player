@@ -6,14 +6,7 @@ public class Bar{
 	
     ArrayList<NoteStruct> noteStructs = new ArrayList<NoteStruct>();
     
-
-    public Bar(ArrayList<NoteStruct> noteStructs){
-        this.noteStructs = noteStructs;
-    }
-    
-    public Bar(){
-    }
-    
+   
     public void add(NoteStruct struct){
         this.noteStructs.add(struct);
     }

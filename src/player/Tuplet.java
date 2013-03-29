@@ -74,4 +74,12 @@ public class Tuplet implements NoteStruct{
         return false;
     }
     
+    public String toString(){
+        String t = "Tuplet "+this.value;
+        for (int i=0; i<this.notes.size();i++){
+            t = t+"\n"+this.notes.get(i).toString();
+        }
+        return t;
+    }
+    
 }
