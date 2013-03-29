@@ -106,6 +106,7 @@ public class Note implements NoteStruct{
      * Gets a string interpretation of the note. 
      * @return a string representation of the note.
      */
+    @Override
     public String toString(){
         return accidental+" "+basenote+" "+octave+ " "+timeNumerator+"/"+timeDenominator;
     }
@@ -117,6 +118,7 @@ public class Note implements NoteStruct{
     public boolean isVoiceIndicator(){
         return false;
     }
+    
     
     public boolean isType(String type) {
         return false;

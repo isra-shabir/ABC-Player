@@ -22,6 +22,7 @@ public class Token {
 		INDEXNUM("(?<=X:)[\t0-9]+"), //10
 		VOICE("(?<=V:)[ \ta-zA-z0-9]+"), //11
 
+
 		DIGIT("[0-9]+"),
 		BACKSLASH("\\/"),
 		FIRSTREPEAT("(\\[1)"), //1st and 2nd

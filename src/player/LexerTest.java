@@ -290,7 +290,7 @@ public class LexerTest {
     }
     
    
-    
+    @Test
     public void LexerTest16(){
     	//test basic functionality of meter of piece
     	Lexer test = new Lexer("M: 2/3");
@@ -299,6 +299,7 @@ public class LexerTest {
     	
     }	
     
+    @Test
     public void LexerTest17(){
     	//test basic functionality of indexNum  of piece
     	Lexer test = new Lexer("X: 3");
@@ -307,6 +308,7 @@ public class LexerTest {
     	
     }
     
+    @Test
     public void LexerTest18(){
     	//test basic functionality of Tempo of piece
     	Lexer test = new Lexer("Q: 2");
