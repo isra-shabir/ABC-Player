@@ -34,28 +34,42 @@ public class Main {
         // YOUR CODE HERE
         
         String music = file; 
-        String keySignature = "Am";
-        int tempo = 720;
-        ArrayList<String> voiceNames = new ArrayList<String>();
-        voiceNames.add("1");
-        voiceNames.add("2");
-        
+
         //Create Lexer
         Lexer myLexer = new Lexer(music);
         //Tokenize
-        ArrayList<Token> tokens = myLexer.lex();
-//        alprint(tokens, "TOKENS");
-        
+        ArrayList<Token> tokens = myLexer.lex();        
         //Parse
         Parser myParser = new Parser(tokens);
-        ArrayList<BarLineObject> barLineObjects = myParser.parse();
-//        alprint(barLineObjects, "BARLINEOBJECTS");
+        ArrayList<BarLineObject> barLineObjects = myParser.parse(); 
+        
+        //Get Header Vals
+        String keySignature = myParser.getKey() ;
+        int tempo =   myParser.getTempo() ;
+        String name = myParser.getName();
+        String title = myParser.getTitle();
+        int indexNum = myParser.getIndexNum();
+        
+        ArrayList<String> voiceNames = myParser.getVoice();
+
+        int coreNumerator = 1;
+        int coreDenominator = 4;
+        if (myParser.getDefLen().size()==2){
+        	coreNumerator = myParser.getDefLen().get(0);
+        	coreDenominator = myParser.getDefLen().get(1);
+        }
+        int MeterNum = 1;
+        int MeterDen = 1;
+        if (myParser.getMeter().size()==2){
+        	MeterNum = myParser.getMeter().get(0);
+        	MeterDen = myParser.getMeter().get(1);
+
+        }
         
         //Parse 2
         Parser2 myParser2 = new Parser2(voiceNames);
         myParser2.parse(barLineObjects);
         ArrayList<Voice> voices = myParser2.getVoices();
-//        alprint(voices, "VOICES");
         
         Song mySong = new Song(voices);
         SequencePlayer sqPlayer;
@@ -131,7 +145,7 @@ public class Main {
     public static void main(String[] args) throws MidiUnavailableException, InvalidMidiDataException {
 
         try {
-            play(readABCFile("viva.abc"));
+            play(readABCFile("fur_elise.abc"));
         } catch (IOException e) {
             e.printStackTrace();
         }

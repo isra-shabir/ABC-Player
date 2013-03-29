@@ -294,6 +294,9 @@ public class Parser {
 	public String getKey(){
 		return this.key;
 	}
+	public ArrayList<String> getVoice(){
+		return this.voice;
+	}
 }
 
 
