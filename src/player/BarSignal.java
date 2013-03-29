@@ -22,5 +22,10 @@ public class BarSignal implements BarLineObject {
 	public boolean isType(String type){
 	    return type.equals(this.value);
 	}
+	
+	@Override
+	public String toString(){
+	    return "Bar Signal: "+this.value;
+	}
 
 }
