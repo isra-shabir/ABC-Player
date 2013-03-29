@@ -4,7 +4,10 @@ package player;
 //import java.io.FileNotFoundException;
 //import java.util.Scanner;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
@@ -31,26 +34,30 @@ public class Main {
         // YOUR CODE HERE
         
         String music = file; 
-        String keySignature = "C";
-        int tempo = 120;
+        String keySignature = "Am";
+        int tempo = 720;
         ArrayList<String> voiceNames = new ArrayList<String>();
+        voiceNames.add("1");
+        voiceNames.add("2");
         
         //Create Lexer
         Lexer myLexer = new Lexer(music);
         //Tokenize
         ArrayList<Token> tokens = myLexer.lex();
-        alprint(tokens);
+        alprint(tokens, "TOKENS");
+        
         //Parse
         Parser myParser = new Parser(tokens);
         ArrayList<BarLineObject> barLineObjects = myParser.parse();
-        //alprint(barLineObjects);
+        alprint(barLineObjects, "BARLINEOBJECTS");
+        
         //Parse 2
         Parser2 myParser2 = new Parser2(voiceNames);
         myParser2.parse(barLineObjects);
         ArrayList<Voice> voices = myParser2.getVoices();
-        alprint(voices);
-        Song mySong = new Song(voices);
+        alprint(voices, "VOICES");
         
+        Song mySong = new Song(voices);
         SequencePlayer sqPlayer;
         try {
             sqPlayer = new SequencePlayer(tempo, mySong.getMinTicksPerQuarter());
@@ -82,53 +89,78 @@ public class Main {
 //                +"[^G^c^C3/8] z/8 [f3/8^C,3/8] z/8 [^a/8g/8^C3/8] z/8 [^g3/8f3/8z/4] ||";
                
     }
-
-    public static void main(String[] args) throws MidiUnavailableException, InvalidMidiDataException {
+    
+    public static String getAwayFromTheSun(){
         
-        play(getHeyJude());
+            return "^c3/8 ^g3/8 f3/8 ^c3/8 ^g3/8 f3/8 ^c3/8 ^g3/8 =c3/8 ^g3/8 f3/8 c3/8 |"
+                    +"=g3/8 ^g3/8 ^d3/8 ^g3/8 ^G3/8 ^g3/8 ^d3/8 ^G3/8 ^g3/8 ^d3/8 ^G3/8 |"
+                    +"^g3/8 =G3/8 ^g3/8 ^d3/8 G3/8 =g3/8 ^g3/8 ^a3/8 c'3/8 [^c3/8f3/4^g3/8] |"
+                    +"[^g3/8z3/8] [f3/8z3/8] [^c3/8z3/8] [^g3/8z3/8] [f3/8z3/8] [^c3/8z3/8] |"
+                    +"^g3/8 [=c9/8^g3/8f3/4] [^g3/2z3/8] [f15/8z3/8] [c15/8z3/8] =g3/8 |"
+                    +"[^g3/4z3/8] ^d3/8 ^g3/8 [^D3/4^A6G6^d6=g15/8z3/8] ^a3/8 [^D3/4z3/8] |"
+                    +"^g3/8 [^D9/8z3/8] [=g3z3/4] ^D3/8 [^D3/4z3/8] ^a3/8 [^D3/4z3/8] ^g3/8 |"
+                    +"[^D3/2z3/8] [=g9/8z3/4] ^g3/8 [^c3/8^C3] ^g3/8 f3/8 ^c3/8 ^g3/8 f3/8 |";
+               
+    }
+    
+    public static String getFallenLeaves(){
         
-        /**
-        
-//        SequencePlayer sp = new SequencePlayer(100,4);
-        
-//        int start = 0;
-//        int len = 4;
-//        int[] array = {2, 2, 1, 2, 2, 2, 1};
-//        
-//        
-//        for (int i = 60; i < 62; i++){
-//            sp.addNote(i, start, start+len);
-//            start = start + len;
-//        }
+        return "[e/4^c/4] z/4 [e/4^G/4] z/4 [e/4^c/4] z/4 [e/4^G/4] z/4 [^d/4=c/4] z/4 |"
+               +" [^d/4^G/4] z/4 [^d/4c/4] z/4 [^d/4^G/4] z/4 [^d/4c/4] z/4 [^d/4^G/4] |"
+                 +"       z/4 [^f/4^G/4] z/4 [^f/4^G/4] z/4 [e/4B/4] z/4 [e/4^G/4] z/4 [e/4B/4] |"
+                   +"     z/4 [e/8^G/8] z/4 [e/4A/4] z/4 [e/4^G/4] z/4 [e/4A/4] z/4 [e/4^G/4] |"
+                     +"   z/4 [^c/4^G/4^F/4] z3/8 [^c/4^G/4^F/4] z3/8 [^c/4^G/8^F/4] z3/8 |"
+                       +" [^c/4^G/8^F/4] z3/8 [^c/4^G/8E/4] z3/8 [^c/4^G/8E/4] z/4 [^c^G/8E] |"
+                        +"z3/8 ^G/8 z3/8 [=c/4^G/4^D/4] z/4 [c/4^G/4^D/4] z/4 [c/4^G/4^D/4] z/4 |"
+                        +"[^c/8=c/4^G/4^D/4] z/8 ^d/8 z/8 [e/4^c/4] z/4 [^c/4e/4^G/4] z/4 |"
+                        +"[e/4^c/4] z/4 [^f/4e/4^G/4] z/8 [^g^d/4=c/4] z/4 [^d/4^G/4] z/4 |"
+                        +"[^g/4^d/4c/4] z/4 [^g/4^d/4^G/4] z/4 [^g/4^d/4c/4] z/4 [a/4^d/4^G/4]"
+                        +"z/4 [^g/4^f/4^G/4] z/4 [^f/4^G/4] z/4 [e/2B/4] z/4 [e/2^G/4] z/4"
+                        +"[e/8B/8] z/4 [e/4^G/4] z/4 [e/2A/4] z/4 [e/2^G/4] z/4 [e/4A/4] z/4"
+                        +"[e/4^G/4] z/4 [e^c/4^G/8^F/4] z3/8 [^c/4^G/8^F/4] z3/8"
+                        +"[e/4^c/4^G/8^F/4] z3/8 [e/4^c/4^G/8^F/4] z3/8 [e7/8^c/8^G/8E/8] z/4"
+                        +"[^c/4^G/8E/4] z3/8 [e/4^c^G/8E] z3/8 [^f/4^G/8] z3/8"
+                        +"[^d2=c/4^G/4^D/4] z/4 [c/4^G/4^D/4] z/4 [c/4^G/4^D/4] z/4"
+                        +"[c/4^G/4^D/4] z/4 [^c^G^C^C,] |";
            
-//        int len = 4; 
-//        for (int i = 0; i < 10; i++){
-//            sp.addNote(12*i, i*len, i*len+1);
-//        }
+}
+
+    public static String getFurElise(){
+        return "e^d|e^deB=dc|A2 z CEA|B2 z E^GB|c2 z Ee^d|";
+    }
+    public static void main(String[] args) throws MidiUnavailableException, InvalidMidiDataException {
+
+        try {
+            play(readABCFile("fur_elise raw.abc"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         
-//        int current = 0;
-//        for (int i = 0; i < 14; i++){
-//            int len = 6;
-//            if (i>=6){
-//                len = 3;
-//            }
-//            
-//            sp.addNote(30 + 4*(i%2), current, current + len);
-//            current = current + len;
-//        }
-//        
-//        sp.play();
-//        
-//        System.out.println(sp.toString());
 //         //CALL play() HERE
- * 
- * 
- */
+
     }
 
-    public static void alprint(ArrayList l){
+    public static void alprint(ArrayList l, String name){
+        System.out.println("\nNOW PRINTING "+name+"\n");
         for (int i = 0; i<l.size(); i++){
             System.out.println(l.get(i));
+        }
+    }
+    
+    private static String readABCFile(String name) throws IOException {
+
+        File file = new File("sample_abc\\"+name);
+        StringBuilder fileContents = new StringBuilder((int)file.length());
+        Scanner scanner = new Scanner(file);
+        String lineSeparator = System.getProperty("line.separator");
+
+        try {
+            while(scanner.hasNextLine()) {        
+                fileContents.append(scanner.nextLine() + lineSeparator);
+            }
+            return fileContents.toString();
+        } finally {
+            scanner.close();
         }
     }
 }
