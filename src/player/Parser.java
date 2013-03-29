@@ -13,6 +13,7 @@ public class Parser {
 	
 	public Parser(ArrayList<Token> tokens){
 	    this.tokens = tokens;
+	    this.HeaderInfo();
 	}
 	
 
