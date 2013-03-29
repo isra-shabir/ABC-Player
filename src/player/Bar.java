@@ -7,6 +7,10 @@ public class Bar implements BarStruct {
     ArrayList<NoteStruct> noteStructs = new ArrayList<NoteStruct>();
     
 
+    public Bar(ArrayList<NoteStruct> noteStructs){
+        this.noteStructs = noteStructs;
+    }
+    
     public void add(NoteStruct struct){
         this.noteStructs.add(struct);
     }

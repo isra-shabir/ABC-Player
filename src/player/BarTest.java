@@ -92,8 +92,8 @@ public class BarTest {
         
         
         Song InTheEnd = new Song();
-        //InTheEnd.add(Aziz);
-        InTheEnd.add(Muneeza);
+        InTheEnd.add(Aziz);
+        //InTheEnd.add(Muneeza);
         //InTheEnd.add(Eta);
         
         SequencePlayer sqPlayer;
