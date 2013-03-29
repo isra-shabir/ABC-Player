@@ -10,6 +10,9 @@ public class Token {
  	*/
 	
 	public static enum Type {
+		
+		// for now, test all your tokens, and pass them!
+		
 		//we need more complex lexer tests
 		
 
@@ -20,8 +23,8 @@ public class Token {
 		SECONDREPEAT("(\\[2)"),
 		BASENOTE("[A-Ga-g]"), //7
 		ACCIDENTAL("[\\__\\^\\_\\=\\^^]"), // have a look
-		NUMERATOR("(?<=[a-gA-G ])[0-9]+"), //what should be considered a nume? (any number after BASENOTE or SPACE AND followed by?)
-		DENOMINATOR("(?<=\\/)[0-9]+"), //are spaces allowed after "/" ?
+//		NUMERATOR("(?<=[a-gA-G ])[0-9]+"), //what should be considered a nume? (any number after BASENOTE or SPACE AND followed by?)
+//		DENOMINATOR("(?<=\\/)[0-9]+"), //are spaces allowed after "/" ?
 		OCTAVE("[\\,\\']+"), 
 		OPENBAR("\\[\\|"),
 		ENDBAR("(\\|\\|)|(\\|\\])"),

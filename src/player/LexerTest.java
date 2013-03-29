@@ -177,7 +177,7 @@ public class LexerTest {
     	
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
-    	expected.add(new Token(Type.NTHREPEAT, "[2"));
+    	expected.add(new Token(Type.SECONDREPEAT, "[2"));
     	expected.add(new Token(Type.BASENOTE, "a"));    	
     	assertEquals(expected.toString(), test.lex().toString());     		
     }
