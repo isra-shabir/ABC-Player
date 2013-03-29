@@ -131,7 +131,7 @@ public class Main {
     public static void main(String[] args) throws MidiUnavailableException, InvalidMidiDataException {
 
         try {
-            play(readABCFile("fur_elise raw.abc"));
+            play(readABCFile("viva.abc"));
         } catch (IOException e) {
             e.printStackTrace();
         }
