@@ -35,6 +35,7 @@ public class VoiceParser {
 	    //Used solely by diff-end-repeats
 	    ArrayList<Bar> repeatedSecondBars = new ArrayList<Bar>(); 
 	    boolean repeatingSecond = false;
+	    int repeatPhase = 0;
 	    
 	    for (int i = 0; i < numObjects; i++){
 	               
@@ -59,16 +60,28 @@ public class VoiceParser {
 	            barFiller.clear();
 	            
 	            if (voiceObjects.get(i).isType("FIRSTREPEAT")){
-	                
+	                if (repeatPhase == 0){
+	                    repeatPhase = 1;
+	                }
+	                else {
+	                    throw new RuntimeException("Invalid First Repeat Placement");
+	                }
 	            }
 	            
 	            else if (voiceObjects.get(i).isType("SECONDREPEAT")){
+	                if (repeatPhase == 1){
+                        repeatPhase = 2;
+                    }
+                    else {
+                        throw new RuntimeException("Invalid Second Repeat Placement");
+                    }
 	                repeatingSecond = true;
 	            }
 	            
 	            else if (voiceObjects.get(i).isType("REPEAT") && repeatingSecond == false){
 	                voice.repeat();
 	                voice.hitStart();
+	                repeatPhase = 0;
 	            }
 	            
 	            else if (voiceObjects.get(i).isType("REPEAT") && repeatingSecond == true){
@@ -77,6 +90,7 @@ public class VoiceParser {
                     repeatingSecond = false;
                     repeatedSecondBars.clear();
                     voice.hitStart();
+                    repeatPhase = 0;
 	            }
 	            
 	            else if (voiceObjects.get(i).isType("ENDBAR") || voiceObjects.get(i).isType("REPEATBEG")){

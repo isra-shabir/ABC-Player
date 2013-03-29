@@ -26,8 +26,16 @@ public class Parser2 {
 	    this.voiceNames = voiceNames;
 	    
 	    voiceParsers = new ArrayList<VoiceParser>();
-	    for (int i = 0; i < this.numVoices; i++){
-	        voiceParsers.add(new VoiceParser(voiceNames.get(i)));
+	    
+	    if (this.numVoices > 0){
+    	    for (int i = 0; i < this.numVoices; i++){
+    	        voiceParsers.add(new VoiceParser(voiceNames.get(i)));
+    	    }
+	    }
+	    else {
+	        this.numVoices = 1;
+	        this.voiceNames.add("Fairouz");
+	        voiceParsers.add(new VoiceParser("Fairouz"));
 	    }
 	}
 	
@@ -59,7 +67,10 @@ public class Parser2 {
 	        }
 	        
 	        else {
+//	            System.out.println("Adding something to voice of "+this.voiceNames.get(this.currentVoiceParser)+":");
+//	            System.out.println(barObjects.get(i));
 	            this.voiceParsers.get(this.currentVoiceParser).addToken(barObjects.get(i));
+//	            System.out.println(voiceParsers.get(this.currentVoiceParser).parse());
 	        }
 	    }
 	}
@@ -75,5 +86,6 @@ public class Parser2 {
 	    }
 	    return voices;
 	}
+	
 	
 }

@@ -32,6 +32,7 @@ public class Parser2Test {
     BarSignal endBar = new BarSignal("ENDBAR");
     BarSignal r1Bar = new BarSignal("FIRSTREPEAT");
     BarSignal r2Bar = new BarSignal("SECONDREPEAT");
+    BarSignal repeatStart = new BarSignal("REPEATBEG");
         
     public void testMaterialConstructor(){
         
@@ -122,16 +123,18 @@ public class Parser2Test {
         
     }
     
+    /**
+     * Tests all repeat funtionality
+     * Including standard repeat, 1-2- repeat, and with repeat beginnings and section ends. 
+     */
     @Test
     public void advancedRepeatTest(){
         
         testMaterialConstructor();
-        
         ArrayList<String> voiceNames = new ArrayList<String>();
         voiceNames.add("Aziz");
         
         ArrayList<BarLineObject> objs = new ArrayList<BarLineObject>();
-        objs.add(toAziz);
         objs.add(C);
         objs.add(E);
         objs.add(C);
@@ -158,6 +161,17 @@ public class Parser2Test {
         objs.add(E);
         objs.add(repeatBar);
         
+        objs.add(C);
+        objs.add(E);
+        objs.add(C);
+        objs.add(G);
+        objs.add(repeatStart);
+        objs.add(G);
+        objs.add(C);
+        objs.add(C);
+        objs.add(G);
+        objs.add(repeatBar);
+        
         
                
         Parser2 myParser2 = new Parser2(voiceNames);
@@ -180,5 +194,47 @@ public class Parser2Test {
         }
         
     }
+      
+    /**
+     * This will test behavior when voice switched occur in the middle of bars, and when we are repeating bars. 
+     */
+    //@Test
+    public void RepeatWithVoiceSwitchTest(){
+        testMaterialConstructor();
+        ArrayList<String> voiceNames = new ArrayList<String>();
+        voiceNames.add("Aziz");
+        voiceNames.add("Muneeza");
         
+        ArrayList<BarLineObject> objs = new ArrayList<BarLineObject>();
+        objs.add(toAziz);
+        objs.add(C);
+        objs.add(E);
+        objs.add(toMuneeza);
+        objs.add(MC1);
+        objs.add(toAziz);
+        objs.add(C);
+        objs.add(toMuneeza);
+        objs.add(plainBar);
+        objs.add(MC2);
+        objs.add(endBar);
+        objs.add(toAziz);
+        objs.add(G);
+        objs.add(repeatBar);
+                     
+        Parser2 myParser2 = new Parser2(voiceNames);
+        myParser2.parse(objs);
+        ArrayList<Voice> voices = myParser2.getVoices();
+        Song lalala = new Song(voices);
+        SequencePlayer sqPlayer;
+        try {
+            sqPlayer = new SequencePlayer(140, lalala.getMinTicksPerQuarter());
+            myPlayer MrAhmed = new myPlayer("C", sqPlayer);
+            lalala.addToPlayer(MrAhmed);
+            sqPlayer.play();    
+        } catch (MidiUnavailableException e) {
+            e.printStackTrace();
+        } catch (InvalidMidiDataException e) {
+            e.printStackTrace();
+        }
+    }
 }

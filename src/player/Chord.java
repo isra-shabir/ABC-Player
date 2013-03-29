@@ -60,5 +60,13 @@ public class Chord implements NoteStruct{
     public boolean isVoiceIndicator(){
         return false;
     }
-    
+ 
+    @Override
+    public String toString(){
+        String c = "Chord: \n";
+        for (int i = 0; i<notes.size(); i++){
+            c = c + notes.get(i).toString() + "\n";
+        }
+        return c;
+    }
 }

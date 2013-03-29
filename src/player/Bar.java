@@ -48,6 +48,8 @@ public class Bar{
 	 * Produces a string representation of the bar.
 	 * @return: A string representing the bar.
 	 */
+	
+	@Override
 	public String toString(){
 	    String output = "\n-------BAR-------";
 	    for (int i = 0; i<noteStructs.size(); i++){

@@ -30,8 +30,8 @@ public class Main {
     public static void play(String file) {
         // YOUR CODE HERE
         
-        String music = "";
-        String keySignature = "";
+        String music = file; 
+        String keySignature = "C";
         int tempo = 120;
         ArrayList<String> voiceNames = new ArrayList<String>();
         
@@ -39,13 +39,16 @@ public class Main {
         Lexer myLexer = new Lexer(music);
         //Tokenize
         ArrayList<Token> tokens = myLexer.lex();
+        //alprint(tokens);
         //Parse
         Parser myParser = new Parser(tokens);
         ArrayList<BarLineObject> barLineObjects = myParser.parse();
+        //alprint(barLineObjects);
         //Parse 2
         Parser2 myParser2 = new Parser2(voiceNames);
         myParser2.parse(barLineObjects);
         ArrayList<Voice> voices = myParser2.getVoices();
+        alprint(voices);
         Song mySong = new Song(voices);
         
         SequencePlayer sqPlayer;
@@ -63,10 +66,28 @@ public class Main {
         
  
     }
+    
+    public static String getHeyJude(){
+        return "^d [c5/2^D5/8C5/8^G5/8^G,3/8] z/8 ^G,3/8 z/8 [^D5/8C5/8^G5/8^G,3/8] |";
+//                +"z/8 ^G,3/8 z/8 [^D5/8C5/8^G5/8^G,3/8] z/8 [c/2^G,3/8] z/8 |"
+//                +"[^d/2^G5/8c5/8^G,3/8] z/8 [f/2^G,3/8] z/8 [^A2^A,5/8^D5/8=G,3/8] z/8 |"
+//                +"^D,3/8 z/8 [^A,5/8^D5/8G,3/8] z/8 ^D,3/8 z/8 [^A,5/8^D5/8G,3/8] z/8 |"
+//                +"^D,3/8 z/8 [^A/2^D5/8G,3/8] z/8 [c/2^G,3/8] z/8 |"
+//                +"[^c5/8=G5/8^A5/8^A,3/8] z/8 ^D,3/8 z/8 [^g11/8^A5/8^c5/8^C3/8] z/8 |"
+//                +"^D,3/8 z/8 [^A5/8^c5/8^C3/8] z/8 [^g3/8^D,3/8] z/8 |"
+//               +"[=g3/8^A5/8^c5/8^C3/8] z/8 [^d3/8^D,3/8] z/8 [f3/8^G5/8^G,3/8] z/8 |"
+//               +"[^d/4^G,3/8] ^c/4 [=c13/8^D5/8^G5/8^G,3/8] z/8 ^G,3/8 z/8 |"
+//                +"[^D5/8^G5/8^G,3/8] z/8 ^G,3/8 z/8 [^D3/8^G3/8^G,3/8] z/8 |"
+//                +"[^d3/8^G3/8c3/8^G,3/8] z/8 [f3/8^G5/8^c5/8^C3/8] z/8 [f7/8^C,3/8] z/8 |"
+//                +"[^G^c^C3/8] z/8 [f3/8^C,3/8] z/8 [^a/8g/8^C3/8] z/8 [^g3/8f3/8z/4] ||";
+               
+    }
 
     public static void main(String[] args) throws MidiUnavailableException, InvalidMidiDataException {
         
+        play(getHeyJude());
         
+        /**
         
 //        SequencePlayer sp = new SequencePlayer(100,4);
         
@@ -100,6 +121,14 @@ public class Main {
 //        
 //        System.out.println(sp.toString());
 //         //CALL play() HERE
+ * 
+ * 
+ */
     }
 
+    public static void alprint(ArrayList l){
+        for (int i = 0; i<l.size(); i++){
+            System.out.println(l.get(i));
+        }
+    }
 }
