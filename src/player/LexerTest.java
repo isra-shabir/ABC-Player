@@ -35,8 +35,9 @@ public class LexerTest {
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     	expected.add(new Token(Type.BASENOTE, "C"));
-    	expected.add(new Token(Type.NUMERATOR, "2"));
-    	expected.add(new Token(Type.DENOMINATOR, "3"));
+    	expected.add(new Token(Type.DIGIT, "2"));
+    	expected.add(new Token(Type.BACKSLASH, "/"));
+    	expected.add(new Token(Type.DIGIT, "3"));
 
     	assertEquals(expected.toString(), test.lex().toString());     		
     
@@ -50,8 +51,9 @@ public class LexerTest {
     	
     	expected.add(new Token(Type.BASENOTE, "G"));
     	expected.add(new Token(Type.SPACE, " "));
-    	expected.add(new Token(Type.NUMERATOR, "2"));
-    	expected.add(new Token(Type.DENOMINATOR, "3"));
+    	expected.add(new Token(Type.DIGIT, "2"));
+    	expected.add(new Token(Type.BACKSLASH, "/"));
+    	expected.add(new Token(Type.DIGIT, "3"));
 
     	assertEquals(expected.toString(), test.lex().toString());     		
     
@@ -145,6 +147,7 @@ public class LexerTest {
     @Test
     public void LexerTest7b() {
     	//test basic functionality for VOICE 	
+    	// test for anything but newline?
     	Lexer test = new Lexer("V: ab 456dg\n");
     	
     	ArrayList<Token> expected = new ArrayList<Token>();
@@ -177,7 +180,7 @@ public class LexerTest {
     	
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
-    	expected.add(new Token(Type.NTHREPEAT, "[2"));
+    	expected.add(new Token(Type.SECONDREPEAT, "[2"));
     	expected.add(new Token(Type.BASENOTE, "a"));    	
     	assertEquals(expected.toString(), test.lex().toString());     		
     }
@@ -231,5 +234,84 @@ public class LexerTest {
 
     	assertEquals(expected.toString(), test.lex().toString());     		
     }
-
+    
+    @Test
+    public void LexerTest12(){
+    	//test basic functionality of composer of piece
+    	Lexer test = new Lexer("C: Beethoven");
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	
+    	expected.add(new Token(Type.NAME, "Beethoven"));
+    	 
+    }
+    
+    
+    @Test
+    public void LexerTest13(){
+    	//test basic functionality of title of piece
+    	Lexer test = new Lexer("T: The Light");
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	expected.add(new Token(Type.TITLE, "The Light"));
+    	
+    }
+    
+    @Test
+    public void LexerTest14(){
+    	//test basic functionality of Keysignature of piece
+    	Lexer test = new Lexer("K: Am");
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	expected.add(new Token(Type.KEYSIGNATURE, "Am"));
+    	
+    }
+    
+    @Test
+    public void LexerTest14b(){
+    	//test basic functionality of keysignature of piece
+    	Lexer test = new Lexer("K: A");
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	expected.add(new Token(Type.KEYSIGNATURE, "A"));
+    }
+    
+    
+    @Test
+    public void LexerTest15(){
+    	//test basic functionality of default length of piece
+    	Lexer test = new Lexer("L: 2/3");
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	expected.add(new Token(Type.DEFLENGTH, "2/3"));
+    }
+    
+    @Test
+    public void LexerTest15b(){
+    	//test basic functionality of default length of piece
+    	Lexer test = new Lexer("L: 2 / 3");
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	expected.add(new Token(Type.DEFLENGTH, "2 / 3"));
+    }
+    
+   
+    
+    public void LexerTest16(){
+    	//test basic functionality of meter of piece
+    	Lexer test = new Lexer("M: 2/3");
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	expected.add(new Token(Type.METER, "2/3"));
+    	
+    }	
+    
+    public void LexerTest17(){
+    	//test basic functionality of indexNum  of piece
+    	Lexer test = new Lexer("X: 3");
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	expected.add(new Token(Type.INDEXNUM, "3"));
+    	
+    }
+    
+    public void LexerTest18(){
+    	//test basic functionality of Tempo of piece
+    	Lexer test = new Lexer("Q: 2");
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	expected.add(new Token(Type.TEMPO, "2"));
+    	
+    }	
 }

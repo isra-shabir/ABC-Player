@@ -10,14 +10,24 @@ public class Token {
  	*/
 	
 	public static enum Type {
+	
 		//we need more complex lexer tests
 		
-		NUMERATOR("(?<=[a-gA-G ])[0-9]+"), //what should be considered a nume? (any number after BASENOTE or SPACE AND followed by?)
-		DENOMINATOR("(?<=\\/)[0-9]+"), //are spaces allowed after "/" ?
-		VOICE("(?<=V:)[ a-zA-z0-9]+"), //3
-		NTHREPEAT("(\\[1)|(\\[2)"), //4,5,6
-		BASENOTE("[A-Ga-gz]"), //7
-		ACCIDENTAL("[\\__\\^\\_\\=\\^^]"),
+		NAME("(?<=C:)[\tA-Za-z]+[\tA-Za-z]*"),
+		KEYSIGNATURE("(?<=K:)[\tA-G](m)*"),
+		DEFLENGTH("(?<=L:)[0-9]+\\/[0-9]+"),
+		METER("(?<=M:)(\t[0-9](\t)*)\\/[(\t)*0-9]+"),
+		TEMPO("(?<=Q:)[\t0-9]"),
+		TITLE("(?<=T:)[\tA-Za-z]+[\tA-Za-z]*"),
+		INDEXNUM("(?<=X:)[\t0-9]+"), //10
+		VOICE("(?<=V:)[ \ta-zA-z0-9]+"), //11
+
+		DIGIT("[0-9]+"),
+		BACKSLASH("\\/"),
+		FIRSTREPEAT("(\\[1)"), //1st and 2nd
+		SECONDREPEAT("(\\[2)"),
+		BASENOTE("[A-Ga-g]"), 
+		ACCIDENTAL("[\\__\\^\\_\\=\\^^]"), 
 		OCTAVE("[\\,\\']+"), 
 		OPENBAR("\\[\\|"),
 		ENDBAR("(\\|\\|)|(\\|\\])"),
@@ -28,6 +38,7 @@ public class Token {
 		REPEATEND(":\\|"),
 		BAR("\\|"),
 		SPACE("[\\s]+"); // all white spaces including newline
+	
 		
 		//define Type.regex so we can access the regex for each type
 		private String regex;
@@ -63,7 +74,7 @@ public class Token {
 	}
 	
 	public boolean isType(String typeName){
-	    return typeName == this.type.toString();
+	    return typeName == this.type.name();
 	}
 
 	/**

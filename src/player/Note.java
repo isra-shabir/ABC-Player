@@ -108,7 +108,7 @@ public class Note implements NoteStruct{
      */
     @Override
     public String toString(){
-        return "Note:"+octave+" "+basenote+" "+accidental;
+        return accidental+" "+basenote+" "+octave;
     }
 
     public boolean isNotestruct() {

@@ -17,4 +17,14 @@ public class TokenTest {
         		
     
     }
+    
+    @Test
+    public void TokenTest2() {
+    	//test basic functionality for the isType() method	
+    	Token test = new Token(Token.Type.BASENOTE, "C");
+    	
+    	assertEquals(true,test.isType("BASENOTE"));
+        		
+    
+    }
 }
