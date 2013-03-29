@@ -7,9 +7,22 @@ public class Song {
 	
 	ArrayList<Voice> voices = new ArrayList<Voice>();
 	
+	public Song(ArrayList<Voice> voices){
+	    this.add(voices);
+	}
+	
+	public Song(){
+	    
+	}
 	
 	public void add(Voice v){
 	    voices.add(v);
+	}
+	
+	public void add(ArrayList<Voice> vs){
+	    for (int i = 0; i < vs.size(); i++){
+	        voices.add(vs.get(i));
+	    }
 	}
 	
 	/**

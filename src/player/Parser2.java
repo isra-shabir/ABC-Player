@@ -15,7 +15,6 @@ public class Parser2 {
 	 *     
 	 * All other tokens left the same. 
 	 */
-    
 	private ArrayList<VoiceParser> voiceParsers;
 	private int numVoices;
 	private int currentVoiceParser = 0;
@@ -38,15 +37,17 @@ public class Parser2 {
 	 * @modify this.currentVoice
 	 */
 	private void changeVoice(String name){
+	    
 	    for (int i = 0; i<this.numVoices; i++){
+//	        System.out.println("Comparing "+name+" to "+voiceNames.get(i));
 	        if (name.equals(voiceNames.get(i))){
+//	            System.out.println("Equality found!!");
 	            this.currentVoiceParser = i;
-	            break;
+	            return;
 	        }
 	    }
 	    System.out.println("Invalid Voice");
 	}
-	
 	
 	
 	public void parse(ArrayList<BarLineObject> barObjects){

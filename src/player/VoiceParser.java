@@ -37,8 +37,7 @@ public class VoiceParser {
 	    boolean repeatingSecond = false;
 	    
 	    for (int i = 0; i < numObjects; i++){
-	        
-	        
+	               
 	        //If a note, chord or tuplet, add to barFiller.
 	        if (voiceObjects.get(i).isNotestruct()){
 	            barFiller.add((NoteStruct) voiceObjects.get(i));
@@ -46,10 +45,15 @@ public class VoiceParser {
 	        
 	        //A bar signal
 	        else {
-	            
-	            voice.add(new Bar(barFiller));
+	            Bar newbar = new Bar();
+	            for (int i2 = 0; i2<barFiller.size(); i2++){
+	                newbar.add(barFiller.get(i2));
+	            }
+//	            System.out.println("\n"+this.voiceName + " Parser - Adding Bar:");
+//	            System.out.println(newbar.toString());
+	            voice.add(newbar);
 	            if (repeatingSecond){
-	                repeatedSecondBars.add(new Bar(barFiller));
+	                repeatedSecondBars.add(newbar);
 	            }
 	            barFiller.clear();
 	            
