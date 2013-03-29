@@ -147,7 +147,7 @@ public class LexerTest {
     @Test
     public void LexerTest7b() {
     	//test basic functionality for VOICE 	
-    	// test for anything but newline?
+    
     	Lexer test = new Lexer("V: ab 456dg\n");
     	
     	ArrayList<Token> expected = new ArrayList<Token>();
@@ -207,27 +207,40 @@ public class LexerTest {
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     	expected.add(new Token(Type.TUPLET, "(3"));  
-    	expected.add(new Token(Type.BASENOTE, "c"));    	
+    	expected.add(new Token(Type.BASENOTE, "c"));  
+    	expected.add(new Token(Type.BACKSLASH, "/")); 
+
     	expected.add(new Token(Type.BASENOTE, "c")); 
+    	expected.add(new Token(Type.BACKSLASH, "/")); 
     	expected.add(new Token(Type.BASENOTE, "c")); 
+    	expected.add(new Token(Type.BACKSLASH, "/")); 
     	expected.add(new Token(Type.SPACE, " "));
     	
-    	expected.add(new Token(Type.TUPLET, "(3"));  
-    	expected.add(new Token(Type.BASENOTE, "G"));    	
+    	expected.add(new Token(Type.TUPLET, "(3")); 
     	expected.add(new Token(Type.BASENOTE, "G")); 
+    	expected.add(new Token(Type.BACKSLASH, "/")); 
+    	expected.add(new Token(Type.BASENOTE, "G")); 
+    	expected.add(new Token(Type.BACKSLASH, "/")); 
     	expected.add(new Token(Type.BASENOTE, "G"));
+    	expected.add(new Token(Type.BACKSLASH, "/")); 
     	expected.add(new Token(Type.SPACE, " "));
     	
     	expected.add(new Token(Type.TUPLET, "(3"));  
-    	expected.add(new Token(Type.BASENOTE, "E"));    	
+    	expected.add(new Token(Type.BASENOTE, "E"));
+    	expected.add(new Token(Type.BACKSLASH, "/")); 
     	expected.add(new Token(Type.BASENOTE, "E")); 
-    	expected.add(new Token(Type.BASENOTE, "E")); 
+    	expected.add(new Token(Type.BACKSLASH, "/")); 
+    	expected.add(new Token(Type.BASENOTE, "E"));
+    	expected.add(new Token(Type.BACKSLASH, "/")); 
     	expected.add(new Token(Type.SPACE, " "));
     	
     	expected.add(new Token(Type.TUPLET, "(3"));  
-    	expected.add(new Token(Type.BASENOTE, "C"));    	
     	expected.add(new Token(Type.BASENOTE, "C")); 
+    	expected.add(new Token(Type.BACKSLASH, "/")); 
     	expected.add(new Token(Type.BASENOTE, "C")); 
+    	expected.add(new Token(Type.BACKSLASH, "/")); 
+    	expected.add(new Token(Type.BASENOTE, "C")); 
+    	expected.add(new Token(Type.BACKSLASH, "/")); 
     	expected.add(new Token(Type.SPACE, " "));
     	
     	expected.add(new Token(Type.BAR, "|"));

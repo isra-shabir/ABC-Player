@@ -12,16 +12,27 @@ public class Token {
 	public static enum Type {
 	
 		//we need more complex lexer tests
-		
-		NAME("(?<=C:)[\tA-Za-z]+[\tA-Za-z]*"),
-		KEYSIGNATURE("(?<=K:)[\tA-G](m)*"),
-		DEFLENGTH("(?<=L:)[0-9]+\\/[0-9]+"),
-		METER("(?<=M:)(\t[0-9](\t)*)\\/[(\t)*0-9]+"),
-		TEMPO("(?<=Q:)[\t0-9]"),
-		TITLE("(?<=T:)[\tA-Za-z]+[\tA-Za-z]*"),
-		INDEXNUM("(?<=X:)[\t0-9]+"), //10
-		VOICE("(?<=V:)[ \ta-zA-z0-9]+"), //11
+//		
+//		NAME("(?<=C:)[\tA-Za-z]+[\tA-Za-z]*"),
+//		KEYSIGNATURE("(?<=K:)[\tA-Gm*]"),
+//		DEFLENGTH("(?<=L:)[0-9]+\\/[0-9]+"),
+//		METER("(?<=M:)(\t[0-9]\t*)\\/[\t*0-9]+"),
+//		TEMPO("(?<=Q:)[\t0-9]"),
+//		TITLE("(?<=T:)[\tA-Za-z]+[\tA-Za-z]*"),
+//		INDEXNUM("(?<=X:)[\t0-9]+"), //10
+//		VOICE("(?<=V:)[\ta-zA-z0-9]+"), //11
 
+
+		NAME("(?<=C:)[^\n\r\f]+"),
+		KEYSIGNATURE("(?<=K:)[^\n\r\f]+"),
+		DEFLENGTH("(?<=L:)[^\n\r\f]+"),
+		METER("(?<=M:)[^\n\r\f]+"),
+		TEMPO("(?<=Q:)[^\n\r\f]+"),
+		TITLE("(?<=T:)[^\n\r\f]+"),
+		INDEXNUM("(?<=X:)[^\n\r\f]+"), //10
+		VOICE("(?<=V:)[^\n\r\f]+"), //11
+		
+		
 
 		DIGIT("[0-9]+"),
 		BACKSLASH("\\/"),
