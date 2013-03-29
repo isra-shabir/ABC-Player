@@ -6,7 +6,6 @@ public class Parser {
 	
 	
 	private ArrayList<Token> tokens;
-	private int numVoices;
 	private int currentToken = 0;
 	
 	//Will create an array of BarLineObjects
@@ -19,11 +18,14 @@ public class Parser {
 
 	
 	
-	
+	/**
+	 * an iterator through the array of tokens to perform the first level parsing
+	 * @return an ArrayList of BarLineObjects
+	 */
 	public ArrayList<BarLineObject> parse(){
 	    this.currentToken = 0;
 	    
-	    while (numVoices < tokens.size()){
+	    while (this.currentToken < tokens.size()){
 	        Token token = tokens.get(currentToken);
 	        if (token.isType("SPACE")){
 	            this.currentToken++;
@@ -41,10 +43,10 @@ public class Parser {
 	        }
 	        else if (token.isType("VOICE")){
 	            this.currentToken++;
-	            this.allObjects.add(new VoiceIndicator(" "));
+	            this.allObjects.add(new VoiceIndicator(token.getValue()));
 	        }
 	        else {
-	            this.allObjects.add(new BarSignal(token.getType().toString()));
+	            this.allObjects.add(new BarSignal(token.getType().name()));
 	            this.currentToken++;
 	        }
 	    }
@@ -73,27 +75,25 @@ public class Parser {
 	        Token token = tokens.get(this.currentToken);
 	        
 	        //ACCIDENTAL
+	        //can only be the before the note, otherwise, throw exception
 	        if (token.isType("ACCIDENTAL")){
 	            
 	            if (aAccidental.isEmpty() && aOctave.isEmpty()  && aBasenote.isEmpty()){
-	                aAccidental = token.toString();
-	            }
-	            
-	            //If we have already filled up a note...
-	            else if (aBasenote.isEmpty() == false){
-	                break;
+	                aAccidental = token.getValue();
+	            }else{
+	            	throw new RuntimeException("There is an invalid accidental in index:"+this.currentToken+" in the tokens array");
 	            }
 	        }
 	            
+	        
 	        //BASENOTE
 	        else if (token.isType("BASENOTE")){
 	            if (aOctave.isEmpty()  && aBasenote.isEmpty()){
-	                aBasenote = token.toString();
+	                aBasenote = token.getValue();
 	            }
-	            
 	            //If we have already filled up a note
-	            else if (aBasenote.isEmpty() == false){
-                    break;
+	            else{
+	            	throw new RuntimeException("There is an invalid BASENOTE in index:"+this.currentToken+" in the tokens array");
                 }
 	        }
 	        

@@ -12,6 +12,7 @@ public class Token {
 	public static enum Type {
 		//we need more complex lexer tests
 		
+
 		DIGIT("[0-9]+"),
 		BACKSLASH("\\/"),
 		VOICE("(?<=V:)[\ta-zA-z0-9]+"), //3 
@@ -19,6 +20,8 @@ public class Token {
 		SECONDREPEAT("(\\[2)"),
 		BASENOTE("[A-Ga-g]"), //7
 		ACCIDENTAL("[\\__\\^\\_\\=\\^^]"), // have a look
+		NUMERATOR("(?<=[a-gA-G ])[0-9]+"), //what should be considered a nume? (any number after BASENOTE or SPACE AND followed by?)
+		DENOMINATOR("(?<=\\/)[0-9]+"), //are spaces allowed after "/" ?
 		OCTAVE("[\\,\\']+"), 
 		OPENBAR("\\[\\|"),
 		ENDBAR("(\\|\\|)|(\\|\\])"),
@@ -74,7 +77,7 @@ public class Token {
 	}
 	
 	public boolean isType(String typeName){
-	    return typeName == this.type.toString();
+	    return typeName == this.type.name();
 	}
 
 	/**

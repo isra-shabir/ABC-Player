@@ -69,9 +69,17 @@ public class Lexer {
 
     		//we will use the capturing groups in our pattern to 
     		    		
+<<<<<<< HEAD
 //    		if(matcher.group(1) != null)					tokens.add(new Token(Type.NUMERATOR, token));
 //    		else if(matcher.group(2) != null)				tokens.add(new Token(Type.DENOMINATOR, token));
     		if(matcher.group(3) != null)					tokens.add(new Token(Type.VOICE, token));
+=======
+    		if(matcher.group(1) != null)					tokens.add(new Token(Type.NUMERATOR, token));
+    		else if(matcher.group(2) != null)				tokens.add(new Token(Type.DENOMINATOR, token));
+    		else if(matcher.group(3) != null)				tokens.add(new Token(Type.VOICE, token));
+    		
+    		
+>>>>>>> 167750bf03c6033fcbebd778df8879540dddd62b
     		else if(note.matcher(token).matches())			tokens.add(new Token(Type.BASENOTE, token));
     		else if(acc.matcher(token).matches())			tokens.add(new Token(Type.ACCIDENTAL, token));
     		else if(octave.matcher(token).matches())		tokens.add(new Token(Type.OCTAVE, token));
