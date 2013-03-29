@@ -45,8 +45,8 @@ public class Lexer {
     	Matcher matcher = patterns.matcher(this.stream);
     	
     	//define the different patterns from the tokens
-    	Pattern nume = Pattern.compile(Type.NUMERATOR.getRegex());
-    	Pattern deno = Pattern.compile(Type.DENOMINATOR.getRegex());
+//    	Pattern nume = Pattern.compile(Type.NUMERATOR.getRegex());
+//    	Pattern deno = Pattern.compile(Type.DENOMINATOR.getRegex());
     	Pattern note = Pattern.compile(Type.BASENOTE.getRegex());
     	Pattern acc = Pattern.compile(Type.ACCIDENTAL.getRegex());
     	Pattern octave = Pattern.compile(Type.OCTAVE.getRegex());
@@ -59,7 +59,7 @@ public class Lexer {
     	Pattern voice = Pattern.compile(Type.VOICE.getRegex());
     	Pattern openBar = Pattern.compile(Type.OPENBAR.getRegex());
     	Pattern endBar = Pattern.compile(Type.ENDBAR.getRegex());
-    	Pattern nthRepeat = Pattern.compile(Type.NTHREPEAT.getRegex());
+//    	Pattern nthRepeat = Pattern.compile(Type.NTHREPEAT.getRegex());
     	Pattern space = Pattern.compile(Type.SPACE.getRegex());
     	
     	
@@ -69,9 +69,9 @@ public class Lexer {
 
     		//we will use the capturing groups in our pattern to 
     		    		
-    		if(matcher.group(1) != null)					tokens.add(new Token(Type.NUMERATOR, token));
-    		else if(matcher.group(2) != null)				tokens.add(new Token(Type.DENOMINATOR, token));
-    		else if(matcher.group(3) != null)				tokens.add(new Token(Type.VOICE, token));
+//    		if(matcher.group(1) != null)					tokens.add(new Token(Type.NUMERATOR, token));
+//    		else if(matcher.group(2) != null)				tokens.add(new Token(Type.DENOMINATOR, token));
+    		if(matcher.group(3) != null)					tokens.add(new Token(Type.VOICE, token));
     		else if(note.matcher(token).matches())			tokens.add(new Token(Type.BASENOTE, token));
     		else if(acc.matcher(token).matches())			tokens.add(new Token(Type.ACCIDENTAL, token));
     		else if(octave.matcher(token).matches())		tokens.add(new Token(Type.OCTAVE, token));
@@ -83,7 +83,7 @@ public class Lexer {
     		else if(bar.matcher(token).matches())			tokens.add(new Token(Type.BAR, token));
     		else if(openBar.matcher(token).matches())		tokens.add(new Token(Type.OPENBAR, token));
     		else if(endBar.matcher(token).matches())		tokens.add(new Token(Type.ENDBAR, token));
-    		else if(nthRepeat.matcher(token).matches())		tokens.add(new Token(Type.NTHREPEAT, token));
+//    		else if(nthRepeat.matcher(token).matches())		tokens.add(new Token(Type.NTHREPEAT, token));
     		else if(space.matcher(token).matches())			tokens.add(new Token(Type.SPACE, token));
     	}
 		return tokens;
