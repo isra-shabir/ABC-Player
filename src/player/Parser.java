@@ -31,7 +31,6 @@ public class Parser {
 	            this.currentToken++;
 	        }
 	        else if (token.isType("ACCIDENTAL") || token.isType("BASENOTE")){
-	        	System.out.println("Constructor called");
                 this.allObjects.add(this.noteConstructor());
             }
 	        else if (token.isType("CHORDBEGIN")){
@@ -127,12 +126,13 @@ public class Parser {
 	        }
         
 	        //Handle numerator/denominator
-	        else if (aBasenote.isEmpty() && ( token.isType("NUMBER") || token.isType("BACKSLASH"))){
+	        else if (aBasenote.isEmpty() && ( token.isType("DIGIT") || token.isType("BACKSLASH"))){
 	            throw new RuntimeException("Invalid Syntax: Num/Denom info before note definition. At index: "+this.currentToken+" in the tokens array");
 	        }
 	        
-	        else if (token.isType("NUMBER")){
+	        else if (token.isType("DIGIT")){
 	            if (denomShown == false){
+	            	
 	                num = Integer.valueOf(token.getValue());
 	            }
 	            else if (denomShown == true){

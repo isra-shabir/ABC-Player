@@ -17,7 +17,7 @@ public class ParserTest {
 		
 		String output = (parse.parse().toString());
 		System.out.println(output);
-		assertEquals(output,"[ A ,  B ]");
+		assertEquals(output,"[ A  4/4,  B  4/4]");
 	}
 	
 	@Test
@@ -29,19 +29,20 @@ public class ParserTest {
 		
 		String output = (parse.parse().toString());
 		System.out.println(output);
-		assertEquals(output,"[_ A , ^ B ]");
+		assertEquals(output,"[_ A  4/4, ^ B  4/4]");
 	}
 	
 	@Test
 	public void ParserTest3(){
 		//test note constructor with notes and lengths
 		
-		Lexer test = new Lexer("_A2/3");
+		Lexer test = new Lexer("A2/3BC/");
 		Parser parse = new Parser(test.lex());
 		
+		System.out.println(test.lex().toString());
 		String output = (parse.parse().toString());
 		System.out.println(output);
-		assertEquals(output,"[_ A , ^ B ]");
+		assertEquals(output,"[ A  8/12,  B  4/4,  C  2/4]");
 	}
 	
 	@Test
@@ -53,7 +54,7 @@ public class ParserTest {
 		
 		String output = (parse.parse().toString());
 		System.out.println(output);
-		assertEquals(output,"[_ A , ^ B ]");
+		assertEquals(output,"[_ A  2/4]");
 	}
 	
 	@Test
@@ -65,7 +66,7 @@ public class ParserTest {
 		
 		String output = (parse.parse().toString());
 		System.out.println(output);
-		assertEquals(output,"[_ A , ^ B ]");
+		assertEquals(output,"[_ A  4/20]");
 	}
 	
 	@Test
@@ -77,7 +78,7 @@ public class ParserTest {
 		
 		String output = (parse.parse().toString());
 		System.out.println(output);
-		assertEquals(output,"[_ A ,,  B ]");
+		assertEquals(output,"[_ A , 4/4,  B  4/4]");
 	}
 	
 	
