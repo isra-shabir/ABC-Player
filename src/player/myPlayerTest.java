@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class myPlayerTest {
     
-    @Test
+    //@Test
     /**
      * Test base notes, without accidentals
      */
@@ -17,7 +17,7 @@ public class myPlayerTest {
         try {
 
             SequencePlayer sqPlayer = new SequencePlayer(140, 12);
-            myPlayer Ahmed = new myPlayer("Cm", sqPlayer);
+            myPlayer Ahmed = new myPlayer("C", sqPlayer);
             
             String[] basenotes =   {"C","C","D","D","E","F","F","G","G","A","A","B"};
             String[] accidentals = {"" ,"^","" ,"^","" ,"" ,"^","" ,"^","" ,"^","" };
@@ -43,7 +43,6 @@ public class myPlayerTest {
                     octave = "'";
                 }
                                 
-                System.out.println(accidental + basenote + octave);
                 Ahmed.addNote(12*i, 12*(i+1), basenote, accidental, octave);
             }
             
@@ -56,6 +55,69 @@ public class myPlayerTest {
         }
     }
     
-        
+    /**
+     * Tests alterations of key signatures
+     */
+    //@Test
+    public void testKeySignatures(){
+        try {
+
+            String[] basenotes =   {"C","D","E","F","G","A","B"};
+            String[] keys = {"C", "G", "D"};
+                        
+            for (int iKey = 0; iKey<keys.length; iKey++){
+                SequencePlayer sqPlayer = new SequencePlayer(140, 12);
+                String key = keys[iKey];
+                System.out.println("Key is "+key);
+                myPlayer Ahmed = new myPlayer(key, sqPlayer);
+                for (int i = 0; i < 7; i++){
+                    String octave = "";
+                    String basenote = basenotes[i%7];
+                    String accidental = "";
+                    Ahmed.addNote(12*(iKey*7+i), 12, basenote, accidental, octave);
+                }                           
+                sqPlayer.play();
+            }
+            
+        } catch (MidiUnavailableException e) {
+            e.printStackTrace();
+        } catch (InvalidMidiDataException e) {
+            e.printStackTrace();
+        }
+    }
+
     
+    /**
+     * Tests performance when key signature effects are cancelled
+     * (By =)
+     * Should play all as C major
+     */
+    @Test
+    public void testSilencedKeySignatures(){
+        try {
+
+            String[] basenotes =   {"C","D","E","F","G","A","B"};
+            String[] keys = {"C", "G", "D"};
+                        
+            for (int iKey = 0; iKey<keys.length; iKey++){
+                SequencePlayer sqPlayer = new SequencePlayer(140, 12);
+                String key = keys[iKey];
+                System.out.println("Key is "+key);
+                myPlayer Ahmed = new myPlayer(key, sqPlayer);
+                for (int i = 0; i < 7; i++){
+                    String octave = "";
+                    String basenote = basenotes[i%7];
+                    String accidental = "=";
+                    Ahmed.addNote(12*(iKey*7+i), 12, basenote, accidental, octave);
+                }                           
+                sqPlayer.play();
+            }
+            
+        } catch (MidiUnavailableException e) {
+            e.printStackTrace();
+        } catch (InvalidMidiDataException e) {
+            e.printStackTrace();
+        }
+    }
+       
 }
