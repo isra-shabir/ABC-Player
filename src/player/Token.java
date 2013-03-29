@@ -21,7 +21,6 @@ public class Token {
 		TITLE("(?<=T:)[\tA-Za-z]+[\tA-Za-z]*"),
 		INDEXNUM("(?<=X:)[\t0-9]+"),
 		
-
 		DIGIT("[0-9]+"),
 		BACKSLASH("\\/"),
 		VOICE("(?<=V:)[\ta-zA-z0-9]+"), //3 
