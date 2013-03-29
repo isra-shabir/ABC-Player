@@ -31,6 +31,7 @@ public class Parser {
 	            this.currentToken++;
 	        }
 	        else if (token.isType("ACCIDENTAL") || token.isType("BASENOTE")){
+	        	System.out.println("Constructor called");
                 this.allObjects.add(this.noteConstructor());
             }
 	        else if (token.isType("CHORDBEGIN")){
@@ -70,8 +71,14 @@ public class Parser {
 	    
 	    boolean inNote = true;
 	    boolean denomShown = false;
-	    
-	    while (inNote == true){
+	   
+	    while (inNote){
+	    	
+	    	if (this.currentToken>= tokens.size()){ //we reached the end of the array
+	    		inNote = false;
+	    		continue; 
+	    	}
+	    	
 	        Token token = tokens.get(this.currentToken);
 	        
 	        //ACCIDENTAL
@@ -80,6 +87,9 @@ public class Parser {
 	            
 	            if (aAccidental.isEmpty() && aOctave.isEmpty()  && aBasenote.isEmpty()){
 	                aAccidental = token.getValue();
+	            }else if(!aBasenote.isEmpty()){
+	            	inNote = false;
+	            	continue;
 	            }else{
 	            	throw new RuntimeException("There is an invalid accidental in index:"+this.currentToken+" in the tokens array");
 	            }
@@ -92,6 +102,11 @@ public class Parser {
 	                aBasenote = token.getValue();
 	            }
 	            //If we have already filled up a note
+	            else if (!aBasenote.isEmpty()){
+	            	inNote = false;
+	            	continue;
+	            	
+	            }
 	            else{
 	            	throw new RuntimeException("There is an invalid BASENOTE in index:"+this.currentToken+" in the tokens array");
                 }
@@ -100,26 +115,35 @@ public class Parser {
 	        //OCTAVE
 	        else if (token.isType("OCTAVE")){
 	            if (aOctave.isEmpty()){
-	                aOctave = token.toString();
+	                aOctave = token.getValue();
+	            }
+	            else if (aBasenote.isEmpty()){
+	            	throw new RuntimeException("There is an invalid OCTAVE in index: "+this.currentToken+" in the tokens array. Make sure your OCATVE comes after a basenote");
+	            }
+	            else{
+	            	throw new RuntimeException("There is an invalid OCTAVE in index: "+this.currentToken+" in the tokens array. I am seeing multiple octaves within one note o.O");
+
 	            }
 	        }
         
 	        //Handle numerator/denominator
-	        else if (aBasenote.isEmpty() == true && ( token.isType("NUMBER") || token.isType("DENOMTHING"))){
-	            System.out.println("Invalid Syntax: Num/Denom info before note definition.");
+	        else if (aBasenote.isEmpty() && ( token.isType("NUMBER") || token.isType("BACKSLASH"))){
+	            throw new RuntimeException("Invalid Syntax: Num/Denom info before note definition. At index: "+this.currentToken+" in the tokens array");
 	        }
 	        
 	        else if (token.isType("NUMBER")){
 	            if (denomShown == false){
-	                num = Integer.valueOf(token.toString());
+	                num = Integer.valueOf(token.getValue());
 	            }
 	            else if (denomShown == true){
-	                denom = Integer.valueOf(token.toString());
+	                denom = Integer.valueOf(token.getValue());
+	                
 	                inNote = false;
+	            
 	            }
 	        }
 	        
-	        else if (token.isType("DENOMTHING")){
+	        else if (token.isType("BACKSLASH")){
 	            denomShown = true;
 	            denom = 2;
 	        }
@@ -127,7 +151,6 @@ public class Parser {
 	        else {
 	            inNote = false;
 	        }
-	        
 	        this.currentToken++;
 	    }
 	    

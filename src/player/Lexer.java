@@ -87,12 +87,12 @@ public class Lexer {
     		else if(matcher.group(5) != null)				tokens.add(new Token(Type.TEMPO, token));
     		else if(matcher.group(6) != null)				tokens.add(new Token(Type.TITLE, token));
     		else if(matcher.group(7) != null)				tokens.add(new Token(Type.INDEXNUM, token));
-    		else if(matcher.group(8) != null)				tokens.add(new Token(Type.VOICE, token));
+    		else if(matcher.group(11) != null)				tokens.add(new Token(Type.VOICE, token));
  
 
     		else if(note.matcher(token).matches())			tokens.add(new Token(Type.BASENOTE, token));
     		else if(backSlash.matcher(token).matches())		tokens.add(new Token(Type.BACKSLASH, token));
-    		
+    		else if(digit.matcher(token).matches())			tokens.add(new Token(Type.DIGIT, token));
     		else if(acc.matcher(token).matches())			tokens.add(new Token(Type.ACCIDENTAL, token));
     		else if(octave.matcher(token).matches())		tokens.add(new Token(Type.OCTAVE, token));
     		else if(choBeg.matcher(token).matches())		tokens.add(new Token(Type.CHORDBEGIN, token));

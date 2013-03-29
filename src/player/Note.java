@@ -107,7 +107,7 @@ public class Note implements NoteStruct{
      * @return a string representation of the note.
      */
     public String toString(){
-        return octave+" "+basenote+" "+accidental;
+        return accidental+" "+basenote+" "+octave;
     }
 
     public boolean isNotestruct() {

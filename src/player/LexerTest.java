@@ -148,12 +148,12 @@ public class LexerTest {
     public void LexerTest7b() {
     	//test basic functionality for VOICE 	
     	// test for anything but newline?
-    	Lexer test = new Lexer("V: ab 456dg ");
+    	Lexer test = new Lexer("V: ab 456dg\n");
     	
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     	expected.add(new Token(Type.VOICE, " ab 456dg"));
-    	expected.add(new Token(Type.SPACE, " "));
+    	expected.add(new Token(Type.SPACE, "\n"));
     	
     	assertEquals(expected.toString(), test.lex().toString());     		
     

@@ -19,14 +19,15 @@ public class Token {
 		METER("(?<=M:)(\t[0-9](\t)*)\\/[(\t)*0-9]+"),
 		TEMPO("(?<=Q:)[\t0-9]"),
 		TITLE("(?<=T:)[\tA-Za-z]+[\tA-Za-z]*"),
-		INDEXNUM("(?<=X:)[\t0-9]+"),
-		
+		INDEXNUM("(?<=X:)[\t0-9]+"), //10
+		VOICE("(?<=V:)[ \ta-zA-z0-9]+"), //11
+
+
 		DIGIT("[0-9]+"),
 		BACKSLASH("\\/"),
-		VOICE("(?<=V:)[\ta-zA-z0-9]+"), //3 
-		FIRSTREPEAT("(\\[1)"), //4,5,6 - 1st and 2nd
+		FIRSTREPEAT("(\\[1)"), //1st and 2nd
 		SECONDREPEAT("(\\[2)"),
-		BASENOTE("[A-Ga-g]"), //7
+		BASENOTE("[A-Ga-g]"), 
 		ACCIDENTAL("[\\__\\^\\_\\=\\^^]"), 
 		OCTAVE("[\\,\\']+"), 
 		OPENBAR("\\[\\|"),
