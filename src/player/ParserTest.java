@@ -68,5 +68,17 @@ public class ParserTest {
 		assertEquals(output,"[_ A , ^ B ]");
 	}
 	
+	@Test
+	public void ParserTest6(){
+		//test note constructor with notes and octaves
+		
+		Lexer test = new Lexer("_A,B");
+		Parser parse = new Parser(test.lex());
+		
+		String output = (parse.parse().toString());
+		System.out.println(output);
+		assertEquals(output,"[_ A ,,  B ]");
+	}
+	
 	
 }
