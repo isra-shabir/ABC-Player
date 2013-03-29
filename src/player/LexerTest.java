@@ -41,6 +41,21 @@ public class LexerTest {
     	assertEquals(expected.toString(), test.lex().toString());     		
     
     }
+    @Test
+    public void LexerTest2b() {
+    	//test basic functionality for length 	
+    	Lexer test = new Lexer("G 2/3");
+    	
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	
+    	expected.add(new Token(Type.BASENOTE, "G"));
+    	expected.add(new Token(Type.SPACE, " "));
+    	expected.add(new Token(Type.NUMERATOR, "2"));
+    	expected.add(new Token(Type.DENOMINATOR, "3"));
+
+    	assertEquals(expected.toString(), test.lex().toString());     		
+    
+    }
     
     @Test
     public void LexerTest3() {
@@ -128,6 +143,20 @@ public class LexerTest {
     }
     
     @Test
+    public void LexerTest7b() {
+    	//test basic functionality for VOICE 	
+    	Lexer test = new Lexer("V: ab 456dg\n");
+    	
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	
+    	expected.add(new Token(Type.VOICE, " ab 456dg"));
+    	expected.add(new Token(Type.SPACE, "\n"));
+    	
+    	assertEquals(expected.toString(), test.lex().toString());     		
+    
+    }
+    
+    @Test
     public void LexerTest8() {
     	//test basic functionality for OPENBAR 	
     	Lexer test = new Lexer("[|a|]");
@@ -155,7 +184,7 @@ public class LexerTest {
     
     @Test
     public void LexerTest10() {
-    	//test basic functionality for NTHREPEAT 	
+    	//test basic functionality for Space 	
     	Lexer test = new Lexer("a    b");
     	
     	ArrayList<Token> expected = new ArrayList<Token>();
@@ -163,6 +192,42 @@ public class LexerTest {
     	expected.add(new Token(Type.BASENOTE, "a"));  
     	expected.add(new Token(Type.SPACE, "    "));    	
     	expected.add(new Token(Type.BASENOTE, "b"));    	
+
+    	assertEquals(expected.toString(), test.lex().toString());     		
+    }
+    
+    @Test
+    public void LexerTest11() {
+    	//test basic functionality a collection of things (small piece) 	
+    	Lexer test = new Lexer("(3c/c/c/ (3G/G/G/ (3E/E/E/ (3C/C/C/ |");
+    	
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	
+    	expected.add(new Token(Type.TUPLET, "(3"));  
+    	expected.add(new Token(Type.BASENOTE, "c"));    	
+    	expected.add(new Token(Type.BASENOTE, "c")); 
+    	expected.add(new Token(Type.BASENOTE, "c")); 
+    	expected.add(new Token(Type.SPACE, " "));
+    	
+    	expected.add(new Token(Type.TUPLET, "(3"));  
+    	expected.add(new Token(Type.BASENOTE, "G"));    	
+    	expected.add(new Token(Type.BASENOTE, "G")); 
+    	expected.add(new Token(Type.BASENOTE, "G"));
+    	expected.add(new Token(Type.SPACE, " "));
+    	
+    	expected.add(new Token(Type.TUPLET, "(3"));  
+    	expected.add(new Token(Type.BASENOTE, "E"));    	
+    	expected.add(new Token(Type.BASENOTE, "E")); 
+    	expected.add(new Token(Type.BASENOTE, "E")); 
+    	expected.add(new Token(Type.SPACE, " "));
+    	
+    	expected.add(new Token(Type.TUPLET, "(3"));  
+    	expected.add(new Token(Type.BASENOTE, "C"));    	
+    	expected.add(new Token(Type.BASENOTE, "C")); 
+    	expected.add(new Token(Type.BASENOTE, "C")); 
+    	expected.add(new Token(Type.SPACE, " "));
+    	
+    	expected.add(new Token(Type.BAR, "|"));
 
     	assertEquals(expected.toString(), test.lex().toString());     		
     }

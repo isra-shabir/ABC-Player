@@ -10,12 +10,13 @@ public class Token {
  	*/
 	
 	public static enum Type {
-	
-		NUMERATOR("(?<=C)[0-9]+"),
-		DENOMINATOR("\\/[0-9]"),
-		VOICE("(?<=V:)[\\sa-zA-z0-9]+"),
-		NTHREPEAT("(\\[1)|(\\[2)"),
-		BASENOTE("[A-Ga-g]"),
+		//we need more complex lexer tests
+		
+		NUMERATOR("(?<=[a-gA-G ])[0-9]+"), //what should be considered a nume? (any number after BASENOTE or SPACE AND followed by?)
+		DENOMINATOR("(?<=\\/)[0-9]+"), //are spaces allowed after "/" ?
+		VOICE("(?<=V:)[ a-zA-z0-9]+"), //3
+		NTHREPEAT("(\\[1)|(\\[2)"), //4,5,6
+		BASENOTE("[A-Ga-g]"), //7
 		ACCIDENTAL("[\\__\\^\\_\\=\\^^]"),
 		OCTAVE("[\\,\\']+"), 
 		OPENBAR("\\[\\|"),
@@ -26,7 +27,7 @@ public class Token {
 		REPEATBEG("\\|:"),
 		REPEATEND(":\\|"),
 		BAR("\\|"),
-		SPACE("[\\s]+"); // test for this
+		SPACE("[\\s]+"); // all white spaces including newline
 		
 		//define Type.regex so we can access the regex for each type
 		private String regex;

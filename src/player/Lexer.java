@@ -63,15 +63,15 @@ public class Lexer {
     	Pattern space = Pattern.compile(Type.SPACE.getRegex());
     	
     	
-    	
     	while (matcher.find()){
     		
     		String token = matcher.group();
-    		
-    		if(nume.matcher(token).matches())				tokens.add(new Token(Type.NUMERATOR, token));
-    		else if(deno.matcher(token).matches())			tokens.add(new Token(Type.DENOMINATOR, token));
-    		//figure out how to write the find the voice token
-    		else if(voice.matcher(token).find() == true)			tokens.add(new Token(Type.VOICE, token));
+
+    		//we will use the capturing groups in our pattern to 
+    		    		
+    		if(matcher.group(1) != null)					tokens.add(new Token(Type.NUMERATOR, token));
+    		else if(matcher.group(2) != null)				tokens.add(new Token(Type.DENOMINATOR, token));
+    		else if(matcher.group(3) != null)				tokens.add(new Token(Type.VOICE, token));
     		else if(note.matcher(token).matches())			tokens.add(new Token(Type.BASENOTE, token));
     		else if(acc.matcher(token).matches())			tokens.add(new Token(Type.ACCIDENTAL, token));
     		else if(octave.matcher(token).matches())		tokens.add(new Token(Type.OCTAVE, token));
