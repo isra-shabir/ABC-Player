@@ -190,4 +190,96 @@ public class Parser {
 	    return tuplet;
 	}
 	
+	
+	
+	
+	private String title,name, key = "";
+	private int indexNum,tempo =0; 
+	private ArrayList<String> voice = new ArrayList<String>();
+	private ArrayList<Integer> defLength = new ArrayList<Integer>();
+	private ArrayList<Integer> meter = new ArrayList<Integer>();
+	
+	
+	/**
+	 * This method is called by the constructor to parse the header data from the list of tokens
+	 * There are a few requirements on the header:
+	 *1-	The first field in the header must be the index number ('X').
+	 *2-	The second field in the header must be the title ('T').
+	 *3-	The last field in the header must be the key ('K').
+	 *4-	Each field in the header occurs on a separate line.
+	 * @modify: it will delete all the header tokens from tokens
+	 */
+	private void HeaderInfo(){
+		
+		//checking requirements. First is indexNum second is title
+		if (!tokens.get(0).isType("INDEXNUM")){
+			throw new RuntimeException("first field in header must be index num");
+		}else if (!tokens.get(1).isType("TITLE")){
+			throw new RuntimeException("second field in header must be title");
+		}
+		
+		int lastInd=0;
+		for (int i=0; i< this.tokens.size(); i++){
+			Token current=this.tokens.get(i);
+			if (current.isType("INDEXNUM"))				this.indexNum=Integer.valueOf(current.getValue());
+			else if (current.isType("TITLE"))			this.title=current.getValue();
+			else if (current.isType("NAME"))			this.name=current.getValue();
+			else if (current.isType("DEFLENGTH")){
+				String text = current.getValue();
+				Lexer small = new Lexer(text);
+				
+				for (Token token: small.lex()){
+					if (token.isType("NUMBER"))			this.defLength.add(Integer.valueOf(token.getValue()));
+				}
+			}
+			else if (current.isType("METER")){
+				String text = current.getValue();
+				Lexer small = new Lexer(text);
+				
+				for (Token token: small.lex()){
+					if (token.isType("NUMBER"))			this.meter.add(Integer.valueOf(token.getValue()));
+				}
+			}
+			else if (current.isType("TEMPO"))			this.tempo=Integer.valueOf(current.getValue());
+			else if (current.isType("VOICE"))			this.voice.add(current.getValue());
+			else if (current.isType("KEYSIGNATURE")){
+				//terminate the loop
+				this.key=current.getValue();
+				lastInd = i; 
+				break;
+			}
+
+		}
+		
+		//delete the header tokens
+		for (int i=lastInd; i>=0;i--){
+			this.tokens.remove(i);
+		}		
+	}
+	
+	
+	/**
+	 * A set of get methods to get all the header info from the parser
+	 */
+	public int getIndexNum(){
+		return this.indexNum;
+	}
+	public String getTitle(){
+		return this.title;
+	}
+	public String getName(){
+		return this.name;
+	}
+	public ArrayList<Integer> getDefLen(){
+		return this.defLength;
+	}
+	public ArrayList<Integer> getMeter(){
+		return this.meter;
+	}
+	public int getTempo(){
+		return this.tempo;
+	}
 }
+
+
+
