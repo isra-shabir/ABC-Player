@@ -5,16 +5,18 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class ParserTest {
-
+	String dummyHeader = "X:0\nT:hello\nQ:100\nK:c\n";
 	@Test
 	public void ParserTest1(){
 		//test note constructor with only a note
 		
-		Lexer test = new Lexer("AB");
+		Lexer test = new Lexer(dummyHeader+"AB");
 		Parser parse = new Parser(test.lex());
 		
 		String output = (parse.parse().toString());
 		System.out.println(output);
+		System.out.println("tokens: "+parse.getTokensString());
+
 		assertEquals(output,"[ A  4/4,  B  4/4]");
 	}
 	
@@ -22,7 +24,7 @@ public class ParserTest {
 	public void ParserTest2(){
 		//test note constructor with notes and accidental
 		
-		Lexer test = new Lexer("_A ^B");
+		Lexer test = new Lexer(dummyHeader+"_A ^B");
 		Parser parse = new Parser(test.lex());
 		
 		String output = (parse.parse().toString());
@@ -34,7 +36,7 @@ public class ParserTest {
 	public void ParserTest3(){
 		//test note constructor with notes and lengths
 		
-		Lexer test = new Lexer("A2/3BC/");
+		Lexer test = new Lexer(dummyHeader+"A2/3BC/");
 		Parser parse = new Parser(test.lex());
 		
 		System.out.println(test.lex().toString());
@@ -47,7 +49,7 @@ public class ParserTest {
 	public void ParserTest4(){
 		//test note constructor with notes and lengths (no den)
 		
-		Lexer test = new Lexer("_A/");
+		Lexer test = new Lexer(dummyHeader+"_A/");
 		Parser parse = new Parser(test.lex());
 		
 		String output = (parse.parse().toString());
@@ -59,7 +61,7 @@ public class ParserTest {
 	public void ParserTest5(){
 		//test note constructor with notes and lengths (no den)
 		
-		Lexer test = new Lexer("_A/5");
+		Lexer test = new Lexer(dummyHeader+"_A/5");
 		Parser parse = new Parser(test.lex());
 		
 		String output = (parse.parse().toString());
@@ -71,7 +73,7 @@ public class ParserTest {
 	public void ParserTest6(){
 		//test note constructor with notes and octaves
 		
-		Lexer test = new Lexer("_A,B");
+		Lexer test = new Lexer(dummyHeader+"_A,B");
 		Parser parse = new Parser(test.lex());
 		
 		String output = (parse.parse().toString());
@@ -83,7 +85,7 @@ public class ParserTest {
     public void ParserTest7(){
         //test bar
         
-        Lexer test = new Lexer("|");
+        Lexer test = new Lexer(dummyHeader+"|");
         Parser parse = new Parser(test.lex());
         
         String output = (parse.parse().toString());
@@ -95,7 +97,7 @@ public class ParserTest {
     public void ParserTest8(){
         //test end bar
         
-        Lexer test = new Lexer("|]");
+        Lexer test = new Lexer(dummyHeader+"|]");
         Parser parse = new Parser(test.lex());
         
         String output = (parse.parse().toString());
@@ -107,7 +109,7 @@ public class ParserTest {
     public void ParserTest9(){
         //test end bar
         
-        Lexer test = new Lexer("^B,=B,|");
+        Lexer test = new Lexer(dummyHeader+"^B,=B,|");
         Parser parse = new Parser(test.lex());
         
         String output = (parse.parse().toString());
@@ -119,7 +121,7 @@ public class ParserTest {
     public void ParserTest10(){
         //test chord
         
-        Lexer test = new Lexer("[CEG]");
+        Lexer test = new Lexer(dummyHeader+"[CEG]");
         Parser parse = new Parser(test.lex());
         
         String output = (parse.parse().toString());
@@ -131,7 +133,7 @@ public class ParserTest {
     public void ParserTest11(){
         //test chord in Bar
         
-        Lexer test = new Lexer("C [CEG] |]");
+        Lexer test = new Lexer(dummyHeader+"C [CEG] |]");
         Parser parse = new Parser(test.lex());
         
         String output = (parse.parse().toString());
@@ -144,7 +146,7 @@ public class ParserTest {
     public void ParserTest12(){
         //test chord with time
         
-        Lexer test = new Lexer("C [C1/2E1/2G1/2] |]");
+        Lexer test = new Lexer(dummyHeader+"C [C1/2E1/2G1/2] |]");
         Parser parse = new Parser(test.lex());
         
         String output = (parse.parse().toString());
@@ -157,7 +159,7 @@ public class ParserTest {
     public void ParserTest13(){
         //test chord with time
         
-        Lexer test = new Lexer("C [C1/2E1/2z1/2] |]");
+        Lexer test = new Lexer(dummyHeader+"C [C1/2E1/2z1/2] |]");
         Parser parse = new Parser(test.lex());
         
         String output = (parse.parse().toString());
