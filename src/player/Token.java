@@ -63,7 +63,7 @@ public class Token {
 	}
 	
 	public boolean isType(String typeName){
-	    return typeName == this.type.toString();
+	    return typeName == this.type.name();
 	}
 
 	/**
