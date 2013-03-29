@@ -16,7 +16,7 @@ public class Token {
 		DENOMINATOR("(?<=\\/)[0-9]+"), //are spaces allowed after "/" ?
 		VOICE("(?<=V:)[ a-zA-z0-9]+"), //3
 		NTHREPEAT("(\\[1)|(\\[2)"), //4,5,6
-		BASENOTE("[A-Ga-g]"), //7
+		BASENOTE("[A-Ga-gz]"), //7
 		ACCIDENTAL("[\\__\\^\\_\\=\\^^]"),
 		OCTAVE("[\\,\\']+"), 
 		OPENBAR("\\[\\|"),
