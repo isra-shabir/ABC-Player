@@ -10,10 +10,16 @@ public class Token {
  	*/
 	
 	public static enum Type {
-		
-		// for now, test all your tokens, and pass them!
-		
+	
 		//we need more complex lexer tests
+		
+		NAME("(?<=C:)[\tA-Za-z]+[\tA-Za-z]*"),
+		KEYSIGNATURE("(?<=K:)[\tA-G](m)*"),
+		DEFLENGTH("(?<=L:)[0-9]+\\/[0-9]+"),
+		METER("(?<=M:)(\t[0-9](\t)*)\\/[(\t)*0-9]+"),
+		TEMPO("(?<=Q:)[\t0-9]"),
+		TITLE("(?<=T:)[\tA-Za-z]+[\tA-Za-z]*"),
+		INDEXNUM("(?<=X:)[\t0-9]+"),
 		
 
 		DIGIT("[0-9]+"),
@@ -22,9 +28,7 @@ public class Token {
 		FIRSTREPEAT("(\\[1)"), //4,5,6 - 1st and 2nd
 		SECONDREPEAT("(\\[2)"),
 		BASENOTE("[A-Ga-g]"), //7
-		ACCIDENTAL("[\\__\\^\\_\\=\\^^]"), // have a look
-//		NUMERATOR("(?<=[a-gA-G ])[0-9]+"), //what should be considered a nume? (any number after BASENOTE or SPACE AND followed by?)
-//		DENOMINATOR("(?<=\\/)[0-9]+"), //are spaces allowed after "/" ?
+		ACCIDENTAL("[\\__\\^\\_\\=\\^^]"), 
 		OCTAVE("[\\,\\']+"), 
 		OPENBAR("\\[\\|"),
 		ENDBAR("(\\|\\|)|(\\|\\])"),
@@ -34,17 +38,8 @@ public class Token {
 		REPEATBEG("\\|:"),
 		REPEATEND(":\\|"),
 		BAR("\\|"),
-		SPACE("[\\s]+"), // all white spaces including newline
-		
-		//Header tokens
-		
-		NAME("(?<=T:)[\tA-Za-z]+[\tA-Za-z]*"),
-		KEYSIGNATURE("(?<=K:)[\tA-G](m)*"),
-		DEFLENGTH("(?<=L:)[0-9]+\\/[0-9]+"),
-		METER("(?<=M:)(\t[0-9](\t)*)\\/[(\t)*0-9]+"),
-		TEMPO("(?<=Q:)[\t0-9]"),
-		TITLE("(?<=T:)[\tA-Za-z]+[\tA-Za-z]*"),
-		INDEXNUM("(?<=X:)[\t0-9]+");
+		SPACE("[\\s]+"); // all white spaces including newline
+	
 		
 		//define Type.regex so we can access the regex for each type
 		private String regex;
