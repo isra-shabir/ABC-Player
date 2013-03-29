@@ -44,18 +44,18 @@ public class Main {
         Lexer myLexer = new Lexer(music);
         //Tokenize
         ArrayList<Token> tokens = myLexer.lex();
-        alprint(tokens, "TOKENS");
+//        alprint(tokens, "TOKENS");
         
         //Parse
         Parser myParser = new Parser(tokens);
         ArrayList<BarLineObject> barLineObjects = myParser.parse();
-        alprint(barLineObjects, "BARLINEOBJECTS");
+//        alprint(barLineObjects, "BARLINEOBJECTS");
         
         //Parse 2
         Parser2 myParser2 = new Parser2(voiceNames);
         myParser2.parse(barLineObjects);
         ArrayList<Voice> voices = myParser2.getVoices();
-        alprint(voices, "VOICES");
+//        alprint(voices, "VOICES");
         
         Song mySong = new Song(voices);
         SequencePlayer sqPlayer;
@@ -131,7 +131,7 @@ public class Main {
     public static void main(String[] args) throws MidiUnavailableException, InvalidMidiDataException {
 
         try {
-            play(readABCFile("fur_elise raw.abc"));
+            play(readABCFile("viva.abc"));
         } catch (IOException e) {
             e.printStackTrace();
         }
