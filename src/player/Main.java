@@ -39,7 +39,7 @@ public class Main {
         Lexer myLexer = new Lexer(music);
         //Tokenize
         ArrayList<Token> tokens = myLexer.lex();
-        //alprint(tokens);
+        alprint(tokens);
         //Parse
         Parser myParser = new Parser(tokens);
         ArrayList<BarLineObject> barLineObjects = myParser.parse();
