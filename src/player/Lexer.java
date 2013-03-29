@@ -87,7 +87,7 @@ public class Lexer {
     		else if(matcher.group(5) != null)				tokens.add(new Token(Type.TEMPO, token));
     		else if(matcher.group(6) != null)				tokens.add(new Token(Type.TITLE, token));
     		else if(matcher.group(7) != null)				tokens.add(new Token(Type.INDEXNUM, token));
-    		else if(matcher.group(11) != null)				tokens.add(new Token(Type.VOICE, token));
+    		else if(matcher.group(8) != null)				tokens.add(new Token(Type.VOICE, token));
  
 
     		else if(note.matcher(token).matches())			tokens.add(new Token(Type.BASENOTE, token));
