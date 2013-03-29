@@ -6,7 +6,6 @@ public class Parser {
 	
 	
 	private ArrayList<Token> tokens;
-	private int numVoices;
 	private int currentToken = 0;
 	
 	//Will create an array of BarLineObjects
@@ -23,7 +22,7 @@ public class Parser {
 	public ArrayList<BarLineObject> parse(){
 	    this.currentToken = 0;
 	    
-	    while (numVoices < tokens.size()){
+	    while (this.currentToken < tokens.size()){
 	        Token token = tokens.get(currentToken);
 	        if (token.isType("SPACE")){
 	            this.currentToken++;
@@ -41,7 +40,7 @@ public class Parser {
 	        }
 	        else if (token.isType("VOICE")){
 	            this.currentToken++;
-	            this.allObjects.add(new VoiceIndicator(" "));
+	            this.allObjects.add(new VoiceIndicator(token.getValue()));
 	        }
 	        else {
 	            this.allObjects.add(new BarSignal(token.getType().toString()));

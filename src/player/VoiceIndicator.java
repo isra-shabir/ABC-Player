@@ -23,5 +23,10 @@ public class VoiceIndicator implements BarLineObject {
     public boolean isType(String type) {
         return type == "VOICE";
     }
+    
+    @Override
+    public String toString(){
+        return "Voice Indicator: "+this.voiceName;
+    }
 
 }
