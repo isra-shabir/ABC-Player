@@ -36,7 +36,7 @@ public class LexerTest {
     	
     	expected.add(new Token(Type.BASENOTE, "C"));
     	expected.add(new Token(Type.DIGIT, "2"));
-    	expected.add(new Token(Type.BACKSLASH, "/"));
+    	expected.add(new Token(Type.FORWARDSLASH, "/"));
     	expected.add(new Token(Type.DIGIT, "3"));
 
     	assertEquals(expected.toString(), test.lex().toString());     		
@@ -52,7 +52,7 @@ public class LexerTest {
     	expected.add(new Token(Type.BASENOTE, "G"));
     	expected.add(new Token(Type.SPACE, " "));
     	expected.add(new Token(Type.DIGIT, "2"));
-    	expected.add(new Token(Type.BACKSLASH, "/"));
+    	expected.add(new Token(Type.FORWARDSLASH, "/"));
     	expected.add(new Token(Type.DIGIT, "3"));
 
     	assertEquals(expected.toString(), test.lex().toString());     		
@@ -208,39 +208,39 @@ public class LexerTest {
     	
     	expected.add(new Token(Type.TUPLET, "(3"));  
     	expected.add(new Token(Type.BASENOTE, "c"));  
-    	expected.add(new Token(Type.BACKSLASH, "/")); 
+    	expected.add(new Token(Type.FORWARDSLASH, "/")); 
 
     	expected.add(new Token(Type.BASENOTE, "c")); 
-    	expected.add(new Token(Type.BACKSLASH, "/")); 
+    	expected.add(new Token(Type.FORWARDSLASH, "/")); 
     	expected.add(new Token(Type.BASENOTE, "c")); 
-    	expected.add(new Token(Type.BACKSLASH, "/")); 
+    	expected.add(new Token(Type.FORWARDSLASH, "/")); 
     	expected.add(new Token(Type.SPACE, " "));
     	
     	expected.add(new Token(Type.TUPLET, "(3")); 
     	expected.add(new Token(Type.BASENOTE, "G")); 
-    	expected.add(new Token(Type.BACKSLASH, "/")); 
+    	expected.add(new Token(Type.FORWARDSLASH, "/")); 
     	expected.add(new Token(Type.BASENOTE, "G")); 
-    	expected.add(new Token(Type.BACKSLASH, "/")); 
+    	expected.add(new Token(Type.FORWARDSLASH, "/")); 
     	expected.add(new Token(Type.BASENOTE, "G"));
-    	expected.add(new Token(Type.BACKSLASH, "/")); 
+    	expected.add(new Token(Type.FORWARDSLASH, "/")); 
     	expected.add(new Token(Type.SPACE, " "));
     	
     	expected.add(new Token(Type.TUPLET, "(3"));  
     	expected.add(new Token(Type.BASENOTE, "E"));
-    	expected.add(new Token(Type.BACKSLASH, "/")); 
+    	expected.add(new Token(Type.FORWARDSLASH, "/")); 
     	expected.add(new Token(Type.BASENOTE, "E")); 
-    	expected.add(new Token(Type.BACKSLASH, "/")); 
+    	expected.add(new Token(Type.FORWARDSLASH, "/")); 
     	expected.add(new Token(Type.BASENOTE, "E"));
-    	expected.add(new Token(Type.BACKSLASH, "/")); 
+    	expected.add(new Token(Type.FORWARDSLASH, "/")); 
     	expected.add(new Token(Type.SPACE, " "));
     	
     	expected.add(new Token(Type.TUPLET, "(3"));  
     	expected.add(new Token(Type.BASENOTE, "C")); 
-    	expected.add(new Token(Type.BACKSLASH, "/")); 
+    	expected.add(new Token(Type.FORWARDSLASH, "/")); 
     	expected.add(new Token(Type.BASENOTE, "C")); 
-    	expected.add(new Token(Type.BACKSLASH, "/")); 
+    	expected.add(new Token(Type.FORWARDSLASH, "/")); 
     	expected.add(new Token(Type.BASENOTE, "C")); 
-    	expected.add(new Token(Type.BACKSLASH, "/")); 
+    	expected.add(new Token(Type.FORWARDSLASH, "/")); 
     	expected.add(new Token(Type.SPACE, " "));
     	
     	expected.add(new Token(Type.BAR, "|"));

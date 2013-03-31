@@ -25,7 +25,7 @@ public class Token {
 
 		C("C:"),
 		DIGIT("[0-9]+"),
-		BACKSLASH("\\/"),
+		FORWARDSLASH("\\/"),
 		FIRSTREPEAT("(\\[1)"), //1st and 2nd
 		SECONDREPEAT("(\\[2)"),
 		BASENOTE("[A-Ga-g]"), 

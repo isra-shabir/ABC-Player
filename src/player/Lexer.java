@@ -48,7 +48,7 @@ public class Lexer {
 
     	Pattern C = Pattern.compile(Type.C.getRegex());
     	Pattern digit = Pattern.compile(Type.DIGIT.getRegex());
-    	Pattern backSlash = Pattern.compile(Type.BACKSLASH.getRegex());
+    	Pattern forwardSlash = Pattern.compile(Type.FORWARDSLASH.getRegex());
     	Pattern note = Pattern.compile(Type.BASENOTE.getRegex());
     	Pattern acc = Pattern.compile(Type.ACCIDENTAL.getRegex());
     	Pattern octave = Pattern.compile(Type.OCTAVE.getRegex());
@@ -93,7 +93,7 @@ public class Lexer {
 
     		else if(C.matcher(token).matches())				continue;
     		else if(note.matcher(token).matches())			tokens.add(new Token(Type.BASENOTE, token));
-    		else if(backSlash.matcher(token).matches())		tokens.add(new Token(Type.BACKSLASH, token));
+    		else if(forwardSlash.matcher(token).matches())		tokens.add(new Token(Type.FORWARDSLASH, token));
     		else if(digit.matcher(token).matches())			tokens.add(new Token(Type.DIGIT, token));
     		else if(acc.matcher(token).matches())			tokens.add(new Token(Type.ACCIDENTAL, token));
     		else if(octave.matcher(token).matches())		tokens.add(new Token(Type.OCTAVE, token));
@@ -108,7 +108,6 @@ public class Lexer {
     		else if(firstRepeat.matcher(token).matches())	tokens.add(new Token(Type.FIRSTREPEAT, token));
     		else if(secondRepeat.matcher(token).matches())	tokens.add(new Token(Type.SECONDREPEAT, token));
     		else if(space.matcher(token).matches())			tokens.add(new Token(Type.SPACE, token)); 		
- 	
     	}
 		return tokens;
 	}
