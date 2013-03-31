@@ -133,16 +133,16 @@ public class myPlayer {
     public void addNote(int startingTick, int length, String basenote,
             String accidental, String octave) {
         
-        if (basenote == "z"){
+        if (basenote.equals("z") || basenote.equals("Z")){
             return;
         }
+        
         int accidentalNum = numerateAccidental(accidental, basenote);
         int octaveNum = numerateOctave(octave, basenote);
         
         String upperBasenote = basenote.toUpperCase();
         char pitch = upperBasenote.charAt(0);
                 
-        System.out.println("Adding "+pitch);
         sqPlayer.addNote(new Pitch(pitch).transpose(Pitch.OCTAVE * octaveNum).accidentalTranspose(accidentalNum).toMidiNote(),  startingTick, length);
                 
     }

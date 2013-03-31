@@ -28,7 +28,7 @@ public class Token {
 		FORWARDSLASH("\\/"),
 		FIRSTREPEAT("(\\[1)"), //1st and 2nd
 		SECONDREPEAT("(\\[2)"),
-		BASENOTE("[A-Ga-g]"), 
+		BASENOTE("[A-Ga-gz]"), 
 		ACCIDENTAL("[\\__\\^\\_\\=\\^^]"), 
 		OCTAVE("[\\,\\']+"), 
 		OPENBAR("\\[\\|"),
