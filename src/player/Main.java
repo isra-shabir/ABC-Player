@@ -43,28 +43,31 @@ public class Main {
         Parser myParser = new Parser(tokens);
         ArrayList<BarLineObject> barLineObjects = myParser.parse(); 
         
-        //Get Header Vals
+        //Get Header Vals from the parser
         String keySignature = myParser.getKey() ;
         int tempo =   myParser.getTempo() ;
         String name = myParser.getName();
         String title = myParser.getTitle();
         int indexNum = myParser.getIndexNum();
         
-        ArrayList<String> voiceNames = myParser.getVoice();
+        ArrayList<String> voiceNames = myParser.getVoice(); //an ArrayList of the names of voices
 
+        //default value is 1/4 for L
         int coreNumerator = 1;
         int coreDenominator = 4;
         if (myParser.getDefLen().size()==2){
         	coreNumerator = myParser.getDefLen().get(0);
         	coreDenominator = myParser.getDefLen().get(1);
         }
+        
+        //default value is 1/1 for M
         int MeterNum = 1;
         int MeterDen = 1;
         if (myParser.getMeter().size()==2){
         	MeterNum = myParser.getMeter().get(0);
         	MeterDen = myParser.getMeter().get(1);
-
         }
+        //end of collecting header information
         
         //Parse 2
         Parser2 myParser2 = new Parser2(voiceNames);
