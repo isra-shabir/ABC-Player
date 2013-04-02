@@ -9,6 +9,7 @@ public class BarManager{
     myPlayer player;
     ArrayList<Note> notes = new ArrayList<Note>();
     ArrayList<Integer> tracker = new ArrayList<Integer>();
+    double totalLength;
     
     public BarManager(myPlayer player){
         this.player = player;
@@ -22,9 +23,10 @@ public class BarManager{
     }
     
      
-    public void addNote(int startTicking, int length, String basenote, int accidental, String octave){
+    public void addNote(int startTicking, int length, String basenote, int accidental, String octave, int num, int den){
         updateTracker(basenote, accidental);
         accidental = processNote(basenote, accidental);
+        totalLength += ((double) num / den);
         //Play note
         this.player.addNote(startTicking, length, basenote, accidental, octave);
     }
@@ -113,6 +115,12 @@ public class BarManager{
     }
     
     
+    public void checkTotalLength(int lnum, int lden){
+    	double l = (double) lnum / lden;
+    	if (totalLength != l) {
+    		System.err.println("The sum of the length of notes in one of your Bars is not equal to the value specified in the header file (or default value)");
+    	}
+    }
     
 }
 	

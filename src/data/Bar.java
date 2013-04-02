@@ -8,7 +8,26 @@ import player.myPlayer;
 public class Bar{
 	
     ArrayList<NoteStruct> noteStructs = new ArrayList<NoteStruct>();
-     
+    
+    private int lnum, lden;
+    
+    /**
+     * Constructor for Bar. Sets the lnum and lden to the default 1 and4
+     */
+    public Bar(){
+    	this.lnum = 4;
+    	this.lden = 1;
+    }
+    /**
+     * Constructor for Bar with lnum and lden as parameters
+     * @param lnum
+     * @param lden
+     */
+    public Bar(int lnum, int lden){
+    	this.lnum = lnum;
+    	this.lden= lden;
+    }
+    
     public void add(NoteStruct struct){
         this.noteStructs.add(struct);
     }
@@ -67,6 +86,7 @@ public class Bar{
 		for (int i = 0; i<noteStructs.size(); i++){
 		    currentTick = noteStructs.get(i).addToPlayer(currentTick,ticksPerQuarter, barManager);
 		}
+		barManager.checkTotalLength(this.lnum, this.lden);
 		return currentTick;
 	}
 	
