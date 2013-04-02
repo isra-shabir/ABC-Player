@@ -107,7 +107,7 @@ public class Note implements NoteStruct{
     public int addToPlayer(int startingTick, int ticksPerQuarter, BarManager barManager){
         int length = this.getNumTicks(ticksPerQuarter);
         
-        barManager.addNote(startingTick, length, this.basenote, this.accidental, this.octave);
+        barManager.addNote(startingTick, length, this.basenote, this.accidental, this.octave, this.timeNumerator, this.timeDenominator);
         return startingTick + length;
     }
    
