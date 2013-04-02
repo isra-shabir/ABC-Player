@@ -219,4 +219,20 @@ public class ParserTest {
         assertEquals(parse.getDefDen(),16);
         assertEquals(parse.getKey(),"C ");
     }	
+	
+	@Test
+    public void ParserTest18(){
+        //test tuplet
+        
+        Lexer test = new Lexer(dummyHeader+"C (3C/2D/2E/2");
+        Parser parse = new Parser(test.lex());
+        
+        String output = (parse.parse().toString());
+        System.out.println(output);
+        assertEquals(output,"[ C  4/4, Tuplet 3\n C  4/12\n D  4/12\n E  4/12]");
+        
+    }
+	
 }
+
+

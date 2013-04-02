@@ -13,7 +13,7 @@ public class Parser {
 	private int currentToken = 0;
 	
 	
-	private String title,name, key = "";
+	private String title,name, key = "C";
     private int indexNum,tempo, rawTempo =0; 
     private ArrayList<String> voice = new ArrayList<String>();
     private int defLengthNum = 1;
@@ -35,10 +35,6 @@ public class Parser {
 	public Parser(ArrayList<Token> tokens){
 	    this.tokens = tokens;
 	    this.HeaderInfo();
-//	    System.out.println("Core Numerator: "+defLength.get(0));
-//	    System.out.println("Core Denomenator: "+defLength.get(1));
-//	    System.out.println("Tempo: "+tempo);
-        
 	}
 	
 	/**
@@ -61,9 +57,10 @@ public class Parser {
 	            this.currentToken++;
 	            this.allObjects.add(this.chordConstructor());
 	        }
-	        else if (token.isType("TUPLETBEGIN")){
+	        else if (token.isType("TUPLET")){
+	            int value = Integer.parseInt(token.getValue().substring(1));
 	            this.currentToken++;
-	            this.allObjects.add(this.tupletConstructor());
+	            this.allObjects.add(this.tupletConstructor(value));
 	        }
 	        else if (token.isType("VOICE")){
 	            this.currentToken++;
@@ -86,6 +83,8 @@ public class Parser {
 	    return allObjects;
 	}	
 	
+	
+	
 	/**
      * Constructs and returns a note object that has been reached
      * 
@@ -103,7 +102,6 @@ public class Parser {
 	    boolean inNote = true;
 	    boolean denomShown = false;
 	   
-	    System.out.println("Entering Note Constructor");
 	    
 	    while (inNote){
 	    	
@@ -113,7 +111,7 @@ public class Parser {
 	    	}
 	    	
 	        Token token = tokens.get(this.currentToken);
-	        System.out.println("Looking at token: "+token);
+//	        System.out.println("Note token: "+token);
 	        
 	        //ACCIDENTAL
 	        //can only be the before the note, otherwise, throw exception
@@ -178,7 +176,6 @@ public class Parser {
 	        }
 	        
 	        else if (token.isType("FORWARDSLASH")){
-	            System.out.println("Recognizing forwardslash");
 	            denomShown = true;
 	            denom = 2;
 	        }
@@ -190,7 +187,7 @@ public class Parser {
 	        
 	        this.currentToken++;
 	    }
-	    
+	    	    
 	    return new Note(aBasenote, aAccidental, aOctave, num * defLengthNum, denom * defLengthDen);
 	}
 
@@ -203,7 +200,8 @@ public class Parser {
      */
 	private Chord chordConstructor(){
 	    Chord chord = new Chord();
-	    while (tokens.get(this.currentToken).isType("CHORDEND") == false){
+	    while (this.currentToken < tokens.size() && tokens.get(this.currentToken).isType("CHORDEND") == false){
+//	        System.out.println("Chord while loop");
 	        chord.addNote(this.noteConstructor());
 	    }
 	    this.currentToken++;
@@ -217,11 +215,11 @@ public class Parser {
      * @return a Tuplet object.
 	 * @modify this.currentToken, which is updated to the first index after the tuplet
 	 */
-	private Tuplet tupletConstructor(){
-	    int value = Integer.parseInt(tokens.get(this.currentToken).toString());
-	    this.currentToken++;
+	private Tuplet tupletConstructor(int value){
 	    Tuplet tuplet = new Tuplet(value);
-	    while (tokens.get(this.currentToken).isType("SPACE") == false){
+	    while (this.currentToken < tokens.size() && (tokens.get(this.currentToken).isType("BASENOTE") == true || 
+	            tokens.get(this.currentToken).isType("ACCIDENTAL") == true )){
+//	        System.out.println("Tuplet loop: "+tokens.get(this.currentToken));
 	        tuplet.addNote(this.noteConstructor());
 	    }
 	    return tuplet;
