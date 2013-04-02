@@ -12,13 +12,6 @@ public class NoteTest {
     public void NoteTest1() {
     	//test basic functionality of time representation: 4/8 becomes 2/4	
     	Note test = new Note("C", "", "", 4, 8);
-<<<<<<< HEAD
-    	
-    	String output = test.toString();
-    	assertEquals(" C  2/4",output);
- 
-    }
-=======
     	assertEquals(" C  2/4",test.toString());
     }
     
@@ -43,7 +36,4 @@ public class NoteTest {
         assertEquals("^^ C ,, 2/4",test.toString());
     }
     
-    
-
->>>>>>> 4ae08fce474cbcff0eb6a3982962686eab6f584e
 }
