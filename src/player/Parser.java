@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class Parser {
 	
+	/**
+	 * write some documentation
+	 */
+	
 	
 	private ArrayList<Token> tokens;
 	private int currentToken = 0;
@@ -37,7 +41,6 @@ public class Parser {
         
 	}
 	
-
 	/**
 	 * an iterator through the array of tokens to perform the first level parsing
 	 * @return an ArrayList of BarLineObjects

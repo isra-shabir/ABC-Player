@@ -74,6 +74,8 @@ public class Lexer {
     	Pattern title = Pattern.compile(Type.TITLE.getRegex());
     	Pattern indexNum = Pattern.compile(Type.INDEXNUM.getRegex());
 
+    	Pattern invalid = Pattern.compile(Type.INVALID.getRegex());
+
     	
     	while (matcher.find()){
     		
@@ -107,7 +109,9 @@ public class Lexer {
     		else if(endBar.matcher(token).matches())		tokens.add(new Token(Type.ENDBAR, token));
     		else if(firstRepeat.matcher(token).matches())	tokens.add(new Token(Type.FIRSTREPEAT, token));
     		else if(secondRepeat.matcher(token).matches())	tokens.add(new Token(Type.SECONDREPEAT, token));
-    		else if(space.matcher(token).matches())			tokens.add(new Token(Type.SPACE, token)); 		
+    		else if(space.matcher(token).matches())			tokens.add(new Token(Type.SPACE, token)); 	
+    		else if(space.matcher(token).matches())			tokens.add(new Token(Type.INVALID, token)); 		
+
     	}
 		return tokens;
 	}

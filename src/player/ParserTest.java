@@ -205,19 +205,18 @@ public class ParserTest {
         assertEquals(parse.getDefDen(),16);
     }
 	
-//	@Test
-//    public void ParserTest17(){
-//        //test header parsing- testing the deletion of the tokens
-//        
-//        Lexer test = new Lexer("X: 0  \nT:hello\nQ: 100\n L:1/16\nK:C \n C C");
-//        Parser parse = new Parser(test.lex());
-//        assertEquals(parse.getIndexNum(),0);
-//        assertEquals(parse.getTitle(),"hello");
-//        assertEquals(parse.getTempo(),100);
-//        assertEquals(parse.getDefLen().toString(),"[1, 16]");
-//        assertEquals(parse.getKey(),"C ");
-//    }
-	
-	
-	
+
+	@Test
+    public void ParserTest17(){
+        //test header parsing- testing the deletion of the tokens
+        
+        Lexer test = new Lexer("X: 0  \nT:hello\nQ: 100\n L:1/16\nK:C \n C C");
+        Parser parse = new Parser(test.lex());
+        assertEquals(parse.getIndexNum(),0);
+        assertEquals(parse.getTitle(),"hello");
+        assertEquals(parse.getTempo(),100);
+        assertEquals(parse.getDefNum(),1);
+        assertEquals(parse.getDefDen(),16);
+        assertEquals(parse.getKey(),"C ");
+    }	
 }

@@ -29,17 +29,19 @@ public class Token {
 		FIRSTREPEAT("(\\[1)"), //1st and 2nd
 		SECONDREPEAT("(\\[2)"),
 		BASENOTE("[A-Ga-gz]"), 
-		ACCIDENTAL("[\\__\\^\\_\\=\\^^]"), 
+		ACCIDENTAL("[\\^_=]+"), 
 		OCTAVE("[\\,\\']+"), 
 		OPENBAR("\\[\\|"),
 		ENDBAR("(\\|\\|)|(\\|\\])"),
 		CHORDBEGIN("\\["),
 		CHORDEND("\\]"),
-		TUPLET("\\([0-9]+"),
+		TUPLET("\\(2|\\(3|\\(4"),
 		REPEATBEG("\\|:"),
 		REPEATEND(":\\|"),
 		BAR("\\|"),
-		SPACE("[\\s]+"); // all white spaces including newline
+		SPACE("[\\s]+"), // all white spaces including newline
+		
+		INVALID("[.]*");
 	
 		
 		//define Type.regex so we can access the regex for each type
