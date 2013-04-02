@@ -34,8 +34,19 @@ public class Note implements NoteStruct{
      */
     private void cleanTime(){
         
+        
+        
+        if (this.timeDenominator > this.timeNumerator){
+            System.out.println("Want gcd");
+            int gcd = this.getGCD(this.timeDenominator, this.timeNumerator);
+            System.out.println("Got gcd");
+            this.timeDenominator = this.timeDenominator / gcd;
+            this.timeNumerator = this.timeNumerator / gcd;
+        }
+        
         int originalNumerator = this.timeNumerator;
         int originalDenominator = this.timeDenominator;
+        
         while (this.timeDenominator % 4 != 0){
             this.timeDenominator += originalDenominator;
             this.timeNumerator += originalNumerator;         
@@ -122,6 +133,21 @@ public class Note implements NoteStruct{
     
     public boolean isType(String type) {
         return false;
+    }
+    
+    /**
+     * Gets the greatest common denominator of a and b. 
+     * @param a, an int greater than 0, and a must be larger than b
+     * @param b, an int greater than 0
+     * 
+     * @return (int) greatest common denominator. 
+     */
+    private int getGCD(int a, int b){
+        System.out.println(a + " " + b);
+        if (b==0){
+            return a;
+        }
+        return getGCD(b, a%b);
     }
     
 }

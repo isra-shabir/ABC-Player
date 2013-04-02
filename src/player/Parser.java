@@ -10,9 +10,10 @@ public class Parser {
 	
 	
 	private String title,name, key = "";
-    private int indexNum,tempo =0; 
+    private int indexNum,tempo, rawTempo =0; 
     private ArrayList<String> voice = new ArrayList<String>();
-    private ArrayList<Integer> defLength = new ArrayList<Integer>();
+    private int defLengthNum = 1;
+    private int defLengthDen = 4;
     private ArrayList<Integer> meter = new ArrayList<Integer>();
     
 	
@@ -30,15 +31,13 @@ public class Parser {
 	public Parser(ArrayList<Token> tokens){
 	    this.tokens = tokens;
 	    this.HeaderInfo();
-	    System.out.println("Core Numerator: "+defLength.get(0));
-	    System.out.println("Core Denomenator: "+defLength.get(1));
-	    System.out.println("Tempo: "+tempo);
+//	    System.out.println("Core Numerator: "+defLength.get(0));
+//	    System.out.println("Core Denomenator: "+defLength.get(1));
+//	    System.out.println("Tempo: "+tempo);
         
 	}
 	
-	
-	
-	
+
 	/**
 	 * an iterator through the array of tokens to perform the first level parsing
 	 * @return an ArrayList of BarLineObjects
@@ -68,8 +67,16 @@ public class Parser {
 	            this.allObjects.add(new VoiceIndicator(token.getValue()));
 	        }
 	        else {
+	            if (token.getType().name() == "BAR" || token.getType().name() == "FIRSTREPEAT" ||
+	                    token.getType().name() == "SECONDREPEAT" || token.getType().name() == "REPEATEND" ||
+	                            token.getType().name() == "REPEATBEG" || token.getType().name() == "ENDBAR"){
 	            this.allObjects.add(new BarSignal(token.getType().name()));
 	            this.currentToken++;
+	            }
+	            else {
+	                throw new IllegalArgumentException("Error in Parser: Found unexpected token: "+ token.getType().name()
+	                        + "that does not belong to a Note, is not a Bar Signal or a Voice Indicator");
+	            }
 	        }
 	    }
 	    
@@ -93,6 +100,8 @@ public class Parser {
 	    boolean inNote = true;
 	    boolean denomShown = false;
 	   
+	    System.out.println("Entering Note Constructor");
+	    
 	    while (inNote){
 	    	
 	    	if (this.currentToken>= tokens.size()){ //we reached the end of the array
@@ -101,6 +110,7 @@ public class Parser {
 	    	}
 	    	
 	        Token token = tokens.get(this.currentToken);
+	        System.out.println("Looking at token: "+token);
 	        
 	        //ACCIDENTAL
 	        //can only be the before the note, otherwise, throw exception
@@ -147,7 +157,7 @@ public class Parser {
 	        }
         
 	        //Handle numerator/denominator
-	        else if (aBasenote.isEmpty() && ( token.isType("DIGIT") || token.isType("BACKSLASH"))){
+	        else if (aBasenote.isEmpty() && ( token.isType("DIGIT") || token.isType("FORWARDSLASH"))){
 	            throw new RuntimeException("Invalid Syntax: Num/Denom info before note definition. At index: "+this.currentToken+" in the tokens array");
 	        }
 	        
@@ -164,7 +174,8 @@ public class Parser {
 	            }
 	        }
 	        
-	        else if (token.isType("BACKSLASH")){
+	        else if (token.isType("FORWARDSLASH")){
+	            System.out.println("Recognizing forwardslash");
 	            denomShown = true;
 	            denom = 2;
 	        }
@@ -177,7 +188,7 @@ public class Parser {
 	        this.currentToken++;
 	    }
 	    
-	    return new Note(aBasenote, aAccidental, aOctave, num * defLength.get(0), denom * defLength.get(1));
+	    return new Note(aBasenote, aAccidental, aOctave, num * defLengthNum, denom * defLengthDen);
 	}
 
 	/**
@@ -225,6 +236,7 @@ public class Parser {
 	 */
 	private void HeaderInfo(){
 		
+	    ArrayList<Integer> defLength = new ArrayList<Integer>();
 		//checking requirements. First is indexNum second is title
 		if (!tokens.get(0).isType("INDEXNUM")){
 			throw new RuntimeException("first field in header must be index num");
@@ -243,9 +255,13 @@ public class Parser {
 				Lexer small = new Lexer(text);
 				
 				for (Token token: small.lex()){
-					if (token.isType("DIGIT"))			this.defLength.add(Integer.valueOf(token.getValue().replace(" ", "")));
+					if (token.isType("DIGIT"))			defLength.add(Integer.valueOf(token.getValue().replace(" ", "")));
 				}
-			}
+				this.defLengthNum = defLength.get(0);
+				this.defLengthDen = defLength.get(1);
+				this.tempo = (this.rawTempo * 4 * this.defLengthNum) / this.defLengthDen;
+            }
+			
 			else if (current.isType("METER")){
 				String text = current.getValue();
 				Lexer small = new Lexer(text);
@@ -253,7 +269,10 @@ public class Parser {
 					if (token.isType("DIGIT"))			this.meter.add(Integer.valueOf(token.getValue().replace(" ", "")));
 				}
 			}
-			else if (current.isType("TEMPO"))			this.tempo=Integer.valueOf(current.getValue().replace(" ", ""));
+			else if (current.isType("TEMPO")){
+			    this.rawTempo=Integer.valueOf(current.getValue().replace(" ", ""));
+			    this.tempo = (this.rawTempo * 4 * this.defLengthNum) / this.defLengthDen;
+			}
 			else if (current.isType("VOICE"))			this.voice.add(current.getValue());
 			else if (current.isType("KEYSIGNATURE")){
 				//terminate the loop
@@ -283,9 +302,6 @@ public class Parser {
 	public String getName(){
 		return this.name;
 	}
-	public ArrayList<Integer> getDefLen(){
-		return this.defLength;
-	}
 	public ArrayList<Integer> getMeter(){
 		return this.meter;
 	}
@@ -295,9 +311,19 @@ public class Parser {
 	public String getKey(){
 		return this.key;
 	}
-	public ArrayList<String> getVoice(){
+	public ArrayList<String> getVoiceNames(){
 		return this.voice;
 	}
+
+
+
+
+    public Object getDefNum() {
+        return this.defLengthNum;
+    }
+    public Object getDefDen() {
+        return this.defLengthDen;
+    }
 }
 
 

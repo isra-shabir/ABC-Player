@@ -52,20 +52,9 @@ public class Main {
         int indexNum = myParser.getIndexNum();
         
         //Parse 1
-        ArrayList<String> voiceNames = myParser.getVoice(); //an ArrayList of the names of voices
-
-        //default value is 1/4 for L
-        int coreNumerator = 1;
-        int coreDenominator = 4;
-        if (myParser.getDefLen().size()==2){
-        	coreNumerator = myParser.getDefLen().get(0);
-        	coreDenominator = myParser.getDefLen().get(1);
-        }
-
-        tempo = (tempo * 4 * coreNumerator) / coreDenominator;
+        ArrayList<String> voiceNames = myParser.getVoiceNames(); //an ArrayList of the names of voices
 
         //default value is 1/1 for M
-
         int MeterNum = 1;
         int MeterDen = 1;
         if (myParser.getMeter().size()==2){

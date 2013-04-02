@@ -170,11 +170,15 @@ public class myPlayer {
         else if (accidental == "__"){
             return -2;
         }
-        //Account for key signatures
-        //If there is no accidental:
-        else {
+        else if (accidental == ""){
             return keyMutate(basenote);
         }
+        else {
+            throw new IllegalArgumentException("Invalid Accidental - Invalid combination of ^ _ =");
+        }
+        //Account for key signatures
+        //If there is no accidental:
+        
     }
     
     /**
