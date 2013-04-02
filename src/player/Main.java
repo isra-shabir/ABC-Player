@@ -139,7 +139,7 @@ public class Main {
     public static void main(String[] args) throws MidiUnavailableException, InvalidMidiDataException {
 
         try {
-            play(readABCFile("pluginbaby" +
+            play(readABCFile("fur_elise" +
             		".abc"));
         } catch (IOException e) {
             e.printStackTrace();
