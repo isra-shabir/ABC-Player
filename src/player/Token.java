@@ -41,7 +41,7 @@ public class Token {
 		BAR("\\|"),
 		SPACE("[\\s]+"), // all white spaces including newline
 		
-		INVALID("[.]*");
+		INVALID("[^(T:)(C:)(Q:)(X:)(L:)(M:)(K:)(V:)]");
 	
 		
 		//define Type.regex so we can access the regex for each type

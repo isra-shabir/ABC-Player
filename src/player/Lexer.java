@@ -110,7 +110,9 @@ public class Lexer {
     		else if(firstRepeat.matcher(token).matches())	tokens.add(new Token(Type.FIRSTREPEAT, token));
     		else if(secondRepeat.matcher(token).matches())	tokens.add(new Token(Type.SECONDREPEAT, token));
     		else if(space.matcher(token).matches())			tokens.add(new Token(Type.SPACE, token)); 	
-    		else if(space.matcher(token).matches())			tokens.add(new Token(Type.INVALID, token)); 		
+    		else if(invalid.matcher(token).matches()){
+    			throw new RuntimeException("There is an invalid entry in your abc file. YOU STUPID?");
+    		}
 
     	}
 		return tokens;
