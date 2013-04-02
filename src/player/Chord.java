@@ -66,6 +66,7 @@ public class Chord implements NoteStruct{
         String c = "Chord: \n";
         for (int i = 0; i<notes.size(); i++){
             c = c + notes.get(i).toString() + "\n";
+            
         }
         return c;
     }
