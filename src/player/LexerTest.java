@@ -452,7 +452,7 @@ public class LexerTest {
     	assertEquals(expected.toString(), test.lex().toString());
     	
     }
-    
+    @Test
     public void LexerTest22(){
     // testing invalid input	
     	
@@ -462,7 +462,29 @@ public class LexerTest {
     	
     	expected.add(new Token(Type.INVALID, "4W$#say.@x|"));
     	
-    	assertEquals(expected.toString(), test.lex().toString());
+    	try{
+    		test.lex();
+    		assertEquals(0,1);
+    	}catch (Exception e){
+    		assertEquals(1,1);
+    	}
+    }
+    @Test
+    public void LexerTest23(){
+    // testing invalid input within valid input	
+    	
+    	Lexer test = new Lexer("(3A2B@C");
+    	
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	
+    	
+    	expected.add(new Token(Type.INVALID, "4W$#say.@x|"));
+    	try{
+    		test.lex().toString();
+    		assertEquals(0,1);
+    	}catch (Exception e){
+    		assertEquals(1,1);
+    	}
     }
 
 }
