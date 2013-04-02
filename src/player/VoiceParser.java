@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class VoiceParser {
 	
-	
 	private ArrayList<BarLineObject> voiceObjects = new ArrayList<BarLineObject>();
 	private String voiceName;
 	

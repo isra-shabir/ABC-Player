@@ -13,8 +13,6 @@ public class NoteTest {
     	
     	String output = test.toString();
     	assertEquals(" C  2/4",output);
-        		
-    
+ 
     }
-
 }

@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class Bar{
 	
     ArrayList<NoteStruct> noteStructs = new ArrayList<NoteStruct>();
-    
-   
+     
     public void add(NoteStruct struct){
         this.noteStructs.add(struct);
     }

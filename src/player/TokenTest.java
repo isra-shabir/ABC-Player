@@ -5,6 +5,13 @@ import static org.junit.Assert.*;
 
 
 public class TokenTest {
+	
+	/**
+	 * This class makes new tokens
+	 * and tests if they are made correctly
+	 * using the toString() method and comparing
+	 * with string representation of known tokens
+	 */
 
     @Test
     public void TokenTest1() {
@@ -13,9 +20,7 @@ public class TokenTest {
     	
     	String output = test.toString();
 
-    	assertEquals("(<BASENOTE> C)",output);
-        		
-    
+    	assertEquals("(<BASENOTE> C)",output);		
     }
     
     @Test
@@ -24,7 +29,5 @@ public class TokenTest {
     	Token test = new Token(Token.Type.BASENOTE, "C");
     	
     	assertEquals(true,test.isType("BASENOTE"));
-        		
-    
     }
 }

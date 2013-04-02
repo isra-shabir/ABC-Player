@@ -15,8 +15,7 @@ public class NoteStructTest {
      * Test base notes, without accidentals
      */
     public void testPlayer(){
-        
-        
+       
         SequencePlayer sqPlayer;
         try {
             sqPlayer = new SequencePlayer(140, 12);
@@ -43,11 +42,7 @@ public class NoteStructTest {
             Note F = new Note("F", "","", 1, 1);
             F.addToPlayer(72, ticksPerQuarter, Ahmed);
             
-            sqPlayer.play();
-            
-            
-            
-            
+            sqPlayer.play();        
             
         } catch (MidiUnavailableException e) {
             e.printStackTrace();
@@ -59,19 +54,15 @@ public class NoteStructTest {
     }
     
     /**
-     * 
+     * Creates a note with the above arguments, and prints it
+     * Using its toPrint()
      * @param basenote
      * @param accidental
      * @param octave
      * 
-     * Creates a note with the above arguments, and prints it
-     * Using its toPrint()
      */
     private void notePrint(String basenote, String accidental, String octave){
         Note theNote = new Note(basenote, accidental, octave,1,1);
         System.out.println(theNote.toString());
     }
-    
-        
-    
 }

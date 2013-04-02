@@ -9,10 +9,10 @@ import org.junit.Test;
 
 public class myPlayerTest {
     
-    //@Test
     /**
      * Test base notes, without accidentals
      */
+	@Test
     public void testPlayer(){
         try {
 
@@ -58,7 +58,7 @@ public class myPlayerTest {
     /**
      * Tests alterations of key signatures
      */
-    //@Test
+    @Test
     public void testKeySignatures(){
         try {
 

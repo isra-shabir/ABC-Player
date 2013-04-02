@@ -19,6 +19,11 @@ public class Parser2 {
 	private int numVoices;
 	private int currentVoiceParser = 0;
     private ArrayList<String> voiceNames;
+    
+    /**
+     * 
+     * @param voiceNames
+     */
 	
 	public Parser2(ArrayList<String> voiceNames){
 	    
@@ -57,6 +62,7 @@ public class Parser2 {
 	    System.out.println("Invalid Voice");
 	}
 	
+
 	
 	public void parse(ArrayList<BarLineObject> barObjects){
 	    
@@ -86,6 +92,4 @@ public class Parser2 {
 	    }
 	    return voices;
 	}
-	
-	
 }

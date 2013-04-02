@@ -34,8 +34,6 @@ public class Note implements NoteStruct{
      */
     private void cleanTime(){
         
-        
-        
         if (this.timeDenominator > this.timeNumerator){
             System.out.println("Want gcd");
             int gcd = this.getGCD(this.timeDenominator, this.timeNumerator);
@@ -81,10 +79,8 @@ public class Note implements NoteStruct{
             this.timeDenominator = this.timeDenominator * 4;
         } 
         
-        this.cleanTime();
-        
-    }
-    
+        this.cleanTime();   
+   }
     
     /**
      * Gets the number of ticks that this note will occupy
@@ -96,8 +92,7 @@ public class Note implements NoteStruct{
         int numTicks = (maxDenom / this.timeDenominator) * this.timeNumerator;
         return numTicks;
     }
-    
-    
+      
     /**
      * Adds this note to the myPlayer object, returns the reached tick.
      *   

@@ -37,8 +37,6 @@ public class Lexer {
     	for (Type tokenType : Type.values())
             tokenPatternsBuffer.append(String.format("|(%s)", tokenType.getRegex()));
     	
-    	
-    	
     	//we take substring(1) to get rid of the "|" at the beginning of the string
     	Pattern patterns = Pattern.compile(tokenPatternsBuffer.substring(1));
 		
@@ -113,7 +111,6 @@ public class Lexer {
     		else if(invalid.matcher(token).matches()){
     			throw new RuntimeException("There is an invalid entry in your abc file. YOU STUPID?");
     		}
-
     	}
 		return tokens;
 	}

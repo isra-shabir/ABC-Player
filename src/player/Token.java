@@ -10,8 +10,6 @@ public class Token {
  	*/
 	
 	public static enum Type {
-	
-		//we need more complex lexer tests
 
 		NAME("(?<=C:)[^\n\r\f]+"),
 		KEYSIGNATURE("(?<=K:)[^\n\r\f]+"),
@@ -77,12 +75,20 @@ public class Token {
 		this.value = v;		
 	}
 	
+	/**
+	 * This method 
+	 * checks a Token's Type
+	 * @param typeName
+	 * @return boolean
+	 */
+	
 	public boolean isType(String typeName){
 	    return typeName == this.type.name();
 	}
 
 	/**
 	 * method returns the Type of token
+	 * (BASENOTE, DIGIT, OCTAVE etc)
 	 * @return token type
 	 */
 	public Type getType() {

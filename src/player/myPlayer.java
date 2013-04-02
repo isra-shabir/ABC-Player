@@ -226,10 +226,7 @@ public class myPlayer {
         String lowerBasenote = basenote.toLowerCase();
         if (lowerBasenote == basenote){
             return 1;
-        }
-        
+        }   
         return 0;
-
-    }
-    
+    }  
 }

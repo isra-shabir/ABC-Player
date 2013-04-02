@@ -318,9 +318,6 @@ public class Parser {
 		return this.voice;
 	}
 
-
-
-
     public Object getDefNum() {
         return this.defLengthNum;
     }

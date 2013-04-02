@@ -117,10 +117,8 @@ public class LexerTest {
     	expected.add(new Token(Type.BASENOTE, "a"));
     	expected.add(new Token(Type.BAR, "|"));
     	expected.add(new Token(Type.BASENOTE, "b"));
-    	
-    	
-    	assertEquals(expected.toString(), test.lex().toString());     		
-    
+     	
+    	assertEquals(expected.toString(), test.lex().toString());     		    
     }
     
     
@@ -133,8 +131,7 @@ public class LexerTest {
     	
     			
     	expected.add(new Token(Type.REPEATBEG, "|:"));
-    	expected.add(new Token(Type.BASENOTE, "a"));
-    	
+    	expected.add(new Token(Type.BASENOTE, "a"));	
     	expected.add(new Token(Type.BASENOTE, "b"));
     	expected.add(new Token(Type.REPEATEND, ":|"));
     	

@@ -9,11 +9,10 @@ public interface BarStruct {
 	public int getMinTicksPerQuarter();
 	
 	/** 
+	 * 
 	 * @param startTicking
-	 * @return
+	 * 
 	 */
-	
-	// add argument player
 
 	public int addToPlayer(int startTicking, int ticksPerQuarter, myPlayer player);
 

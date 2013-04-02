@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Song {
 	
-	
 	ArrayList<Voice> voices = new ArrayList<Voice>();
 	
 	public Song(ArrayList<Voice> voices){
@@ -12,7 +11,7 @@ public class Song {
 	}
 	
 	public Song(){
-	    
+    
 	}
 	
 	public void add(Voice v){

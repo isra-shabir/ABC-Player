@@ -12,6 +12,14 @@ public class Tuplet implements NoteStruct{
     int timeNumerator;
     int timeDenominator;
     
+    /**
+     * A tuplet can represent
+     * 1 of 3 values - 2, 3, 4
+     * each of these can be created by
+     * feeding specific values to the constructor
+     * @param value
+     */
+    
     public Tuplet(int value){
         this.value = value;
     }
