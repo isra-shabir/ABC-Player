@@ -427,4 +427,16 @@ public class LexerTest {
     	assertEquals(expected.toString(), test.lex().toString());
     	
     }
+    
+    public void LexerTest22(){
+    // testing invalid input	
+    	
+    	Lexer test = new Lexer("4W$#say.@x|");
+    	
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	expected.add(new Token(Type.INVALID, "4W$#say.@x|"));
+    	
+    	assertEquals(expected.toString(), test.lex().toString());
+    }
+
 }

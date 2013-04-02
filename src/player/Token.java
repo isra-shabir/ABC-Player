@@ -39,7 +39,9 @@ public class Token {
 		REPEATBEG("\\|:"),
 		REPEATEND(":\\|"),
 		BAR("\\|"),
-		SPACE("[\\s]+"); // all white spaces including newline
+		SPACE("[\\s]+"), // all white spaces including newline
+		
+		INVALID("[.]*");
 	
 		
 		//define Type.regex so we can access the regex for each type
