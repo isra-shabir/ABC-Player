@@ -214,8 +214,5 @@ public class ParserTest {
         assertEquals(parse.getTempo(),100);
         assertEquals(parse.getDefLen().toString(),"[1, 16]");
         assertEquals(parse.getKey(),"C ");
-    }
-	
-	
-	
+    }	
 }

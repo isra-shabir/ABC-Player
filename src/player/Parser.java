@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class Parser {
 	
+	/**
+	 * write some documentation
+	 */
+	
 	
 	private ArrayList<Token> tokens;
 	private int currentToken = 0;
@@ -23,8 +27,6 @@ public class Parser {
 	    this.tokens = tokens;
 	    this.HeaderInfo();
 	}
-	
-	
 	
 	
 	/**

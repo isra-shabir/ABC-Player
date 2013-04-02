@@ -12,6 +12,10 @@ import player.Token.Type;
 
 public class LexerTest {
 	
+	/**
+	 * write some specifications here
+	 */
+	
     @Test
     public void LexerTest1() {
     	//test basic functionality for basenote 	
@@ -358,5 +362,69 @@ public class LexerTest {
     	
     	assertEquals(expected.toString(), test.lex().toString());     	
 
+    }
+    
+    @Test
+    public void LexerTest20(){
+    	//test a longer stream of input
+    	
+    	Lexer test = new Lexer("[A/4d/4=D/4^f/4a,/4]");
+    	
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	
+    	expected.add(new Token(Type.CHORDBEGIN, "["));
+    	expected.add(new Token(Type.BASENOTE, "A"));
+    	expected.add(new Token(Type.FORWARDSLASH, "/"));
+    	expected.add(new Token(Type.DIGIT, "4"));
+    	expected.add(new Token(Type.BASENOTE, "d"));
+    	expected.add(new Token(Type.FORWARDSLASH, "/"));
+    	expected.add(new Token(Type.DIGIT, "4"));
+    	expected.add(new Token(Type.ACCIDENTAL, "="));
+    	expected.add(new Token(Type.BASENOTE, "D"));
+   
+    	
+    	expected.add(new Token(Type.FORWARDSLASH, "/"));
+    	expected.add(new Token(Type.DIGIT, "4"));
+    	expected.add(new Token(Type.ACCIDENTAL, "^"));
+    	expected.add(new Token(Type.BASENOTE, "f"));
+    	expected.add(new Token(Type.FORWARDSLASH, "/"));
+    	expected.add(new Token(Type.DIGIT, "4"));
+    	expected.add(new Token(Type.BASENOTE, "a"));
+    	expected.add(new Token(Type.OCTAVE, ","));
+    	expected.add(new Token(Type.FORWARDSLASH, "/"));
+    	expected.add(new Token(Type.DIGIT, "4"));
+    	expected.add(new Token(Type.CHORDEND, "]"));
+	
+    	assertEquals(expected.toString(), test.lex().toString());
+     	
+    }
+    
+    @Test
+    public void LexerTest21(){
+    	
+    	//testing another stream of input - not a valid input
+    	Lexer test = new Lexer("A(2(3Abc|:,:|A/4^^__|");
+    	
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	
+    	System.out.println(test.lex().toString());
+    	
+    	expected.add(new Token(Type.BASENOTE, "A"));
+    	expected.add(new Token(Type.TUPLET, "(2"));
+    	expected.add(new Token(Type.TUPLET, "(3"));
+    	expected.add(new Token(Type.BASENOTE, "A"));
+    	expected.add(new Token(Type.BASENOTE, "b"));
+    	expected.add(new Token(Type.BASENOTE, "c"));
+    	expected.add(new Token(Type.REPEATBEG, "|:"));
+    	expected.add(new Token(Type.OCTAVE, ","));
+    	expected.add(new Token(Type.REPEATEND, ":|"));
+    	expected.add(new Token(Type.BASENOTE, "A"));
+    	expected.add(new Token(Type.FORWARDSLASH, "/"));
+    	expected.add(new Token(Type.DIGIT, "4"));
+    	expected.add(new Token(Type.ACCIDENTAL, "^^__")); 
+    	expected.add(new Token(Type.BAR, "|"));
+    	
+    	assertEquals(expected.toString(), test.lex().toString());
+    	
     }
 }
