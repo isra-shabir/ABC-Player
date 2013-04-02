@@ -33,6 +33,7 @@ public class Main {
     public static void play(String file) {
         // YOUR CODE HERE
         
+        System.out.println("Playing...");
         String music = file; 
 
         //Create Lexer
@@ -40,27 +41,29 @@ public class Main {
         //Tokenize
         ArrayList<Token> tokens = myLexer.lex();        
         //Parse
+        System.out.println("Creating Parser...");
         Parser myParser = new Parser(tokens);
+        System.out.println("Parsing now...");
         ArrayList<BarLineObject> barLineObjects = myParser.parse(); 
-        
+        System.out.println("Parsing Done.");
         //Get Header Vals from the parser
         String keySignature = myParser.getKey() ;
         int tempo =   myParser.getTempo() ;
         System.out.println("Main's tempo: "+tempo);
-        String name = myParser.getName();
-        String title = myParser.getTitle();
-        int indexNum = myParser.getIndexNum();
+//        String name = myParser.getName();
+//        String title = myParser.getTitle();
+//        int indexNum = myParser.getIndexNum();
         
         //Parse 1
         ArrayList<String> voiceNames = myParser.getVoiceNames(); //an ArrayList of the names of voices
 
         //default value is 1/1 for M
-        int MeterNum = 1;
-        int MeterDen = 1;
-        if (myParser.getMeter().size()==2){
-        	MeterNum = myParser.getMeter().get(0);
-        	MeterDen = myParser.getMeter().get(1);
-        }
+//        int MeterNum = 1;
+//        int MeterDen = 1;
+//        if (myParser.getMeter().size()==2){
+//        	MeterNum = myParser.getMeter().get(0);
+//        	MeterDen = myParser.getMeter().get(1);
+//        }
         //end of collecting header information
         
         //Parse 2
@@ -73,6 +76,7 @@ public class Main {
         try {
             System.out.println("Creating SQ "+tempo+", minTpQ: "+mySong.getMinTicksPerQuarter());
             sqPlayer = new SequencePlayer(tempo, mySong.getMinTicksPerQuarter());
+            System.out.println("Playing in "+keySignature);
             myPlayer MrAhmed = new myPlayer(keySignature, sqPlayer);
             mySong.addToPlayer(MrAhmed);
             sqPlayer.play();
@@ -140,12 +144,12 @@ public class Main {
     public static String getFurElise(){
         return "e^d|e^deB=dc|A2 z CEA|B2 z E^GB|c2 z Ee^d|";
     }
-    
-    
+       
     public static void main(String[] args) throws MidiUnavailableException, InvalidMidiDataException {
 
         try {
-            play(readABCFile("paddy.abc"));
+            play(readABCFile("one" +
+            		".abc"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -154,12 +158,12 @@ public class Main {
 
     }
 
-    public static void alprint(ArrayList l, String name){
-        System.out.println("\nNOW PRINTING "+name+"\n");
-        for (int i = 0; i<l.size(); i++){
-            System.out.println(l.get(i));
-        }
-    }
+//    public static void alprint(ArrayList l, String name){
+//        System.out.println("\nNOW PRINTING "+name+"\n");
+//        for (int i = 0; i<l.size(); i++){
+//            System.out.println(l.get(i));
+//        }
+//    }
     
     private static String readABCFile(String name) throws IOException {
 

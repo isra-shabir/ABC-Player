@@ -133,7 +133,7 @@ public class myPlayer {
     public void addNote(int startingTick, int length, String basenote,
             String accidental, String octave) {
         
-        System.out.println("Adding "+basenote+" of length "+length +" at "+startingTick);
+//        System.out.println("Adding "+basenote+" of length "+length +" at "+startingTick);
         
         if (basenote.equals("z") || basenote.equals("Z")){
             return;
@@ -155,26 +155,29 @@ public class myPlayer {
      * @return an int corresponding to the number of semitones that must be added.
      */
     private int numerateAccidental(String accidental, String basenote){
-        if (accidental == "^^"){
-            return 2;
-        }
-        else if (accidental == "^"){
-            return 1;
-        }
-        else if (accidental == "="){
-            return 0;
-        }
-        else if (accidental == "_"){
-            return -1;
-        }
-        else if (accidental == "__"){
-            return -2;
-        }
-        else if (accidental == ""){
+        if (accidental.equals("")){
+            //Account for key signatures
+            //If there is no accidental:
             return keyMutate(basenote);
         }
+        else if (accidental.equals("^^")){
+            return 2;
+        }
+        else if (accidental.equals("^")){
+            return 1;
+        }
+        else if (accidental.equals("=")){
+            return 0;
+        }
+        else if (accidental.equals("_")){
+            return -1;
+        }
+        else if (accidental.equals("__")){
+            return -2;
+        }
+        
         else {
-            throw new IllegalArgumentException("Invalid Accidental - Invalid combination of ^ _ =");
+            throw new IllegalArgumentException("Invalid Accidental. Received {"+accidental+"}, an Invalid combination of ^ _ =");
         }
         //Account for key signatures
         //If there is no accidental:
