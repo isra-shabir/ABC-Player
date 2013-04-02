@@ -6,7 +6,7 @@ public class Note implements NoteStruct{
     private int timeDenominator;
     
     private String basenote;
-    private String accidental;
+    private int accidental;
     private String octave;
     
     
@@ -18,7 +18,7 @@ public class Note implements NoteStruct{
      * @param num - an int: the time numerator 
      * @param denom - an int: the time denominator
      */
-    public Note(String aBasenote, String aAccidental, String aOctave, int num, int denom){
+    public Note(String aBasenote, int aAccidental, String aOctave, int num, int denom){
         this.basenote = aBasenote;
         this.accidental = aAccidental;
         this.octave = aOctave;
@@ -64,6 +64,7 @@ public class Note implements NoteStruct{
      * @modify modifies timeNumerator, timeDenominator
      */
     public void tupletTimeMutate(int tupletValue){
+        System.out.println("Mutating length..");
         if (tupletValue == 2){
             this.timeNumerator = this.timeNumerator * 3;
             this.timeDenominator = this.timeDenominator * 2;
@@ -76,7 +77,8 @@ public class Note implements NoteStruct{
             this.timeNumerator = this.timeNumerator * 3;
             this.timeDenominator = this.timeDenominator * 4;
         } 
-        
+        System.out.println("   Now, Numerator: "+this.timeNumerator);
+        System.out.println("   Now, Denominator: "+this.timeDenominator);
         this.cleanTime();   
    }
     
@@ -100,9 +102,10 @@ public class Note implements NoteStruct{
      * 
      * @return endTick : the tick reached at the end of this note.
      */
-    public int addToPlayer(int startingTick, int ticksPerQuarter, myPlayer player){
+    public int addToPlayer(int startingTick, int ticksPerQuarter, BarManager barManager){
         int length = this.getNumTicks(ticksPerQuarter);
-        player.addNote(startingTick, length, this.basenote, this.accidental, this.octave);
+        
+        barManager.addNote(startingTick, length, this.basenote, this.accidental, this.octave);
         return startingTick + length;
     }
    
@@ -112,7 +115,7 @@ public class Note implements NoteStruct{
      */
     @Override
     public String toString(){
-        return accidental+" "+basenote+" "+octave+ " "+timeNumerator+"/"+timeDenominator;
+        return accidental+basenote+octave+timeNumerator+"/"+timeDenominator;
     }
 
     public boolean isNotestruct() {
@@ -123,6 +126,13 @@ public class Note implements NoteStruct{
         return false;
     }
     
+    public String getBasenote(){
+        return this.basenote;
+    }
+    
+    public int getAccidental(){
+        return this.accidental;
+    }
     
     public boolean isType(String type) {
         return false;
@@ -140,6 +150,11 @@ public class Note implements NoteStruct{
             return a;
         }
         return getGCD(b, a%b);
+    }
+
+    
+    public void setAccidental(Integer accidental) {
+        this.accidental = accidental;
     }
     
 }

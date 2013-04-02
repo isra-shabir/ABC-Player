@@ -29,7 +29,10 @@ public class VoiceParser {
 	 */
 	public Voice parse(){
 	    int numObjects = voiceObjects.size();
+	    
+	    //Arrays used to construct bars...
 	    ArrayList<NoteStruct> barFiller = new ArrayList<NoteStruct>();
+	    int[] accis = {10,10,10,10,10,10,10};
 	    
 	    //Used solely by diff-end-repeats
 	    ArrayList<Bar> repeatedSecondBars = new ArrayList<Bar>(); 
@@ -43,6 +46,7 @@ public class VoiceParser {
 	               
 	        //If a note, chord or tuplet, add to barFiller.
 	        if (voiceObjects.get(i).isNotestruct()){
+	            //Check for accidentals
 	            barFiller.add((NoteStruct) voiceObjects.get(i));
 	        }
 	        

@@ -17,7 +17,7 @@ public class ParserTest {
 		System.out.println(output);
 		System.out.println("tokens: "+parse.getTokensString());
 
-		assertEquals(output,"[ A  4/4,  B  4/4]");
+		assertEquals(output,"[10A4/4, 10B4/4]");
 	}
 	
 	@Test
@@ -30,7 +30,7 @@ public class ParserTest {
 		String output = (parse.parse().toString());
 		System.out.println(output);
 		System.out.println("tokens: "+parse.getTokensString());
-		assertEquals(output,"[_ A  4/4, ^ B  4/4]");
+		assertEquals(output,"[-1A4/4, 1B4/4]");
 	}
 	
 	@Test
@@ -43,7 +43,7 @@ public class ParserTest {
 		System.out.println(test.lex().toString());
 		String output = (parse.parse().toString());
 		System.out.println(output);
-		assertEquals(output,"[ A  8/12,  B  4/4,  C  2/4]");
+		assertEquals(output,"[10A8/12, 10B4/4, 10C2/4]");
 	}
 	
 	@Test
@@ -55,7 +55,7 @@ public class ParserTest {
 		
 		String output = (parse.parse().toString());
 		System.out.println(output);
-		assertEquals(output,"[_ A  2/4]");
+		assertEquals(output,"[-1A2/4]");
 	}
 	
 	@Test
@@ -67,7 +67,7 @@ public class ParserTest {
 		
 		String output = (parse.parse().toString());
 		System.out.println(output);
-		assertEquals(output,"[_ A  4/20]");
+		assertEquals(output,"[-1A4/20]");
 	}
 	
 	@Test
@@ -79,7 +79,7 @@ public class ParserTest {
 		
 		String output = (parse.parse().toString());
 		System.out.println(output);
-		assertEquals(output,"[_ A , 4/4,  B  4/4]");
+		assertEquals(output,"[-1A,4/4, 10B4/4]");
 	}
 	
 	@Test
@@ -115,7 +115,7 @@ public class ParserTest {
         
         String output = (parse.parse().toString());
         System.out.println(output);
-        assertEquals(output,"[^ B , 4/4, = B , 4/4, BAR]");
+        assertEquals(output,"[1B,4/4, 0B,4/4, BAR]");
     }
 	
 	@Test
@@ -127,7 +127,7 @@ public class ParserTest {
         
         String output = (parse.parse().toString());
         System.out.println(output);
-        assertEquals(output,"[Chord: \n C  4/4\n E  4/4\n G  4/4\n]");
+        assertEquals(output,"[Chord: \n10C4/4\n10E4/4\n10G4/4\n]");
     }
 	
 	@Test
@@ -139,7 +139,7 @@ public class ParserTest {
         
         String output = (parse.parse().toString());
         System.out.println(output);
-        assertEquals(output,"[ C  4/4, Chord: \n C  4/4\n E  4/4\n G  4/4\n, ENDBAR]");
+        assertEquals(output,"[10C4/4, Chord: \n10C4/4\n10E4/4\n10G4/4\n, ENDBAR]");
         
     }
 	
@@ -152,7 +152,7 @@ public class ParserTest {
         
         String output = (parse.parse().toString());
         System.out.println(output);
-        assertEquals(output,"[ C  4/4, Chord: \n C  2/4\n E  2/4\n G  2/4\n, ENDBAR]");
+        assertEquals(output,"[10C4/4, Chord: \n10C2/4\n10E2/4\n10G2/4\n, ENDBAR]");
         
     }
 	
@@ -165,7 +165,7 @@ public class ParserTest {
         
         String output = (parse.parse().toString());
         System.out.println(output);
-        assertEquals(output,"[ C  4/4, Chord: \n C  2/4\n E  2/4\n z  2/4\n, ENDBAR]");
+        assertEquals(output,"[10C4/4, Chord: \n10C2/4\n10E2/4\n10z2/4\n, ENDBAR]");
         
     }
 	
@@ -222,16 +222,18 @@ public class ParserTest {
 	
 	@Test
     public void ParserTest18(){
-        //test tuplet
+        //test tuplet - make sure the times are appropriately changed
         
         Lexer test = new Lexer(dummyHeader+"C (3C/2D/2E/2");
         Parser parse = new Parser(test.lex());
         
         String output = (parse.parse().toString());
         System.out.println(output);
-        assertEquals(output,"[ C  4/4, Tuplet 3\n C  4/12\n D  4/12\n E  4/12]");
+        assertEquals(output,"[10C4/4, Tuplet 3\n10C4/12\n10D4/12\n10E4/12]");
         
     }
+	
+	
 	
 }
 

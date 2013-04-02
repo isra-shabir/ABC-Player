@@ -20,12 +20,12 @@ public class myPlayerTest {
             myPlayer Ahmed = new myPlayer("C", sqPlayer);
             
             String[] basenotes =   {"C","C","D","D","E","F","F","G","G","A","A","B"};
-            String[] accidentals = {"" ,"^","" ,"^","" ,"" ,"^","" ,"^","" ,"^","" };
+            int[] accidentals = {0 ,1,0 ,1,0 ,0 ,1,0 ,1,0 ,1,0 };
                         
             for (int i = 0; i<48; i++){
                 
                 String basenote;
-                String accidental = "";
+                int accidental = 0;
                 String octave = "";
                 basenote = basenotes[i%12];
                 accidental = accidentals[i%12];
@@ -73,8 +73,7 @@ public class myPlayerTest {
                 for (int i = 0; i < 7; i++){
                     String octave = "";
                     String basenote = basenotes[i%7];
-                    String accidental = "";
-                    Ahmed.addNote(12*(iKey*7+i), 12, basenote, accidental, octave);
+                    Ahmed.addNote(12*(iKey*7+i), 12, basenote, 0, octave);
                 }                           
                 sqPlayer.play();
             }
@@ -107,8 +106,7 @@ public class myPlayerTest {
                 for (int i = 0; i < 7; i++){
                     String octave = "";
                     String basenote = basenotes[i%7];
-                    String accidental = "=";
-                    Ahmed.addNote(12*(iKey*7+i), 12, basenote, accidental, octave);
+                    Ahmed.addNote(12*(iKey*7+i), 12, basenote, 10, octave);
                 }                           
                 sqPlayer.play();
             }

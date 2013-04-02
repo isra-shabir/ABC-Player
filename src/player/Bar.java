@@ -19,11 +19,34 @@ public class Bar{
 		int minTicks = 1;
 	    for (int i = 0; i<noteStructs.size(); i++){
 		    int min = noteStructs.get(i).getMinTicks(); 
-		    if (min > minTicks){
-		        minTicks = min;
-		    }
+		    minTicks = lowestCommonMultiple(minTicks, min);
 		}
+	    System.out.println("---mtpq of bar: "+minTicks);
 	    return minTicks;
+	}
+	
+	/**
+	 * Returns the lowest common multiple of two numbers.
+	 * @param a, a positive non-zero int.
+	 * @param b, a positive non-zero int.
+	 * @return lcm, the largest number that is a multiple of both a and b.
+	 */
+	private int lowestCommonMultiple(int a, int b){
+	    
+	    int big = a;
+	    int small = a;
+	    if (a>b){
+	        small = b;
+	    }
+	    else {
+	        big = b;
+	    }
+	    
+	    int bigi = big;
+	    while (big % small != 0){
+	        big = big + bigi;
+	    }
+	    return big;
 	}
 	
 	/**
@@ -36,9 +59,10 @@ public class Bar{
 	 * @param player - the myPlayer object that all notes should be added to.
 	 */
 	public int addToPlayer(int startTicking, int ticksPerQuarter, myPlayer player){
-		int currentTick = startTicking;
+		BarManager barManager = new BarManager(player);
+	    int currentTick = startTicking;
 		for (int i = 0; i<noteStructs.size(); i++){
-		    currentTick = noteStructs.get(i).addToPlayer(currentTick,ticksPerQuarter, player);
+		    currentTick = noteStructs.get(i).addToPlayer(currentTick,ticksPerQuarter, barManager);
 		}
 		return currentTick;
 	}

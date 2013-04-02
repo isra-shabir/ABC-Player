@@ -38,12 +38,35 @@ public class Voice {
 	    int minTicks = 1;
 	    for (int i = 0; i< bars.size(); i++){
 	        int min = bars.get(i).getMinTicksPerQuarter(); 
-	        if (min > minTicks){
-	            minTicks = min;
-	        }
+	        minTicks = lowestCommonMultiple(minTicks, min);
 	    }
+	    System.out.println("mtpq of the voice: "+minTicks);
 	    return minTicks;
 	}
+	
+	/**
+     * Returns the lowest common multiple of two numbers.
+     * @param a, a positive non-zero int.
+     * @param b, a positive non-zero int.
+     * @return lcm, the largest number that is a multiple of both a and b.
+     */
+    private int lowestCommonMultiple(int a, int b){
+        
+        int big = a;
+        int small = a;
+        if (a>b){
+            small = b;
+        }
+        else {
+            big = b;
+        }
+        
+        int bigi = big;
+        while (big % small != 0){
+            big = big + bigi;
+        }
+        return big;
+    }
 	
 
 	/**

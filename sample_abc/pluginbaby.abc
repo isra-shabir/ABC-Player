@@ -1,0 +1,64 @@
+X: 1
+T:Plug In Baby
+C:Muse
+V:MainGuitar
+V:BassGuitar
+M:4/4
+L:1/8
+Q:272
+K:D
+
+V:MainGuitar
+
+
+
+^A B c A B c d B  | c d e f/ g/ f e d c    | 
+B c d B c d e c   | d e f f/ g/ f =f ^f =f |
+f d A F A d f ^g  | ^g ^^g f =f ^f d c d  :|
+^A B c A B c d B  | c d e f/ g/ f e d c    | B8 | z8 ||
+
+z8 | z8 | z8 | z8 | z8 | z8 | z8 | z8 |
+
+z8 | z8 | z8 | z8 | z8 | z8 |
+
+
+V:BassGuitar
+
+z8 | z8 | z8 | z8 ||
+
+D,,2 D,2 D,, D,, A,, D, :| ^F,,2 ^F,2 ^F,, ^F,, ^C, ^F, :|
+G,,2 G,2  G,, G,, D, G, :| 
+D,,2 D,2 D,, D,, A,, D, :| ^F,,2 ^F,2 ^F,, ^F,, ^C, ^F, :|
+G,,2 G,2  G,, G,, D, G, :| 
+D,,2 D,2 D,, D,, A,, D, :| ^F,,2 ^F,2 ^F,, ^F,, ^C, ^F, :|
+G,,2 G,2  G,, G,, D, G, :| 
+D,,2 D,2 D,, D,, A,, D, :| ^F,,2 ^F,2 ^F,, ^F,, ^C, ^F, :|
+G,,2 G,2  G,, G,, D, G, :|
+D,,2 D,2 D,, D,, A,, D, :|
+
+V:MainGuitar
+^F, ^F, ^F, ^F, [^F,^C] [^F,^C] [^F,^C] [^F,^C] | 
+[^F,^C^F] [^F,^C^F] [^F,^C^F] [^F,^C^F] [^F,^C^F^A] [^F,^C^F^A] [^F,^C^F^A] [E,ADG] ||
+
+V:BassGuitar
+^G,, ^G,, ^G,, ^G,, ^G,, ^G,, ^G,, ^G,, :|
+
+V:MainGuitar
+[G,DG] [G,DG] [G,DG] [G,DG] [G,DG] [G,DG] [G,DG] [G,DG] :|
+[B,^FB] [B,^FB] [B,^FB] [B,^FB] [B,^FB] [B,^FB] [B,^FB] [B,^FB] |
+[^C^F] [^C^F] [^C^F] [^C^F] [^C^F] [^C^F] [^C^F] [^C^F]||
+[G,DG] [G,DG] [G,DG] [G,DG] [G,DG] [G,DG] [G,DG] [G,DG] :|
+[B,^FB] [B,^FB] [B,^FB] [B,^FB] [B,^FB] [B,^FB] [B,^FB] [B,^FB] |
+[^C^F] [^C^F] [^C^F] [^C^F] [^C^F] [^C^F] [^C^F] [^C^F]||
+[G,DG] [G,DG] [G,DG] [G,DG] [G,DG] [G,DG] [G,DG] [G,DG] :|
+[B,^FB] [B,^FB] [B,^FB] [B,^FB] [B,^FB] [B,^FB] [B,^FB] [B,^FB] |
+[^C^F] [^C^F] [^C^F] [^C^F] [^C^F] [^C^F] [^C^F] [^C^F]||
+
+
+[G,DG] [G,DG] [G,DG] [G,DG] [G,DG] [G,DG] [G,DG] [G,DG] |
+[G,DG] [G,DG] [G,DG] [G,DG] [G,DG] [A,EA] [A,EA] [A,EA] ||
+
+
+[DAc^f] [DAc^f] [DAc^f] [DAc^f] [DAc^f] [DAc^f] [DAc^f] [DAc^f] :|
+
+

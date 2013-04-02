@@ -11,9 +11,9 @@ import sound.SequencePlayer;
 
 public class Parser2Test {
 
-    Note C = new Note("C", "", "", 1, 4);
-    Note E = new Note("E", "", "", 1, 4);
-    Note G = new Note("G", "", "", 1, 4);
+    Note C = new Note("C", 10, "", 1, 4);
+    Note E = new Note("E", 10, "", 1, 4);
+    Note G = new Note("G", 10, "", 1, 4);
     
     Tuplet T1 = new Tuplet(3); // 1/4
     Tuplet T2 = new Tuplet(3);
@@ -36,21 +36,21 @@ public class Parser2Test {
         
     public void testMaterialConstructor(){
         
-        T1.addNote(new Note("E", "", "", 1, 8));
-        T1.addNote(new Note("G", "", "", 1, 8));
-        T1.addNote(new Note("B", "", "", 1, 8));
+        T1.addNote(new Note("E", 10, "", 1, 8));
+        T1.addNote(new Note("G", 10, "", 1, 8));
+        T1.addNote(new Note("B", 10, "", 1, 8));
         
-        T2.addNote(new Note("F", "^", "", 1, 8));
-        T2.addNote(new Note("A", "^", "", 1, 8));
-        T2.addNote(new Note("c", "^", "", 1, 8));
+        T2.addNote(new Note("F", 1, "", 1, 8));
+        T2.addNote(new Note("A", 1, "", 1, 8));
+        T2.addNote(new Note("c", 1, "", 1, 8));
         
-        MC1.addNote(new Note("E" ,"", ",", 1, 1));
-        MC1.addNote(new Note("G" ,"", ",", 1, 1));
-        MC1.addNote(new Note("B" ,"", ",", 1, 1));
+        MC1.addNote(new Note("E" ,10, ",", 1, 1));
+        MC1.addNote(new Note("G" ,10, ",", 1, 1));
+        MC1.addNote(new Note("B" ,10, ",", 1, 1));
         
-        MC2.addNote(new Note("F" ,"^", ",", 1, 1));
-        MC2.addNote(new Note("A" ,"^", ",", 1, 1));
-        MC2.addNote(new Note("C" ,"^", ",", 1, 1));
+        MC2.addNote(new Note("F" ,1, ",", 1, 1));
+        MC2.addNote(new Note("A" ,1, ",", 1, 1));
+        MC2.addNote(new Note("C" ,1, ",", 1, 1));
         
         t1bar.add(T1);
         t1bar.add(T1);
@@ -62,16 +62,16 @@ public class Parser2Test {
         t2bar.add(T2);
         t2bar.add(T2);
         
-        darBar1.add(new Note("E", "", "", 1, 4));
-        darBar1.add(new Note("B", "", "", 1, 4));
-        darBar1.add(new Note("B", "", "", 1, 4));
-        darBar1.add(new Note("G", "", "", 1, 4));
+        darBar1.add(new Note("E", 10, "", 1, 4));
+        darBar1.add(new Note("B", 10, "", 1, 4));
+        darBar1.add(new Note("B", 10, "", 1, 4));
+        darBar1.add(new Note("G", 10, "", 1, 4));
         
-        darBar2.add(new Note("F", "^", "", 1, 4));
-        darBar2.add(new Note("F", "^", "", 1, 4));
-        darBar2.add(new Note("F", "^", "", 1, 4));
-        darBar2.add(new Note("F", "^", "", 1, 8));
-        darBar2.add(new Note("G", "", "", 1, 8));
+        darBar2.add(new Note("F", 1, "", 1, 4));
+        darBar2.add(new Note("F", 1, "", 1, 4));
+        darBar2.add(new Note("F", 1, "", 1, 4));
+        darBar2.add(new Note("F", 1, "", 1, 8));
+        darBar2.add(new Note("G", 10, "", 1, 8));
                      
         
     }

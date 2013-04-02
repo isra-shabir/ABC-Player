@@ -39,11 +39,11 @@ public class Chord implements NoteStruct{
      * 
      * @return endTick : the tick reached at the end of this chord.
      */
-    public int addToPlayer(int startingTick, int ticksPerQuarter, myPlayer player) {
+    public int addToPlayer(int startingTick, int ticksPerQuarter, BarManager barManager) {
         int endTick = 0;
         for (int i = 0; i < notes.size(); i++){
             //note: endTick is being set to the same variable every time this is called.
-            endTick = notes.get(i).addToPlayer(startingTick, ticksPerQuarter, player);
+            endTick = notes.get(i).addToPlayer(startingTick, ticksPerQuarter, barManager);
         }
         
         return endTick;

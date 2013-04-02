@@ -7,6 +7,6 @@ public interface NoteStruct extends BarLineObject{
     
     int getMinTicks();
     int getNumTicks(int ticksPerQuarter);
-    int addToPlayer(int startingTick, int length, myPlayer player);
+    int addToPlayer(int startingTick, int length, BarManager barManager);
     
 }

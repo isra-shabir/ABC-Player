@@ -131,58 +131,26 @@ public class myPlayer {
      * @param octave - a string identifying semitone shifts, such as ","
      */
     public void addNote(int startingTick, int length, String basenote,
-            String accidental, String octave) {
+            int accidental, String octave) {
         
-//        System.out.println("Adding "+basenote+" of length "+length +" at "+startingTick);
+        System.out.println("Adding "+basenote+octave+" of length "+length +" at "+startingTick);
         
         if (basenote.equals("z") || basenote.equals("Z")){
             return;
         }
         
-        int accidentalNum = numerateAccidental(accidental, basenote);
+        if (accidental == 10){
+            accidental = keyMutate(basenote);
+        }
         int octaveNum = numerateOctave(octave, basenote);
         
         String upperBasenote = basenote.toUpperCase();
         char pitch = upperBasenote.charAt(0);
                 
-        sqPlayer.addNote(new Pitch(pitch).transpose(Pitch.OCTAVE * octaveNum).accidentalTranspose(accidentalNum).toMidiNote(),  startingTick, length);
+        sqPlayer.addNote(new Pitch(pitch).transpose(Pitch.OCTAVE * octaveNum).accidentalTranspose(accidental).toMidiNote(),  startingTick, length);
                 
     }
     
-    /**
-     * Gets a the number of semitones that must be shifted from accidental
-     * @param accidental - a string such as "^" or "_"
-     * @return an int corresponding to the number of semitones that must be added.
-     */
-    private int numerateAccidental(String accidental, String basenote){
-        if (accidental.equals("")){
-            //Account for key signatures
-            //If there is no accidental:
-            return keyMutate(basenote);
-        }
-        else if (accidental.equals("^^")){
-            return 2;
-        }
-        else if (accidental.equals("^")){
-            return 1;
-        }
-        else if (accidental.equals("=")){
-            return 0;
-        }
-        else if (accidental.equals("_")){
-            return -1;
-        }
-        else if (accidental.equals("__")){
-            return -2;
-        }
-        
-        else {
-            throw new IllegalArgumentException("Invalid Accidental. Received {"+accidental+"}, an Invalid combination of ^ _ =");
-        }
-        //Account for key signatures
-        //If there is no accidental:
-        
-    }
     
     /**
      * Returns the effect of key signature on a basenote
@@ -212,18 +180,18 @@ public class myPlayer {
      */
     private int numerateOctave(String octave, String basenote){
                 
-        if (octave == "'"){
+        if (octave.equals("'")){
             return 2; }
-        else if (octave == "''"){
+        else if (octave.equals("''")){
             return 3; }
-        else if (octave == "'''"){
+        else if (octave.equals("'''")){
             return 4; }
         
-        else if (octave == ","){
+        else if (octave.equals(",")){
             return -1; }
-        else if (octave == ",,"){
+        else if (octave.equals(",,")){
             return -2; }
-        else if (octave == ",,,"){
+        else if (octave.equals(",,,")){
             return -3; }
         
         String lowerBasenote = basenote.toLowerCase();

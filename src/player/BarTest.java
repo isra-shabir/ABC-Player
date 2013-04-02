@@ -15,14 +15,14 @@ public class BarTest {
     public void basicTest(){
         
         Tuplet T1 = new Tuplet(3);
-        T1.addNote(new Note("E", "", "", 1, 8));
-        T1.addNote(new Note("G", "", "", 1, 8));
-        T1.addNote(new Note("B", "", "", 1, 8));
+        T1.addNote(new Note("E", 0, "", 1, 8));
+        T1.addNote(new Note("G", 0, "", 1, 8));
+        T1.addNote(new Note("B", 0, "", 1, 8));
         
         Tuplet T2 = new Tuplet(3);
-        T2.addNote(new Note("F", "^", "", 1, 8));
-        T2.addNote(new Note("A", "^", "", 1, 8));
-        T2.addNote(new Note("c", "^", "", 1, 8));
+        T2.addNote(new Note("F", 0, "", 1, 8));
+        T2.addNote(new Note("A", 0, "", 1, 8));
+        T2.addNote(new Note("c", 0, "", 1, 8));
         
         Bar t1bar = new Bar();
         t1bar.add(T1);
@@ -37,27 +37,27 @@ public class BarTest {
         t2bar.add(T2);
                 
         Bar darBar1 = new Bar();
-        darBar1.add(new Note("E", "", "", 1, 4));
-        darBar1.add(new Note("B", "", "", 1, 4));
-        darBar1.add(new Note("B", "", "", 1, 4));
-        darBar1.add(new Note("G", "", "", 1, 4));
+        darBar1.add(new Note("E", 0, "", 1, 4));
+        darBar1.add(new Note("B", 0, "", 1, 4));
+        darBar1.add(new Note("B", 0, "", 1, 4));
+        darBar1.add(new Note("G", 0, "", 1, 4));
         
         Bar darBar2 = new Bar();
-        darBar2.add(new Note("F", "^", "", 1, 4));
-        darBar2.add(new Note("F", "^", "", 1, 4));
-        darBar2.add(new Note("F", "^", "", 1, 4));
-        darBar2.add(new Note("F", "^", "", 1, 8));
-        darBar2.add(new Note("G", "", "", 1, 8));
+        darBar2.add(new Note("F", 1, "", 1, 4));
+        darBar2.add(new Note("F", 1, "", 1, 4));
+        darBar2.add(new Note("F", 1, "", 1, 4));
+        darBar2.add(new Note("F", 1, "", 1, 8));
+        darBar2.add(new Note("G", 0, "", 1, 8));
               
         Chord MC1 = new Chord();
-        MC1.addNote(new Note("E" ,"", ",", 1, 1));
-        MC1.addNote(new Note("G" ,"", ",", 1, 1));
-        MC1.addNote(new Note("B" ,"", ",", 1, 1));
+        MC1.addNote(new Note("E" ,0, ",", 1, 1));
+        MC1.addNote(new Note("G" ,0, ",", 1, 1));
+        MC1.addNote(new Note("B" ,0, ",", 1, 1));
         
         Chord MC2 = new Chord();
-        MC2.addNote(new Note("F" ,"^", ",", 1, 1));
-        MC2.addNote(new Note("A" ,"^", ",", 1, 1));
-        MC2.addNote(new Note("C" ,"^", ",", 1, 1));
+        MC2.addNote(new Note("F" ,1, ",", 1, 1));
+        MC2.addNote(new Note("A" ,1, ",", 1, 1));
+        MC2.addNote(new Note("C" ,1, ",", 1, 1));
         
         Bar M1 = new Bar();
         M1.add(MC1);

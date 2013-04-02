@@ -47,7 +47,7 @@ public class Parser {
 	    while (this.currentToken < tokens.size()){
 	        Token token = tokens.get(currentToken);
 //	        System.out.println("Looking at "+token);
-	        if (token.isType("SPACE")){
+	        if (token.isType("SPACE") || token.isType("COMMENT")){
 	            this.currentToken++;
 	        }
 	        else if (token.isType("ACCIDENTAL") || token.isType("BASENOTE")){
@@ -188,10 +188,39 @@ public class Parser {
 	        this.currentToken++;
 	    }
 	    	    
-	    return new Note(aBasenote, aAccidental, aOctave, num * defLengthNum, denom * defLengthDen);
+	    return new Note(aBasenote, accidentalToInt(aAccidental), aOctave, num * defLengthNum, denom * defLengthDen);
 	}
 
 	/**
+     * Gets a the number of semitones that must be shifted from accidental
+     * @param accidental - a string such as "^" or "_"
+     * @return an int corresponding to the number of semitones that must be added.
+     */
+	private int accidentalToInt(String accidental) {
+	    if (accidental.equals("")){
+            return 10;
+        }
+        else if (accidental.equals("^^")){
+            return 2;
+        }
+        else if (accidental.equals("^")){
+            return 1;
+        }
+        else if (accidental.equals("=")){
+            return 0;
+        }
+        else if (accidental.equals("_")){
+            return -1;
+        }
+        else if (accidental.equals("__")){
+            return -2;
+        }
+        else {
+            throw new IllegalArgumentException("Invalid Accidental. Received {"+accidental+"}, an Invalid combination of ^ _ =");
+        }
+    }
+
+    /**
      * Constructs and returns a chord object that has been reached
      * 
      * Requires: Current this.currentToken is at the beginning of a note (accidental or basenote)
@@ -216,11 +245,14 @@ public class Parser {
 	 * @modify this.currentToken, which is updated to the first index after the tuplet
 	 */
 	private Tuplet tupletConstructor(int value){
+	    
 	    Tuplet tuplet = new Tuplet(value);
 	    while (this.currentToken < tokens.size() && (tokens.get(this.currentToken).isType("BASENOTE") == true || 
 	            tokens.get(this.currentToken).isType("ACCIDENTAL") == true )){
-//	        System.out.println("Tuplet loop: "+tokens.get(this.currentToken));
-	        tuplet.addNote(this.noteConstructor());
+	        System.out.println("Tuplet loop: "+tokens.get(this.currentToken));
+	        Note newTupletNote = this.noteConstructor();
+	        System.out.println(newTupletNote);
+	        tuplet.addNote(newTupletNote);
 	    }
 	    return tuplet;
 	}

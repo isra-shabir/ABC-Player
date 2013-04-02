@@ -20,27 +20,30 @@ public class NoteStructTest {
         try {
             sqPlayer = new SequencePlayer(140, 12);
             myPlayer Ahmed = new myPlayer("Cm", sqPlayer);
+            BarManager barManager = new BarManager(Ahmed);
             
-            notePrint("C", ""  , ",");
-            notePrint("D", "^^", "");
-            notePrint("c", ""  , "");
-            notePrint("d", "_" , "");
-            notePrint("d", "^" , "'");
+            notePrint("C", 10  , ",");
+            notePrint("D", 2, "");
+            notePrint("c", 10  , "");
+            notePrint("d", -1 , "");
+            notePrint("d", 1 , "'");
             
             int ticksPerQuarter = 12;
             
-            Note C = new Note("C", "","", 1, 8);
+            Note C = new Note("C",10,"", 1, 8);
             
-            C.addToPlayer(0, ticksPerQuarter, Ahmed);
             
-            Note E = new Note("E", "","", 1, 2);
-            E.addToPlayer(24, ticksPerQuarter, Ahmed);
             
-            Note G = new Note("G", "","", 1, 4);
-            G.addToPlayer(48, ticksPerQuarter, Ahmed);
+            C.addToPlayer(0, ticksPerQuarter, barManager);
             
-            Note F = new Note("F", "","", 1, 1);
-            F.addToPlayer(72, ticksPerQuarter, Ahmed);
+            Note E = new Note("E", 10,"", 1, 2);
+            E.addToPlayer(24, ticksPerQuarter, barManager);
+            
+            Note G = new Note("G", 10,"", 1, 4);
+            G.addToPlayer(48, ticksPerQuarter, barManager);
+            
+            Note F = new Note("F", 10,"", 1, 1);
+            F.addToPlayer(72, ticksPerQuarter, barManager);
             
             sqPlayer.play();        
             
@@ -61,7 +64,7 @@ public class NoteStructTest {
      * @param octave
      * 
      */
-    private void notePrint(String basenote, String accidental, String octave){
+    private void notePrint(String basenote, int accidental, String octave){
         Note theNote = new Note(basenote, accidental, octave,1,1);
         System.out.println(theNote.toString());
     }

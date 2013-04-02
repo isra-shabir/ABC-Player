@@ -21,7 +21,12 @@ public class Tuplet implements NoteStruct{
      */
     
     public Tuplet(int value){
-        this.value = value;
+        if (value == 2 || value == 3 || value == 4){
+            this.value = value;
+        }
+        else {
+            throw new IllegalArgumentException("Tuplet value is "+value+", which is Illegal. Must be 2, 3, or 4.");
+        }
     }
     
     /**
@@ -61,11 +66,11 @@ public class Tuplet implements NoteStruct{
      * 
      * @return endTick : the tick reached at the end of this tuplet.
      */
-    public int addToPlayer(int startingTick, int ticksPerQuarter, myPlayer player) {
+    public int addToPlayer(int startingTick, int ticksPerQuarter, BarManager barManager) {
         int currentTick = startingTick;
         for (int i = 0; i < numNotes; i++){
             //note: endTick is being set to the same variable every time this is called.
-            currentTick = notes.get(i).addToPlayer(currentTick, ticksPerQuarter, player);
+            currentTick = notes.get(i).addToPlayer(currentTick, ticksPerQuarter, barManager);
         }
         return currentTick;
     }

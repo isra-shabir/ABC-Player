@@ -148,22 +148,12 @@ public class Main {
     public static void main(String[] args) throws MidiUnavailableException, InvalidMidiDataException {
 
         try {
-            play(readABCFile("one" +
+            play(readABCFile("pluginbaby" +
             		".abc"));
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        
-//         //CALL play() HERE
-
+        }    
     }
-
-//    public static void alprint(ArrayList l, String name){
-//        System.out.println("\nNOW PRINTING "+name+"\n");
-//        for (int i = 0; i<l.size(); i++){
-//            System.out.println(l.get(i));
-//        }
-//    }
     
     private static String readABCFile(String name) throws IOException {
 
