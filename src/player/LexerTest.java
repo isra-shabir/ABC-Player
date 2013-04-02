@@ -13,7 +13,14 @@ import player.Token.Type;
 public class LexerTest {
 	
 	/**
-	 * write some specifications here
+	 * this class has a set of 
+	 * tests; each test is designed to check
+	 * various behaviors of the lexer using different
+	 * streams of input and the patterns every 
+	 * token is supposed to match.
+	 * Finally, two tests have been written to
+	 * test a long stream of input (like in actual piece)
+	 * and also a test for tokenizing invalid input
 	 */
 	
     @Test
@@ -246,7 +253,6 @@ public class LexerTest {
     	expected.add(new Token(Type.BASENOTE, "C")); 
     	expected.add(new Token(Type.FORWARDSLASH, "/")); 
     	expected.add(new Token(Type.SPACE, " "));
-    	
     	expected.add(new Token(Type.BAR, "|"));
 
     	assertEquals(expected.toString(), test.lex().toString());     		
@@ -256,6 +262,7 @@ public class LexerTest {
     public void LexerTest12(){
     	//test basic functionality of composer of piece
     	Lexer test = new Lexer("C: Beethoven");
+    	
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     	expected.add(new Token(Type.NAME, " Beethoven"));
@@ -269,7 +276,9 @@ public class LexerTest {
     public void LexerTest13(){
     	//test basic functionality of title of piece
     	Lexer test = new Lexer("T: The Light");
+    	
     	ArrayList<Token> expected = new ArrayList<Token>();
+    	
     	expected.add(new Token(Type.TITLE, " The Light"));
     
     	assertEquals(expected.toString(), test.lex().toString());     	
@@ -280,7 +289,9 @@ public class LexerTest {
     public void LexerTest14(){
     	//test basic functionality of Keysignature of piece
     	Lexer test = new Lexer("K: Am");
+    	
     	ArrayList<Token> expected = new ArrayList<Token>();
+    	
     	expected.add(new Token(Type.KEYSIGNATURE, " Am"));
     	
     	assertEquals(expected.toString(), test.lex().toString());     	
@@ -291,11 +302,12 @@ public class LexerTest {
     public void LexerTest14b(){
     	//test basic functionality of keysignature of piece
     	Lexer test = new Lexer("K: A");
+    	
     	ArrayList<Token> expected = new ArrayList<Token>();
+    	
     	expected.add(new Token(Type.KEYSIGNATURE, " A"));
+    	
     	assertEquals(expected.toString(), test.lex().toString());     
-
-    	assertEquals(expected.toString(), test.lex().toString());     	
     }
     
     
@@ -303,7 +315,9 @@ public class LexerTest {
     public void LexerTest15(){
     	//test basic functionality of default length of piece
     	Lexer test = new Lexer("L: 2/3");
+    	
     	ArrayList<Token> expected = new ArrayList<Token>();
+    	
     	expected.add(new Token(Type.DEFLENGTH, " 2/3"));
     	
     	assertEquals(expected.toString(), test.lex().toString());     	
@@ -313,7 +327,9 @@ public class LexerTest {
     public void LexerTest15b(){
     	//test basic functionality of default length of piece
     	Lexer test = new Lexer("L: 2 / 3");
+    	
     	ArrayList<Token> expected = new ArrayList<Token>();
+    	
     	expected.add(new Token(Type.DEFLENGTH, " 2 / 3"));
     	
     	assertEquals(expected.toString(), test.lex().toString());     	
@@ -324,7 +340,9 @@ public class LexerTest {
     public void LexerTest16(){
     	//test basic functionality of meter of piece
     	Lexer test = new Lexer("M: 2/3");
+    	
     	ArrayList<Token> expected = new ArrayList<Token>();
+    	
     	expected.add(new Token(Type.METER, " 2/3"));
     	
     	assertEquals(expected.toString(), test.lex().toString());     	
@@ -335,16 +353,22 @@ public class LexerTest {
     public void LexerTest17(){
     	//test basic functionality of indexNum  of piece
     	Lexer test = new Lexer("X: 3");
-    	ArrayList<Token> expected = new ArrayList<Token>();
-    	expected.add(new Token(Type.INDEXNUM, "3"));
     	
+    	ArrayList<Token> expected = new ArrayList<Token>();
+    	
+    	expected.add(new Token(Type.INDEXNUM, " 3"));
+    
+    	assertEquals(expected.toString(), test.lex().toString());     	
+
     }
     
     @Test
     public void LexerTest18(){
     	//test basic functionality of Tempo of piece
     	Lexer test = new Lexer("Q: 2");
+    	
     	ArrayList<Token> expected = new ArrayList<Token>();
+    	
     	expected.add(new Token(Type.TEMPO, " 2"));
     	
     	assertEquals(expected.toString(), test.lex().toString());     	
@@ -356,6 +380,7 @@ public class LexerTest {
     	//tests file that contains header and music information together
     	Lexer test = new Lexer("T: The Light\nC");
     	ArrayList<Token> expected = new ArrayList<Token>();
+    	
     	expected.add(new Token(Type.TITLE, " The Light"));
     	expected.add(new Token(Type.SPACE, "\n"));
     	expected.add(new Token(Type.BASENOTE, "C"));
@@ -434,6 +459,7 @@ public class LexerTest {
     	Lexer test = new Lexer("4W$#say.@x|");
     	
     	ArrayList<Token> expected = new ArrayList<Token>();
+    	
     	expected.add(new Token(Type.INVALID, "4W$#say.@x|"));
     	
     	assertEquals(expected.toString(), test.lex().toString());
