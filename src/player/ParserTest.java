@@ -214,7 +214,7 @@ public class ParserTest {
         Parser parse = new Parser(test.lex());
         assertEquals(parse.getIndexNum(),0);
         assertEquals(parse.getTitle(),"hello");
-        assertEquals(parse.getTempo(),100);
+        assertEquals(parse.getTempo(),25);
         assertEquals(parse.getDefNum(),1);
         assertEquals(parse.getDefDen(),16);
         assertEquals(parse.getKey(),"C ");
