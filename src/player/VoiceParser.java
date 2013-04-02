@@ -57,7 +57,7 @@ public class VoiceParser {
 	            
 	            if (repeatingFirst){
 	                part1counter++;
-	                System.out.println("p1 " + part1counter);
+//	                System.out.println("p1 " + part1counter);
 	            }
 	            
 	            if (repeatingSecond){

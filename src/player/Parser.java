@@ -8,6 +8,14 @@ public class Parser {
 	private ArrayList<Token> tokens;
 	private int currentToken = 0;
 	
+	
+	private String title,name, key = "";
+    private int indexNum,tempo =0; 
+    private ArrayList<String> voice = new ArrayList<String>();
+    private ArrayList<Integer> defLength = new ArrayList<Integer>();
+    private ArrayList<Integer> meter = new ArrayList<Integer>();
+    
+	
 	/**
 	 * 
 	 * @return String rep of the list of tokens.
@@ -22,6 +30,10 @@ public class Parser {
 	public Parser(ArrayList<Token> tokens){
 	    this.tokens = tokens;
 	    this.HeaderInfo();
+	    System.out.println("Core Numerator: "+defLength.get(0));
+	    System.out.println("Core Denomenator: "+defLength.get(1));
+	    System.out.println("Tempo: "+tempo);
+        
 	}
 	
 	
@@ -36,7 +48,7 @@ public class Parser {
 	    
 	    while (this.currentToken < tokens.size()){
 	        Token token = tokens.get(currentToken);
-	        System.out.println("Looking at "+token);
+//	        System.out.println("Looking at "+token);
 	        if (token.isType("SPACE")){
 	            this.currentToken++;
 	        }
@@ -56,7 +68,6 @@ public class Parser {
 	            this.allObjects.add(new VoiceIndicator(token.getValue()));
 	        }
 	        else {
-	            System.out.println("Want to add "+token);
 	            this.allObjects.add(new BarSignal(token.getType().name()));
 	            this.currentToken++;
 	        }
@@ -105,7 +116,6 @@ public class Parser {
 	            }
 	        }
 	            
-	        
 	        //BASENOTE
 	        else if (token.isType("BASENOTE")){
 	            if (aOctave.isEmpty()  && aBasenote.isEmpty()){
@@ -167,7 +177,7 @@ public class Parser {
 	        this.currentToken++;
 	    }
 	    
-	    return new Note(aBasenote, aAccidental, aOctave, num, denom);
+	    return new Note(aBasenote, aAccidental, aOctave, num * defLength.get(0), denom * defLength.get(1));
 	}
 
 	/**
@@ -202,15 +212,6 @@ public class Parser {
 	    }
 	    return tuplet;
 	}
-	
-	
-	
-	
-	private String title,name, key = "";
-	private int indexNum,tempo =0; 
-	private ArrayList<String> voice = new ArrayList<String>();
-	private ArrayList<Integer> defLength = new ArrayList<Integer>();
-	private ArrayList<Integer> meter = new ArrayList<Integer>();
 	
 	
 	/**

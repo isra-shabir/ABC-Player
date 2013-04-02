@@ -46,10 +46,12 @@ public class Main {
         //Get Header Vals
         String keySignature = myParser.getKey() ;
         int tempo =   myParser.getTempo() ;
+        System.out.println("Main's tempo: "+tempo);
         String name = myParser.getName();
         String title = myParser.getTitle();
         int indexNum = myParser.getIndexNum();
         
+        //Parse 1
         ArrayList<String> voiceNames = myParser.getVoice();
 
         int coreNumerator = 1;
@@ -58,6 +60,9 @@ public class Main {
         	coreNumerator = myParser.getDefLen().get(0);
         	coreDenominator = myParser.getDefLen().get(1);
         }
+        
+        tempo = (tempo * 4 * coreNumerator) / coreDenominator;
+        
         int MeterNum = 1;
         int MeterDen = 1;
         if (myParser.getMeter().size()==2){
@@ -74,6 +79,7 @@ public class Main {
         Song mySong = new Song(voices);
         SequencePlayer sqPlayer;
         try {
+            System.out.println("Creating SQ "+tempo+", minTpQ: "+mySong.getMinTicksPerQuarter());
             sqPlayer = new SequencePlayer(tempo, mySong.getMinTicksPerQuarter());
             myPlayer MrAhmed = new myPlayer(keySignature, sqPlayer);
             mySong.addToPlayer(MrAhmed);
@@ -142,10 +148,12 @@ public class Main {
     public static String getFurElise(){
         return "e^d|e^deB=dc|A2 z CEA|B2 z E^GB|c2 z Ee^d|";
     }
+    
+    
     public static void main(String[] args) throws MidiUnavailableException, InvalidMidiDataException {
 
         try {
-            play(readABCFile("fur_elise.abc"));
+            play(readABCFile("paddy.abc"));
         } catch (IOException e) {
             e.printStackTrace();
         }
