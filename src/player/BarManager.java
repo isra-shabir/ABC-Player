@@ -2,6 +2,8 @@ package player;
 
 import java.util.ArrayList;
 
+import data.Note;
+
 public class BarManager{
 	
     myPlayer player;

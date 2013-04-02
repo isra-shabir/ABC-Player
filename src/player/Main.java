@@ -12,7 +12,15 @@ import java.util.Scanner;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
 
+import data.BarLineObject;
+import data.Lexer;
+import data.Song;
+import data.Voice;
+
 import sound.SequencePlayer;
+import transformers.Parser;
+import transformers.Parser2;
+import transformers.Token;
 
 //import sound.SequencePlayer;
 
@@ -31,7 +39,6 @@ public class Main {
      * @param file the name of input abc file
      */
     public static void play(String file) {
-        // YOUR CODE HERE
         
         System.out.println("Playing...");
         String music = file; 
@@ -41,30 +48,14 @@ public class Main {
         //Tokenize
         ArrayList<Token> tokens = myLexer.lex();        
         //Parse
-        System.out.println("Creating Parser...");
         Parser myParser = new Parser(tokens);
-        System.out.println("Parsing now...");
         ArrayList<BarLineObject> barLineObjects = myParser.parse(); 
-        System.out.println("Parsing Done.");
         //Get Header Vals from the parser
         String keySignature = myParser.getKey() ;
         int tempo =   myParser.getTempo() ;
-        System.out.println("Main's tempo: "+tempo);
-//        String name = myParser.getName();
-//        String title = myParser.getTitle();
-//        int indexNum = myParser.getIndexNum();
         
         //Parse 1
         ArrayList<String> voiceNames = myParser.getVoiceNames(); //an ArrayList of the names of voices
-
-        //default value is 1/1 for M
-//        int MeterNum = 1;
-//        int MeterDen = 1;
-//        if (myParser.getMeter().size()==2){
-//        	MeterNum = myParser.getMeter().get(0);
-//        	MeterDen = myParser.getMeter().get(1);
-//        }
-        //end of collecting header information
         
         //Parse 2
         Parser2 myParser2 = new Parser2(voiceNames);

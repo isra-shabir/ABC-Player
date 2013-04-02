@@ -2,6 +2,11 @@ package player;
 
 import java.util.ArrayList;
 
+import data.Bar;
+import data.BarLineObject;
+import data.NoteStruct;
+import data.Voice;
+
 public class VoiceParser {
 	
 	private ArrayList<BarLineObject> voiceObjects = new ArrayList<BarLineObject>();
