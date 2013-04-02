@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class ParserTest {
-	String dummyHeader = "X:0\nT:hello\nQ:100\nK:c\n";
+	String dummyHeader = "X:0\nT:hello\nL:4/4\nQ:100\nK:c\n";
 	@Test
 	public void ParserTest1(){
 		//test note constructor with only a note
@@ -29,6 +29,7 @@ public class ParserTest {
 		
 		String output = (parse.parse().toString());
 		System.out.println(output);
+		System.out.println("tokens: "+parse.getTokensString());
 		assertEquals(output,"[_ A  4/4, ^ B  4/4]");
 	}
 	
@@ -199,10 +200,12 @@ public class ParserTest {
         Parser parse = new Parser(test.lex());
         assertEquals(parse.getIndexNum(),0);
         assertEquals(parse.getTitle(),"hello");
-        assertEquals(parse.getTempo(),100);
-        assertEquals(parse.getDefLen().toString(),"[1, 16]");
+        assertEquals(parse.getTempo(),25);
+        assertEquals(parse.getDefNum(),1);
+        assertEquals(parse.getDefDen(),16);
     }
 	
+
 	@Test
     public void ParserTest17(){
         //test header parsing- testing the deletion of the tokens
@@ -211,8 +214,9 @@ public class ParserTest {
         Parser parse = new Parser(test.lex());
         assertEquals(parse.getIndexNum(),0);
         assertEquals(parse.getTitle(),"hello");
-        assertEquals(parse.getTempo(),100);
-        assertEquals(parse.getDefLen().toString(),"[1, 16]");
+        assertEquals(parse.getTempo(),25);
+        assertEquals(parse.getDefNum(),1);
+        assertEquals(parse.getDefDen(),16);
         assertEquals(parse.getKey(),"C ");
     }	
 }
