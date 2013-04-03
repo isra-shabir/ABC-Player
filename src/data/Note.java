@@ -15,7 +15,8 @@ public class Note implements NoteStruct{
     /**
      * Constructs Note object
      * @param aBasenote - a string indicating the basenote, such as "C", "e", or "z"
-     * @param aAccidental - a string indicating the accidental, such as "^^", "_", or "="
+     * @param aAccidental - an int indicating the accidental, "^^" = 2, "^" = 1, "=" = 0, "_" = -1, "__" = -2, 
+     * 						no accidental = 0
      * @param aOctave - a string indicating the octave, such as "," or "'"
      * @param num - an int: the time numerator 
      * @param denom - an int: the time denominator

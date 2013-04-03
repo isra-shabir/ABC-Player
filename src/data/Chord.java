@@ -67,6 +67,7 @@ public class Chord implements NoteStruct{
     @Override
     /**
      * method to have String representation of the chord
+     * @return string c - string representation of chord
      */
     public String toString(){
         String c = "Chord: \n";
