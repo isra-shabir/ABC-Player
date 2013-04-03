@@ -13,11 +13,11 @@ import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
 
 import data.BarLineObject;
-import data.Lexer;
 import data.Song;
 import data.Voice;
 
 import sound.SequencePlayer;
+import transformers.Lexer;
 import transformers.Parser;
 import transformers.Parser2;
 import transformers.Token;

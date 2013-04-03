@@ -1,4 +1,4 @@
-package data;
+package transformers;
 
 
 import static org.junit.Assert.*;
@@ -7,8 +7,6 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import transformers.Token;
-import transformers.Token.Type;
 
 
 public class LexerTest {

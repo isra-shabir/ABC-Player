@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import data.BarLineObject;
 import data.BarSignal;
 import data.Chord;
-import data.Lexer;
 import data.Note;
 import data.Tuplet;
 import data.VoiceIndicator;
