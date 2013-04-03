@@ -21,6 +21,11 @@ import player.myPlayer;
 
 import sound.SequencePlayer;
 
+/**
+ * 
+ * @author AHaidar
+ * @category no_didit
+ */
 public class Parser2Test {
 
     Note C = new Note("C", 10, "", 1, 4);
