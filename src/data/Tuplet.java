@@ -6,7 +6,7 @@ import player.BarManager;
 
 
 public class Tuplet implements NoteStruct{
-    
+
     ArrayList<Note> notes = new ArrayList<Note>();
     int numNotes = 0;
     

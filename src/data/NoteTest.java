@@ -3,6 +3,11 @@ package data;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+/**
+ * this class tests out functionalities 
+ * described in the Notes class 
+ * 
+ */
 
 public class NoteTest {
 

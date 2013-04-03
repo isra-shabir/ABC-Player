@@ -6,6 +6,10 @@ import player.myPlayer;
 
 public class Song {
 	
+	/**
+	 * 
+	 */
+	
 	ArrayList<Voice> voices = new ArrayList<Voice>();
 	
 	public Song(ArrayList<Voice> voices){

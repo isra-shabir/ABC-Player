@@ -13,10 +13,15 @@ import player.myPlayer;
 import sound.SequencePlayer;
 
 public class BarTest {
+	
+	/**
+	 * Testing the Bar class and its functionality
+	 */
 
     @Test
     public void basicTest(){
-        
+        //testing the bar class
+   
         Tuplet T1 = new Tuplet(3);
         T1.addNote(new Note("E", 0, "", 1, 8));
         T1.addNote(new Note("G", 0, "", 1, 8));
@@ -96,8 +101,8 @@ public class BarTest {
         
         Song InTheEnd = new Song();
         InTheEnd.add(Aziz);
-        //InTheEnd.add(Muneeza);
-        //InTheEnd.add(Eta);
+//        InTheEnd.add(Muneeza);
+//        InTheEnd.add(Eta); 
         
         SequencePlayer sqPlayer;
         try {

@@ -6,6 +6,11 @@ import player.myPlayer;
 
 public class Voice {
 	
+	/**
+	 * A Voice object contains all music of a single voice.
+	 * Music is in the form of a list of bars (in sequential order).
+	 * 
+	 */
 	
 	private String name;
 	private int startPoint = 0;
@@ -52,7 +57,7 @@ public class Voice {
      * @param b, a positive non-zero int.
      * @return lcm, the largest number that is a multiple of both a and b.
      */
-    private int lowestCommonMultiple(int a, int b){
+    public int lowestCommonMultiple(int a, int b){
         
         int big = a;
         int small = a;

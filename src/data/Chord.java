@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import player.BarManager;
 
 public class Chord implements NoteStruct{
+	
+	/**
+	 * Chord object contains notes that 
+	 * sound simultaneous
+	 * This class knows its notes and contains
+	 * methods that are called on its array of notes
+	 */
     
     ArrayList<Note> notes = new ArrayList<Note>();
     

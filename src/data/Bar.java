@@ -5,10 +5,18 @@ import java.util.ArrayList;
 import player.BarManager;
 import player.myPlayer;
 
+/**
+ * The Bar class represents notes
+ * in batches
+ * 
+ * @author ishabir
+ *
+ */
 public class Bar{
 	
     ArrayList<NoteStruct> noteStructs = new ArrayList<NoteStruct>();
     
+    //numerator length and denominator length
     private int lnum, lden;
     
     /**

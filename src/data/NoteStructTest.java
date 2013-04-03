@@ -12,11 +12,11 @@ import player.myPlayer;
 import sound.SequencePlayer;
 
 public class NoteStructTest {
-    
-    @Test
+   
     /**
      * Test base notes, without accidentals
      */
+	 @Test
     public void testPlayer(){
        
         SequencePlayer sqPlayer;
