@@ -34,6 +34,7 @@ public class LexerTest {
     			
     	expected.add(new Token(Type.BASENOTE, "A"));
     	expected.add(new Token(Type.BASENOTE, "B"));
+    	expected.add(new Token(Type.SPACE, ""));
 
     	assertEquals(expected.toString(), test.lex().toString());     		
     
@@ -50,6 +51,7 @@ public class LexerTest {
     	expected.add(new Token(Type.DIGIT, "2"));
     	expected.add(new Token(Type.FORWARDSLASH, "/"));
     	expected.add(new Token(Type.DIGIT, "3"));
+    	expected.add(new Token(Type.SPACE, ""));
 
     	assertEquals(expected.toString(), test.lex().toString());     		
     
@@ -66,6 +68,7 @@ public class LexerTest {
     	expected.add(new Token(Type.DIGIT, "2"));
     	expected.add(new Token(Type.FORWARDSLASH, "/"));
     	expected.add(new Token(Type.DIGIT, "3"));
+    	expected.add(new Token(Type.SPACE, ""));
 
     	assertEquals(expected.toString(), test.lex().toString());     		
     
@@ -82,6 +85,7 @@ public class LexerTest {
     	expected.add(new Token(Type.ACCIDENTAL, "^"));
     	expected.add(new Token(Type.BASENOTE, "C"));
     	expected.add(new Token(Type.OCTAVE, ","));
+    	expected.add(new Token(Type.SPACE, ""));
 
     	assertEquals(expected.toString(), test.lex().toString());     		
     
@@ -101,6 +105,7 @@ public class LexerTest {
     	expected.add(new Token(Type.BASENOTE, "a"));
     	expected.add(new Token(Type.BASENOTE, "b"));
     	expected.add(new Token(Type.CHORDEND, "]"));
+    	expected.add(new Token(Type.SPACE, ""));
     	
     	assertEquals(expected.toString(), test.lex().toString());     		
     
@@ -118,6 +123,7 @@ public class LexerTest {
     	expected.add(new Token(Type.BASENOTE, "a"));
     	expected.add(new Token(Type.BAR, "|"));
     	expected.add(new Token(Type.BASENOTE, "b"));
+    	expected.add(new Token(Type.SPACE, ""));
      	
     	assertEquals(expected.toString(), test.lex().toString());     		    
     }
@@ -135,6 +141,7 @@ public class LexerTest {
     	expected.add(new Token(Type.BASENOTE, "a"));	
     	expected.add(new Token(Type.BASENOTE, "b"));
     	expected.add(new Token(Type.REPEATEND, ":|"));
+    	expected.add(new Token(Type.SPACE, ""));
     	
     	assertEquals(expected.toString(), test.lex().toString());     		
     
@@ -148,6 +155,7 @@ public class LexerTest {
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     	expected.add(new Token(Type.VOICE, "ab"));
+    	expected.add(new Token(Type.SPACE, ""));
     	
     	assertEquals(expected.toString(), test.lex().toString());     		
     
@@ -162,7 +170,7 @@ public class LexerTest {
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     	expected.add(new Token(Type.VOICE, " ab 456dg"));
-    	expected.add(new Token(Type.NEWLINE, ""));
+    	expected.add(new Token(Type.SPACE, ""));
     	
     	assertEquals(expected.toString(), test.lex().toString());     		
     
@@ -178,6 +186,7 @@ public class LexerTest {
     	expected.add(new Token(Type.OPENBAR, "[|"));
     	expected.add(new Token(Type.BASENOTE, "a"));
     	expected.add(new Token(Type.ENDBAR, "|]"));
+    	expected.add(new Token(Type.SPACE, ""));
     	
     	assertEquals(expected.toString(), test.lex().toString());     		
     }
@@ -190,7 +199,10 @@ public class LexerTest {
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     	expected.add(new Token(Type.SECONDREPEAT, "[2"));
-    	expected.add(new Token(Type.BASENOTE, "a"));    	
+    	expected.add(new Token(Type.BASENOTE, "a"));   
+    	expected.add(new Token(Type.SPACE, ""));
+    	
+    	
     	assertEquals(expected.toString(), test.lex().toString());     		
     }
     
@@ -203,7 +215,8 @@ public class LexerTest {
     	
     	expected.add(new Token(Type.BASENOTE, "a"));  
     	expected.add(new Token(Type.SPACE, ""));    	
-    	expected.add(new Token(Type.BASENOTE, "b"));    	
+    	expected.add(new Token(Type.BASENOTE, "b")); 
+    	expected.add(new Token(Type.SPACE, ""));
 
     	assertEquals(expected.toString(), test.lex().toString());     		
     }
@@ -252,6 +265,7 @@ public class LexerTest {
     	expected.add(new Token(Type.FORWARDSLASH, "/")); 
     	expected.add(new Token(Type.SPACE, ""));
     	expected.add(new Token(Type.BAR, "|"));
+    	expected.add(new Token(Type.SPACE, ""));
 
     	assertEquals(expected.toString(), test.lex().toString());     		
     }
@@ -264,6 +278,7 @@ public class LexerTest {
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     	expected.add(new Token(Type.NAME, " Beethoven"));
+    	expected.add(new Token(Type.SPACE, ""));
     	
     	assertEquals(expected.toString(), test.lex().toString());     	
     	 
@@ -278,6 +293,7 @@ public class LexerTest {
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     	expected.add(new Token(Type.TITLE, " The Light"));
+    	expected.add(new Token(Type.SPACE, ""));
     
     	assertEquals(expected.toString(), test.lex().toString());     	
     	
@@ -291,6 +307,7 @@ public class LexerTest {
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     	expected.add(new Token(Type.KEYSIGNATURE, " Am"));
+    	expected.add(new Token(Type.SPACE, ""));
     	
     	assertEquals(expected.toString(), test.lex().toString());     	
     	
@@ -304,6 +321,7 @@ public class LexerTest {
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     	expected.add(new Token(Type.KEYSIGNATURE, " A"));
+    	expected.add(new Token(Type.SPACE, ""));
     	
     	assertEquals(expected.toString(), test.lex().toString());     
     }
@@ -317,6 +335,7 @@ public class LexerTest {
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     	expected.add(new Token(Type.DEFLENGTH, " 2/3"));
+    	expected.add(new Token(Type.SPACE, ""));
     	
     	assertEquals(expected.toString(), test.lex().toString());     	
     }
@@ -329,6 +348,7 @@ public class LexerTest {
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     	expected.add(new Token(Type.DEFLENGTH, " 2 / 3"));
+    	expected.add(new Token(Type.SPACE, ""));
     	
     	assertEquals(expected.toString(), test.lex().toString());     	
     }
@@ -342,6 +362,7 @@ public class LexerTest {
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     	expected.add(new Token(Type.METER, " 2/3"));
+    	expected.add(new Token(Type.SPACE, ""));
     	
     	assertEquals(expected.toString(), test.lex().toString());     	
     	
@@ -355,6 +376,7 @@ public class LexerTest {
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     	expected.add(new Token(Type.INDEXNUM, " 3"));
+    	expected.add(new Token(Type.SPACE, ""));
     
     	assertEquals(expected.toString(), test.lex().toString());     	
 
@@ -368,6 +390,7 @@ public class LexerTest {
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     	expected.add(new Token(Type.TEMPO, " 2"));
+    	expected.add(new Token(Type.SPACE, ""));
     	
     	assertEquals(expected.toString(), test.lex().toString());     	
     	
@@ -380,8 +403,9 @@ public class LexerTest {
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     	expected.add(new Token(Type.TITLE, " The Light"));
-    	expected.add(new Token(Type.NEWLINE, ""));
+    	expected.add(new Token(Type.SPACE, ""));
     	expected.add(new Token(Type.BASENOTE, "C"));
+    	expected.add(new Token(Type.SPACE, ""));
     	
     	assertEquals(expected.toString(), test.lex().toString());     	
 
@@ -417,6 +441,7 @@ public class LexerTest {
     	expected.add(new Token(Type.FORWARDSLASH, "/"));
     	expected.add(new Token(Type.DIGIT, "4"));
     	expected.add(new Token(Type.CHORDEND, "]"));
+    	expected.add(new Token(Type.SPACE, ""));
 	
     	assertEquals(expected.toString(), test.lex().toString());
      	
@@ -446,6 +471,7 @@ public class LexerTest {
     	expected.add(new Token(Type.DIGIT, "4"));
     	expected.add(new Token(Type.ACCIDENTAL, "^^__")); 
     	expected.add(new Token(Type.BAR, "|"));
+    	expected.add(new Token(Type.SPACE, ""));
     	
     	assertEquals(expected.toString(), test.lex().toString());
     	
@@ -459,6 +485,7 @@ public class LexerTest {
     	ArrayList<Token> expected = new ArrayList<Token>();
     	
     	expected.add(new Token(Type.INVALID, "4W$#say.@x|"));
+    	expected.add(new Token(Type.SPACE, ""));
     	
     	try{
     		test.lex();
@@ -477,6 +504,7 @@ public class LexerTest {
     	
     	
     	expected.add(new Token(Type.INVALID, "4W$#say.@x|"));
+    	expected.add(new Token(Type.SPACE, ""));
     	try{
     		test.lex().toString();
     		assertEquals(0,1);
