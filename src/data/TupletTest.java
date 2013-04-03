@@ -6,6 +6,9 @@ import static org.junit.Assert.*;
 
 public class TupletTest {
 
+	/**
+	 * class to test functionalities described in Tuplet class
+	 */
     //Test representation of time in simplest form, 
     //Maintaining a denominator as a multiple of 4.
     @Test

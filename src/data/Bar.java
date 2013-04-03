@@ -6,8 +6,10 @@ import player.BarManager;
 import player.myPlayer;
 
 /**
- * The Bar class represents notes
+ * The Bar class is a representation of notes 
  * in batches
+ * This class contains all the methods that 
+ * are applicable to these batches
  * 
  * @author ishabir
  *
@@ -35,6 +37,12 @@ public class Bar{
     	this.lnum = lnum;
     	this.lden= lden;
     }
+    
+    /**
+     * this method adds noteStruct objects
+     * to the noteStructs array
+     * @param struct
+     */
     
     public void add(NoteStruct struct){
         this.noteStructs.add(struct);
@@ -101,6 +109,12 @@ public class Bar{
 	/**
 	 * Produces a string representation of the bar.
 	 * @return: A string representing the bar.
+	 */
+	
+	/**
+	 * this method represents the noteStructs
+	 * array as a String.
+	 * Each noteStruct object is printed on a newline
 	 */
 	
 	@Override

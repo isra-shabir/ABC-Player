@@ -45,7 +45,6 @@ public class SongTest {
 		int expectedOutput = 6;
 		
 		assertEquals(expectedOutput, voices.get(0).getMinTicksPerQuarter());		
-	
 	}
 	
 	@Test

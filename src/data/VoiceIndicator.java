@@ -19,10 +19,15 @@ public class VoiceIndicator implements BarLineObject {
         this.voiceName = voiceName;
     }
 
+    /**
+     * fetches the name of the voice
+     * @return object's voice name
+     */
     public String getVoiceName(){
         return this.voiceName;
     }
     
+    // collection of methods that determine what kind of object VoiceIndicator object is
     public boolean isNotestruct() {
         return false;
     }
@@ -34,6 +39,10 @@ public class VoiceIndicator implements BarLineObject {
     public boolean isType(String type) {
         return type == "VOICE";
     }
+    
+    /**
+     * String representation of VoiceIndicator object name
+     */
     
     @Override
     public String toString(){

@@ -7,7 +7,7 @@ import player.myPlayer;
 public class Song {
 	
 	/**
-	 * 
+	 * Represents an entire music piece. Contains all the voices
 	 */
 	
 	ArrayList<Voice> voices = new ArrayList<Voice>();
@@ -16,14 +16,22 @@ public class Song {
 	    this.add(voices);
 	}
 	
+	// another constructor to distinguish
 	public Song(){
-    
 	}
 	
+	/**
+	 * method to add a voice to the voices array
+	 * @param v - Voice object to be added
+	 */
 	public void add(Voice v){
 	    voices.add(v);
 	}
 	
+	/**
+	 * to add voice objects into class voices array from another voice array
+	 * @param vs - voice objects to be added into voices array
+	 */
 	public void add(ArrayList<Voice> vs){
 	    for (int i = 0; i < vs.size(); i++){
 	        voices.add(vs.get(i));

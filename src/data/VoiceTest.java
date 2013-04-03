@@ -15,9 +15,7 @@ public class VoiceTest {
 
 	@Test
 	public void test1() {
-		// testing basic functionality of the getMinTicks() method in the Voice class
-		
-			
+		// testing basic functionality of the getMinTicks() method in the Voice class	
 		Bar bar1 = new Bar();
 			
 		Note note1 = new Note("A", 10, "'", 2,3);
@@ -31,7 +29,6 @@ public class VoiceTest {
 		tuplet1.addNote(note1);
 		tuplet1.addNote(note2);
 			
-			
 		bar1.add(chord1);
 		bar1.add(tuplet1);
 
@@ -41,8 +38,7 @@ public class VoiceTest {
 			
 		int expectedOutput = 6;
 			
-		assertEquals(expectedOutput, bar.get(0).getMinTicksPerQuarter());		
-		
+		assertEquals(expectedOutput, bar.get(0).getMinTicksPerQuarter());			
 	}
 	
 	@Test
@@ -52,9 +48,7 @@ public class VoiceTest {
 		// LCM of 3 and 15 = 15
 		
 		int expectedLCM = 15;
-		
 		Voice voice = new Voice("adam");
-		
 		assertEquals(expectedLCM, voice.lowestCommonMultiple(15,3));
 	}
 }

@@ -12,6 +12,11 @@ import player.myPlayer;
 
 import sound.SequencePlayer;
 
+/**
+ * 
+ * @author llp-admin
+ * @category no_didit
+ */
 public class BarTest {
 	
 	/**

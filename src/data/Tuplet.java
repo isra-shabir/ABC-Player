@@ -6,6 +6,10 @@ import player.BarManager;
 
 
 public class Tuplet implements NoteStruct{
+	
+	/**
+	 * Tuplet class contains grouping of notes with special time considerations
+	 */
 
     ArrayList<Note> notes = new ArrayList<Note>();
     int numNotes = 0;
@@ -21,7 +25,6 @@ public class Tuplet implements NoteStruct{
      * feeding specific values to the constructor
      * @param value
      */
-    
     public Tuplet(int value){
         if (value == 2 || value == 3 || value == 4){
             this.value = value;
@@ -77,6 +80,7 @@ public class Tuplet implements NoteStruct{
         return currentTick;
     }
     
+    // collection of methods that determine what kind of object Tuplet object is
     public boolean isNotestruct() {
         return true;
     }
@@ -89,6 +93,10 @@ public class Tuplet implements NoteStruct{
         return false;
     }
     
+    /**
+     * String representation of a tuplet object
+     * prints notes in new lines
+     */
     public String toString(){
         String t = "Tuplet "+this.value;
         for (int i=0; i<this.notes.size();i++){

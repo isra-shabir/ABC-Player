@@ -18,6 +18,7 @@ public class BarSignal implements BarLineObject {
 		this.value= value; 
 	}
 
+	// a collection of methods checking what kind of BarSignal object it is
 
 	public boolean isNotestruct() {
         return false;
@@ -31,6 +32,9 @@ public class BarSignal implements BarLineObject {
 	    return type.equals(this.value);
 	}
 	
+	/**
+	 * @return value - string representation of BarSignal object
+	 */
 	@Override
 	public String toString(){
 	    return this.value;

@@ -11,6 +11,11 @@ import player.myPlayer;
 
 import sound.SequencePlayer;
 
+/**
+ * 
+ * @author llp-admin
+ *@category no_didit
+ */
 public class NoteStructTest {
    
     /**
@@ -19,7 +24,10 @@ public class NoteStructTest {
 	 @Test
     public void testPlayer(){
        
+		 // testing Player functionality
+		 
         SequencePlayer sqPlayer;
+        
         try {
             sqPlayer = new SequencePlayer(140, 12);
             myPlayer Ahmed = new myPlayer("Cm", sqPlayer);
@@ -34,8 +42,6 @@ public class NoteStructTest {
             int ticksPerQuarter = 12;
             
             Note C = new Note("C",10,"", 1, 8);
-            
-            
             
             C.addToPlayer(0, ticksPerQuarter, barManager);
             
@@ -55,8 +61,6 @@ public class NoteStructTest {
         } catch (InvalidMidiDataException e) {
             e.printStackTrace();
         }
-        
-                    
     }
     
     /**
