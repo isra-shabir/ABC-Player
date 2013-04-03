@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import transformers.Token.Type;
+
 
 
 public class LexerTest {

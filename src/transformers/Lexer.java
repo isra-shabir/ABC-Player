@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import transformers.Token.Type;
+
 
 /**
  * The lexer will take the input from the abc file and creates a list of tokens for the parser to use
