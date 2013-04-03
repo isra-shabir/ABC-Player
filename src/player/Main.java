@@ -53,12 +53,19 @@ public class Main {
         //Get Header Vals from the parser
         String keySignature = myParser.getKey() ;
         int tempo =   myParser.getTempo() ;
+        int lnum = 1;
+        int lden = 1;
+        if (myParser.getMeter().size() == 2 ){
+        	lnum = myParser.getMeter().get(0);
+        	lden = myParser.getMeter().get(1);
+        }
+        
         
         //Parse 1
         ArrayList<String> voiceNames = myParser.getVoiceNames(); //an ArrayList of the names of voices
         
         //Parse 2
-        Parser2 myParser2 = new Parser2(voiceNames);
+        Parser2 myParser2 = new Parser2(voiceNames,lnum,lden);
         myParser2.parse(barLineObjects);
         ArrayList<Voice> voices = myParser2.getVoices();
         

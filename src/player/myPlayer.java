@@ -133,7 +133,7 @@ public class myPlayer {
     public void addNote(int startingTick, int length, String basenote,
             int accidental, String octave) {
         
-        System.out.println("Adding "+basenote+octave+" of length "+length +" at "+startingTick);
+      //  System.out.println("Adding "+basenote+octave+" of length "+length +" at "+startingTick);
         
         if (basenote.equals("z") || basenote.equals("Z")){
             return;

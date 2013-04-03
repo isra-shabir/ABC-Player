@@ -36,5 +36,13 @@ public class NoteTest {
         assertEquals("2C,,2/4",test.toString());
     }
     
+    @Test
+    public void NoteTest5() {
+    	//test basic functionality of time representation: 3/16 becomes 3/16
+    	Note test = new Note("C", 10, "", 3, 16);
+    	assertEquals("10C3/16",test.toString());
+    }
+    
+    
 
 }

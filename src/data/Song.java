@@ -34,8 +34,7 @@ public class Song {
 	    int minTicks = 1;
 	    for (int i = 0; i< voices.size(); i++){
 	        int min = voices.get(i).getMinTicksPerQuarter(); 
-	        minTicks = lowestCommonMultiple(min, minTicks);
-	        
+	        minTicks = lowestCommonMultiple(min, minTicks);      
 	    }
 	    return minTicks;
 	}
@@ -46,7 +45,7 @@ public class Song {
      * @param b, a positive non-zero int.
      * @return lcm, the largest number that is a multiple of both a and b.
      */
-    private int lowestCommonMultiple(int a, int b){
+    public int lowestCommonMultiple(int a, int b){
         
         int big = a;
         int small = a;
@@ -63,8 +62,7 @@ public class Song {
         }
         return big;
     }
-	
-	
+		
 	/**
      * Adds everything in the song to the player.
      * 
