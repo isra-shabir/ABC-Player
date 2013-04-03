@@ -57,22 +57,15 @@ public class Lexer {
     	Pattern bar = Pattern.compile(Type.BAR.getRegex());
     	Pattern repeatBeg = Pattern.compile(Type.REPEATBEG.getRegex());
     	Pattern repeatEnd = Pattern.compile(Type.REPEATEND.getRegex());
-    	Pattern voice = Pattern.compile(Type.VOICE.getRegex());
     	Pattern openBar = Pattern.compile(Type.OPENBAR.getRegex());
     	Pattern endBar = Pattern.compile(Type.ENDBAR.getRegex());
     	Pattern firstRepeat = Pattern.compile(Type.FIRSTREPEAT.getRegex());
     	Pattern secondRepeat = Pattern.compile(Type.SECONDREPEAT.getRegex());
     	Pattern comment = Pattern.compile(Type.COMMENT.getRegex());
+    	Pattern newline = Pattern.compile(Type.NEWLINE.getRegex());
     	Pattern space = Pattern.compile(Type.SPACE.getRegex());
     	
 
-    	Pattern name = Pattern.compile(Type.NAME.getRegex());
-    	Pattern keySignature = Pattern.compile(Type.KEYSIGNATURE.getRegex());
-    	Pattern defLength = Pattern.compile(Type.DEFLENGTH.getRegex());
-    	Pattern meter = Pattern.compile(Type.METER.getRegex());
-    	Pattern tempo = Pattern.compile(Type.TEMPO.getRegex());
-    	Pattern title = Pattern.compile(Type.TITLE.getRegex());
-    	Pattern indexNum = Pattern.compile(Type.INDEXNUM.getRegex());
 
     	Pattern invalid = Pattern.compile(Type.INVALID.getRegex());
 
@@ -110,7 +103,8 @@ public class Lexer {
     		else if(firstRepeat.matcher(token).matches())	tokens.add(new Token(Type.FIRSTREPEAT, token));
     		else if(secondRepeat.matcher(token).matches())	tokens.add(new Token(Type.SECONDREPEAT, token));
     		else if(comment.matcher(token).matches())       tokens.add(new Token(Type.COMMENT, token));
-    		else if(space.matcher(token).matches())			tokens.add(new Token(Type.SPACE, token)); 	
+    		else if(newline.matcher(token).matches())       tokens.add(new Token(Type.NEWLINE, ""));
+    		else if(space.matcher(token).matches())			tokens.add(new Token(Type.SPACE, "")); 	
     		else if(invalid.matcher(token).matches()){
     			throw new RuntimeException("There is an invalid entry "+token+"in your abc file. YOU STUPID?");
     		}
