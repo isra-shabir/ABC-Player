@@ -59,11 +59,15 @@ public class Chord implements NoteStruct{
         return false;
     }
     
+   
     public boolean isVoiceIndicator(){
         return false;
     }
  
     @Override
+    /**
+     * method to have String representation of the chord
+     */
     public String toString(){
         String c = "Chord: \n";
         for (int i = 0; i<notes.size(); i++){

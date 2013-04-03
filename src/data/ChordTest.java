@@ -32,31 +32,22 @@ public class ChordTest {
 	public void test2() {
 		// testing basic functionality of addToPlayer method
 		
+		
 	}
 	
 	@Test
 	public void test3(){
-		//testing basic functionality of toString() method
+		//testing basic functionality of chord's toString() method
 		
 		Note note1 = new Note("A",1, ",", 2, 3);
 		Note note2 = new Note("B",0, "'", 1, 4);
-//
-//		Chord chord = new Chord();
-//		chord.addNote(note1);
-//		chord.addNote(note2);
+
+		Chord chord = new Chord();
+		chord.addNote(note1);
+		chord.addNote(note2);
+			
+		String expected = "Chord: \n1A,8/12\n0B'1/4\n";
 		
-		System.out.println("notesToString:" + note1.toString());
-		
-		
-//		String expected = "Chord: A^,23\n Chord: B='14\n";
-		
-		
-		
-		
-		
-		
-		
-	}
-	
-	
+		assertEquals(expected, chord.toString());
+	}	
 }
