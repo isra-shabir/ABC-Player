@@ -77,7 +77,6 @@ public class Song {
 	public void addToPlayer(myPlayer player){
 	    
 	    int ticksPerQuarter = this.getMinTicksPerQuarter();
-	    System.out.println("Ticks Per Quarter: "+ticksPerQuarter);
         for (int i = 0; i<voices.size(); i++){
             voices.get(i).addToPlayer(0,ticksPerQuarter, player);
         }

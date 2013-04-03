@@ -12,6 +12,11 @@ public class BarManager{
     double totalLength;
     String sBar = "";
     
+    /**
+     * Creates a bar manager, with a myPlayer object that should be used
+     * to add notes to.
+     * @param player
+     */
     public BarManager(myPlayer player){
         this.player = player;
         tracker.add(10);
@@ -23,7 +28,19 @@ public class BarManager{
         tracker.add(10);
     }
     
-     
+    /**
+     * Adds a note to the player, but first changes accidentals if any previous
+     * notes of the same basenote had any (gives that to them, but only if it has nothing).
+     * @param startTicking - tick where this note should start
+     * @param length - length of this note
+     * @param basenote
+     * @param accidental - an int, such as -1 or 10
+     *          10 indicates no accidental. 0 indicates natural.
+     *          1,2,-1,-2 are sharp(s), flat(s)
+     * @param octave - a string, such as ',' or ','
+     * @param num numerator of the note's time length
+     * @param den denominator of the note's time length
+     */
     public void addNote(int startTicking, int length, String basenote, int accidental, String octave, int num, int den){
         updateTracker(basenote, accidental);
         accidental = processNote(basenote, accidental);
@@ -116,7 +133,11 @@ public class BarManager{
         }
     }
     
-    
+    /**
+     * Issues a warning if the bar is not of proper length
+     * @param lnum - the L numerator from the header
+     * @param lden - the L denominator from the header
+     */
     public void checkTotalLength(int lnum, int lden){
     	double l = (double) lnum / lden;
     	if (this.totalLength != l && totalLength != 0) {

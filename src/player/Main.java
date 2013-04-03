@@ -1,9 +1,5 @@
 package player;
 
-//import java.io.File;
-//import java.io.FileNotFoundException;
-//import java.util.Scanner;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,8 +18,6 @@ import transformers.Parser;
 import transformers.Parser2;
 import transformers.Token;
 
-//import sound.SequencePlayer;
-
 /**
  * Main entry point of your application.
  */
@@ -40,7 +34,6 @@ public class Main {
      */
     public static void play(String file) {
         
-        System.out.println("Playing...");
         String music = file; 
 
         //Create Lexer
@@ -72,10 +65,9 @@ public class Main {
         Song mySong = new Song(voices);
         SequencePlayer sqPlayer;
         try {
-            System.out.println("Creating SQ "+tempo+", minTpQ: "+mySong.getMinTicksPerQuarter());
             sqPlayer = new SequencePlayer(tempo, mySong.getMinTicksPerQuarter());
-            System.out.println("Playing in "+keySignature);
             myPlayer MrAhmed = new myPlayer(keySignature, sqPlayer);
+            
             mySong.addToPlayer(MrAhmed);
             sqPlayer.play();
             
@@ -91,16 +83,22 @@ public class Main {
     public static void main(String[] args) throws MidiUnavailableException, InvalidMidiDataException {
 
         try {
-            play(readABCFile("hastalavista" +
+            play(readABCFile("sample_abc\\"+"fur_elise" +
             		".abc"));
         } catch (IOException e) {
             e.printStackTrace();
         }    
     }
     
+    /**
+     * 
+     * @param name - name of file (w location from default)
+     * @return the string in the file
+     * @throws IOException if invalid file / not found
+     */
     private static String readABCFile(String name) throws IOException {
 
-        File file = new File("sample_abc\\"+name);
+        File file = new File(name);
         StringBuilder fileContents = new StringBuilder((int)file.length());
         Scanner scanner = new Scanner(file);
         String lineSeparator = System.getProperty("line.separator");

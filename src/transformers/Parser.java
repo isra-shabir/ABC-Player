@@ -119,7 +119,6 @@ public class Parser {
 	    	}
 	    	
 	        Token token = tokens.get(this.currentToken);
-//	        System.out.println("Note token: "+token);
 	        
 	        //ACCIDENTAL
 	        //can only be the before the note, otherwise, throw exception
@@ -238,7 +237,6 @@ public class Parser {
 	private Chord chordConstructor(){
 	    Chord chord = new Chord();
 	    while (this.currentToken < tokens.size() && tokens.get(this.currentToken).isType("CHORDEND") == false){
-//	        System.out.println("Chord while loop");
 	        chord.addNote(this.noteConstructor());
 	    }
 	    this.currentToken++;
@@ -257,9 +255,7 @@ public class Parser {
 	    Tuplet tuplet = new Tuplet(value);
 	    while (this.currentToken < tokens.size() && (tokens.get(this.currentToken).isType("BASENOTE") == true || 
 	            tokens.get(this.currentToken).isType("ACCIDENTAL") == true )){
-	        System.out.println("Tuplet loop: "+tokens.get(this.currentToken));
 	        Note newTupletNote = this.noteConstructor();
-	        System.out.println(newTupletNote);
 	        tuplet.addNote(newTupletNote);
 	    }
 	    return tuplet;

@@ -51,7 +51,6 @@ public class Bar{
 		    int min = noteStructs.get(i).getMinTicks(); 
 		    minTicks = lowestCommonMultiple(minTicks, min);
 		}
-	    System.out.println("---mtpq of bar: "+minTicks);
 	    return minTicks;
 	}
 	

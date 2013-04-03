@@ -15,6 +15,12 @@ public class VoiceParser {
 	private Voice voice;
 	private int lnum, lden;
 	
+	/**
+	 * Builds the parser
+	 * @param name, string, of voice. 
+	 * @param lnum : int, default bar label numerator
+	 * @param lden : int, default bar label denominator
+	 */
 	public VoiceParser(String name, int lnum, int lden){
 	    this.voiceName = name;
 	    voice = new Voice(this.voiceName);
@@ -67,7 +73,6 @@ public class VoiceParser {
 	            
 	            if (repeatingFirst){
 	                part1counter++;
-//	                System.out.println("p1 " + part1counter);
 	            }
 	            
 	            if (repeatingSecond){

@@ -67,7 +67,6 @@ public class Note implements NoteStruct{
      * @modify modifies timeNumerator, timeDenominator
      */
     public void tupletTimeMutate(int tupletValue){
-        System.out.println("Mutating length..");
         if (tupletValue == 2){
             this.timeNumerator = this.timeNumerator * 3;
             this.timeDenominator = this.timeDenominator * 2;
@@ -80,8 +79,6 @@ public class Note implements NoteStruct{
             this.timeNumerator = this.timeNumerator * 3;
             this.timeDenominator = this.timeDenominator * 4;
         } 
-        System.out.println("   Now, Numerator: "+this.timeNumerator);
-        System.out.println("   Now, Denominator: "+this.timeDenominator);
         this.cleanTime();   
    }
     

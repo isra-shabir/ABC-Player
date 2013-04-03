@@ -47,7 +47,6 @@ public class Voice {
 	        int min = bars.get(i).getMinTicksPerQuarter(); 
 	        minTicks = lowestCommonMultiple(minTicks, min);
 	    }
-	    System.out.println("mtpq of the voice: "+minTicks);
 	    return minTicks;
 	}
 	

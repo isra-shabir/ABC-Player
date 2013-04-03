@@ -29,7 +29,7 @@ public class myPlayer {
      * @modify sharps, flats
      */
     private void implementKey() {
-        if (this.keySignature.equals("C")){
+        if (this.keySignature.equals("C")  || this.keySignature.equals("A"+"m")){
         }
         else if (this.keySignature.equals("G") || this.keySignature.equals("E"+"m")){
             sharps.add("f");
@@ -136,9 +136,7 @@ public class myPlayer {
      */
     public void addNote(int startingTick, int length, String basenote,
             int accidental, String octave) {
-        
-      //  System.out.println("Adding "+basenote+octave+" of length "+length +" at "+startingTick);
-        
+                
         if (basenote.equals("z") || basenote.equals("Z")){
             return;
         }
@@ -157,10 +155,11 @@ public class myPlayer {
     
     
     /**
-     * Returns the effect of key signature on a basenote
-     * Assumes no accidentals
+     * Returns the effect of key signature on a basenote,
+     * 
+     * Assumes no accidentals in it originally
      * @param basenote
-     * @return 0, -1, or +1 denoting accidental effect
+     * @return 0, 1, or -1 denoting accidental effect
      */
     private int keyMutate(String basenote) {
         String base = basenote.toLowerCase();

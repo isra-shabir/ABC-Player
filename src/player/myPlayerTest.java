@@ -131,8 +131,7 @@ public class myPlayerTest {
     
     /**
      * Tests performance with different octaves
-     * (By =)
-     * Should play all as C major
+     * (Plays C,, through b'', no accidentas)
      */
     @Test
     public void testOctaves(){
