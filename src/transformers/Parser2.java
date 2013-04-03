@@ -58,14 +58,12 @@ public class Parser2 {
 	private void changeVoice(String name){
 	    
 	    for (int i = 0; i<this.numVoices; i++){
-//	        System.out.println("Comparing "+name+" to "+voiceNames.get(i));
 	        if (name.equals(voiceNames.get(i))){
-//	            System.out.println("Equality found!!");
 	            this.currentVoiceParser = i;
 	            return;
 	        }
 	    }
-	    System.out.println("Invalid Voice");
+	    throw new IllegalArgumentException("Voice name <"+name+"> not in list of voices.");
 	}
 	
 

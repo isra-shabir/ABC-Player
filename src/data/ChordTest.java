@@ -34,7 +34,7 @@ public class ChordTest {
 	
 	@Test
     public void test3() {
-        //testing multiple notes
+        //testing add
         
         Chord chord = new Chord();
         chord.addNote(note1);
