@@ -54,8 +54,8 @@ public class Parser {
 	    
 	    while (this.currentToken < tokens.size()){
 	        Token token = tokens.get(currentToken);
-//	        System.out.println("Looking at "+token);
-	        if (token.isType("SPACE") || token.isType("COMMENT")){
+	        //move on when you see a space or a comment
+	        if (token.isType("SPACE") || token.isType("COMMENT") ){
 	            this.currentToken++;
 	        }
 	        else if (token.isType("ACCIDENTAL") || token.isType("BASENOTE")){

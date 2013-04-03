@@ -41,7 +41,7 @@ public class Lexer {
     	//we take substring(1) to get rid of the "|" at the beginning of the string
     	Pattern patterns = Pattern.compile(tokenPatternsBuffer.substring(1));
 		
-    	Matcher matcher = patterns.matcher(this.stream);
+    	Matcher matcher = patterns.matcher(this.stream+"\n");
     	
     	//define the different patterns from the tokens
 
@@ -62,7 +62,6 @@ public class Lexer {
     	Pattern firstRepeat = Pattern.compile(Type.FIRSTREPEAT.getRegex());
     	Pattern secondRepeat = Pattern.compile(Type.SECONDREPEAT.getRegex());
     	Pattern comment = Pattern.compile(Type.COMMENT.getRegex());
-    	Pattern newline = Pattern.compile(Type.NEWLINE.getRegex());
     	Pattern space = Pattern.compile(Type.SPACE.getRegex());
     	
 
@@ -88,7 +87,7 @@ public class Lexer {
 
     		else if(C.matcher(token).matches())				continue;
     		else if(note.matcher(token).matches())			tokens.add(new Token(Type.BASENOTE, token));
-    		else if(forwardSlash.matcher(token).matches())		tokens.add(new Token(Type.FORWARDSLASH, token));
+    		else if(forwardSlash.matcher(token).matches())	tokens.add(new Token(Type.FORWARDSLASH, token));
     		else if(digit.matcher(token).matches())			tokens.add(new Token(Type.DIGIT, token));
     		else if(acc.matcher(token).matches())			tokens.add(new Token(Type.ACCIDENTAL, token));
     		else if(octave.matcher(token).matches())		tokens.add(new Token(Type.OCTAVE, token));
@@ -102,11 +101,10 @@ public class Lexer {
     		else if(endBar.matcher(token).matches())		tokens.add(new Token(Type.ENDBAR, token));
     		else if(firstRepeat.matcher(token).matches())	tokens.add(new Token(Type.FIRSTREPEAT, token));
     		else if(secondRepeat.matcher(token).matches())	tokens.add(new Token(Type.SECONDREPEAT, token));
-    		else if(comment.matcher(token).matches())       tokens.add(new Token(Type.COMMENT, token));
-    		else if(newline.matcher(token).matches())       tokens.add(new Token(Type.NEWLINE, ""));
+    		else if(comment.matcher(token).matches())		tokens.add(new Token(Type.COMMENT, token));
     		else if(space.matcher(token).matches())			tokens.add(new Token(Type.SPACE, "")); 	
     		else if(invalid.matcher(token).matches()){
-    			throw new RuntimeException("There is an invalid entry "+token+"in your abc file. YOU STUPID?");
+    			throw new RuntimeException("There is an invalid entry ("+token+") in your abc file. That's Awk");
     		}
     	}
 		return tokens;
