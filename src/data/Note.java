@@ -3,6 +3,12 @@ package data;
 import player.BarManager;
 
 public class Note implements NoteStruct{
+	
+	/**
+	 * This class represents stores all information about 
+	 * notes (the fundamental atom used to play music) 
+	 * The class also contains methods applicable to notes
+	 */
     
     private int timeNumerator;
     private int timeDenominator;
@@ -118,6 +124,8 @@ public class Note implements NoteStruct{
         return accidental+basenote+octave+timeNumerator+"/"+timeDenominator;
     }
 
+    
+    // collection of methods that determine what kind of object note is
     public boolean isNotestruct() {
         return true;
     }
@@ -126,16 +134,18 @@ public class Note implements NoteStruct{
         return false;
     }
     
+    public boolean isType(String type) {
+        return false;
+    }
+    
+    // collection of getter methods for note class attributes
+    
     public String getBasenote(){
         return this.basenote;
     }
     
     public int getAccidental(){
         return this.accidental;
-    }
-    
-    public boolean isType(String type) {
-        return false;
     }
     
     /**
@@ -152,6 +162,10 @@ public class Note implements NoteStruct{
         return getGCD(b, a%b);
     }
 
+    /**
+     * setter method for Accidentals of note objects
+     * @param accidental
+     */
     
     public void setAccidental(Integer accidental) {
         this.accidental = accidental;

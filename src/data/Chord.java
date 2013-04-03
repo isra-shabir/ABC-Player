@@ -9,7 +9,7 @@ public class Chord implements NoteStruct{
 	 * Chord object contains notes that 
 	 * sound simultaneous
 	 * This class knows its notes and contains
-	 * methods that are called on its array of notes
+	 * methods that are called on this array of notes
 	 */
     
     ArrayList<Note> notes = new ArrayList<Note>();
@@ -58,6 +58,8 @@ public class Chord implements NoteStruct{
         return endTick;
     }
     
+    // collection of methods that check what kind of object chord is
+    
     public boolean isNotestruct() {
         return true;
     }
@@ -73,14 +75,13 @@ public class Chord implements NoteStruct{
  
     @Override
     /**
-     * method to have String representation of the chord
+     * method for String representation of the chord
      * @return string c - string representation of chord
      */
     public String toString(){
         String c = "Chord: \n";
         for (int i = 0; i<notes.size(); i++){
-            c = c + notes.get(i).toString() + "\n";
-            
+            c = c + notes.get(i).toString() + "\n";    
         }
         return c;
     }

@@ -8,7 +8,7 @@ public class VoiceIndicatorTest {
 	
 	/**
 	 * mandatory test file for VoiceIndicatorTest
-	 * testing non-trivial method
+	 * testing non-trivial method (relatively)
 	 */
 
 	@Test

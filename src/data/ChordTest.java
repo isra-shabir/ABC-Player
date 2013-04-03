@@ -20,10 +20,8 @@ public class ChordTest {
 	    
 	    assertEquals(chord.toString(), "Chord: \n1A,8/12\n");
 	}
-	
 
 	@Test
-
     public void test2() {
         //testing multiple notes
         

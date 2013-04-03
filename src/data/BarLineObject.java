@@ -6,6 +6,8 @@ package data;
  */
 public interface BarLineObject {
 
+	// each of these methods checks the type of BarLineObject
+	
     boolean isNotestruct();
     boolean isType(String type);
     boolean isVoiceIndicator();

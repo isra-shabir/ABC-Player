@@ -8,7 +8,6 @@ import static org.junit.Assert.*;
  * described in the Notes class 
  * 
  */
-
 public class NoteTest {
 
     //Test representation of time in simplest form, 
@@ -47,7 +46,4 @@ public class NoteTest {
     	Note test = new Note("C", 10, "", 3, 16);
     	assertEquals("10C3/16",test.toString());
     }
-    
-    
-
 }
