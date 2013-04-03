@@ -13,10 +13,13 @@ public class VoiceParser {
 	private String voiceName;
 	
 	private Voice voice;
+	private int lnum, lden;
 	
-	public VoiceParser(String name){
+	public VoiceParser(String name, int lnum, int lden){
 	    this.voiceName = name;
 	    voice = new Voice(this.voiceName);
+	    this.lnum = lnum;
+	    this.lden = lden;
 	}
 	
 	/**
@@ -58,7 +61,7 @@ public class VoiceParser {
 	        //A bar signal
 	        else {
 	            
-	            Bar newbar = new Bar();
+	            Bar newbar = new Bar(this.lnum, this.lden);
 	            for (int i2 = 0; i2<barFiller.size(); i2++){
 	                newbar.add(barFiller.get(i2));
 	            }

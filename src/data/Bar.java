@@ -15,7 +15,7 @@ public class Bar{
      * Constructor for Bar. Sets the lnum and lden to the default 1 and4
      */
     public Bar(){
-    	this.lnum = 4;
+    	this.lnum = 1;
     	this.lden = 1;
     }
     /**

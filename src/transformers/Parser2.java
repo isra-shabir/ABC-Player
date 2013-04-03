@@ -25,14 +25,17 @@ public class Parser2 {
 	private int numVoices;
 	private int currentVoiceParser = 0;
     private ArrayList<String> voiceNames;
+    private int lnum, lden;
     
     /**
      * 
      * @param voiceNames
      */
 	
-	public Parser2(ArrayList<String> voiceNames){
+	public Parser2(ArrayList<String> voiceNames, int lnum, int lden){
 	    
+		this.lnum = lnum;
+		this.lden = lden;
 	    this.numVoices = voiceNames.size();
 	    this.voiceNames = voiceNames;
 	    
@@ -40,13 +43,13 @@ public class Parser2 {
 	    
 	    if (this.numVoices > 0){
     	    for (int i = 0; i < this.numVoices; i++){
-    	        voiceParsers.add(new VoiceParser(voiceNames.get(i)));
+    	        voiceParsers.add(new VoiceParser(voiceNames.get(i), this.lnum, this.lden));
     	    }
 	    }
 	    else {
 	        this.numVoices = 1;
 	        this.voiceNames.add("Fairouz");
-	        voiceParsers.add(new VoiceParser("Fairouz"));
+	        voiceParsers.add(new VoiceParser("Fairouz",this.lnum, this.lden));
 	    }
 	}
 	
