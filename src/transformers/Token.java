@@ -38,6 +38,7 @@ public class Token {
 		REPEATEND(":\\|"),
 		BAR("\\|"),
 		COMMENT("[%]"),
+		NEWLINE("\\\n"),
 		SPACE("[\\s]+"), // all white spaces including newline
 		
 		INVALID("[^(T:)(C:)(Q:)(X:)(L:)(M:)(K:)(V:)]");
