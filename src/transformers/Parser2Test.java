@@ -23,7 +23,7 @@ import sound.SequencePlayer;
 
 /**
  * 
- * @author AHaidar
+ * Tests
  * @category no_didit
  */
 public class Parser2Test {
