@@ -118,6 +118,10 @@ public class myPlayer {
             flats.add("f");
         }
         
+        else {
+            throw new IllegalArgumentException("The received key signature - "+this.keySignature+" - is not valid. I don't know what to do with it.");
+        }
+        
         
     }
 
@@ -179,25 +183,30 @@ public class myPlayer {
      * @return an int corresponding to the number of octaves that must be added.
      */
     private int numerateOctave(String octave, String basenote){
-                
-        if (octave.equals("'")){
-            return 2; }
-        else if (octave.equals("''")){
-            return 3; }
-        else if (octave.equals("'''")){
-            return 4; }
-        
-        else if (octave.equals(",")){
-            return -1; }
-        else if (octave.equals(",,")){
-            return -2; }
-        else if (octave.equals(",,,")){
-            return -3; }
-        
         String lowerBasenote = basenote.toLowerCase();
-        if (lowerBasenote == basenote){
-            return 1;
-        }   
-        return 0;
+        if (octave.equals("")){
+            if (lowerBasenote.equals(basenote)){
+                return 1;
+            }
+            return 0;
+        }
+        else if (lowerBasenote.equals(basenote)){
+            if (octave.equals("'")){
+                return 2; }
+            else if (octave.equals("''")){
+                return 3; }
+            else if (octave.equals("'''")){
+                return 4; }
+        }
+        else if (lowerBasenote.equals(basenote) == false){    
+            if (octave.equals(",")){
+                return -1; }
+            else if (octave.equals(",,")){
+                return -2; }
+            else if (octave.equals(",,,")){
+                return -3; }
+        }
+        
+        throw new IllegalArgumentException("Invalid Octave! <"+octave+"> is not a valid octave for that basenote.");
     }  
 }

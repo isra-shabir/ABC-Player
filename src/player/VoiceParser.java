@@ -40,7 +40,6 @@ public class VoiceParser {
 	    
 	    //Arrays used to construct bars...
 	    ArrayList<NoteStruct> barFiller = new ArrayList<NoteStruct>();
-	    int[] accis = {10,10,10,10,10,10,10};
 	    
 	    //Used solely by diff-end-repeats
 	    ArrayList<Bar> repeatedSecondBars = new ArrayList<Bar>(); 
