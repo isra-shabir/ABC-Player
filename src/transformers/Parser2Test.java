@@ -114,7 +114,7 @@ public class Parser2Test {
         objs.add(G);
         objs.add(plainBar);
         
-        Parser2 myParser2 = new Parser2(voiceNames);
+        Parser2 myParser2 = new Parser2(voiceNames,1,1);
         myParser2.parse(objs);
         ArrayList<Voice> voices = myParser2.getVoices();
 
@@ -186,7 +186,7 @@ public class Parser2Test {
         
         
                
-        Parser2 myParser2 = new Parser2(voiceNames);
+        Parser2 myParser2 = new Parser2(voiceNames,1,1);
         myParser2.parse(objs);
         ArrayList<Voice> voices = myParser2.getVoices();
 
@@ -233,7 +233,7 @@ public class Parser2Test {
         objs.add(G);
         objs.add(repeatBar);
                      
-        Parser2 myParser2 = new Parser2(voiceNames);
+        Parser2 myParser2 = new Parser2(voiceNames,1,1);
         myParser2.parse(objs);
         ArrayList<Voice> voices = myParser2.getVoices();
         Song lalala = new Song(voices);
