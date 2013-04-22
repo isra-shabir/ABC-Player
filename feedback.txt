@@ -1,0 +1,69 @@
+Project 1: abc Music Player		ahaidar, azizkag, ishabir
+===========================		(grader: Bryan)
+
+Team contract: 5 / 5
+
+Design: 22 / 25
+  Milestone design: 13 / 15
+  Revised design: 9 / 10
+
+  Beta design:
+
+  Your two-stage parsing design is interesting and seems reasonable. The two issues I have with your original beta design are that 1) there is no testing strategy, and 2) it would be nice to have more English explanations of the pieces of your design, rather than names of classes and methods and very brief descriptions.
+
+  Revised beta design:
+
+  You added a testing strategy, but it still could be more detailed.
+
+  Final Design:
+
+  Your final design is good; I especially like that you included diagrams. I have the same comments that I gave for your beta design though: it would be good to be a bit more thorough in explaining each piece of your design/each datatype.
+
+
+Implementation: 41 / 50
+  Warmup: 4 / 5
+  Code readability: 7 / 8
+  Specifications: 6 / 7
+  Functionality: 13 / 15
+  Our tests: 11 / 15
+    Tuplets: 1 / 2
+    Chords: 2 / 2
+    Repeats: 1 / 2
+    Voices: 0 / 2
+    Key signature: 2 / 2
+    Accidentals: 2 / 2
+    Rhythm: 3 / 3
+
+  Warmups:
+
+  Task 1 is almost correct, except the last chord of the first measure should have a lowercase e instead of a capital E.  Task 2 looks good.
+
+  Implementation:
+
+  Your play() method in Main is supposed to take in a filename and play the corresponding file; you're not supposed to take in the text of the abc file itself.
+
+  Your implementation crashed on two of our tests. Once was due to an IndexOutOfBoundsException in Tuplet.getMinTicks, and once was due to an IllegalArgumentException in myPlayer.implementKey. The latter example used the key signature Bb, and I looked at your method, and it seems to expect key signatures in the same format as accidentals, which is not the correct format.
+
+  Your player has some problems with [1 and [2 repeat structures. When playing paddy.abc, the repeat doesn't return to the correct place. For the most part, though, the sample abc files play correctly.
+
+  Specifications and Code Readability:
+
+  It looks like you wrote specifications for almost everything. Sometimes your specs could be more detailed. There are a couple of places that don't have specs/comments (e.g. you have "write some documentation" written in Parser.java), but for the most part, you either wrote a good spec, or commented the code, or both, where needed.
+
+
+Testing: 10 / 15
+  Unit tests: 5 / 6
+  Integration tests: 3 / 6
+  Custom abc files: 2 / 3
+
+  Testing:
+
+  You test each piece of your design, which is good. Many of your tests rely on a human listener, though; it would be good to have more automatic tests. Also, many of your tests which seem to be unit tests actually rely on the other pieces of your design being correctly implemented; it would be good to test each piece in complete isolation. For example, in your ParserTest.java file, each test first uses a Lexer to generate an ArrayList of Tokens, and then feeds that into the Parser. It would be good to have some tests with a manually created ArrayList of Tokens that you feed into your Parser, without using your Lexer. It's also generally a good idea to be clear about what each test is testing for exactly. Finally, you should have some tests to make sure that your player gives some kind of error on a malformed input.
+
+
+TOTAL TEAM SCORE: 78 / 95
+
+(Individual scores will include 5 points for the reflection assignment,
+ and will be posted on Stellar.)
+
+
